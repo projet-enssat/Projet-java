@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class Menu{
 	
-	private static final long serialVersionUID = 1L;
-
 	public void AffClient(String nom) {
 		JPanel nomClient = new JPanel();
 		GridLayout posNom = new GridLayout(1,2);
