@@ -7,12 +7,12 @@ public class Menu{
 	private static final long serialVersionUID = 1L;
 
 	public void AffClient(String nom) {
-		JPanel nom = new JPanel();
+		JPanel nomClient = new JPanel();
 		GridLayout posNom = new GridLayout(1,2);
-		nom.setLayout(posnom);
-		nom.add(new Label("Nom :"));
+		nomClient.setLayout(posNom);
+		nomClient.add(new Label("Nom :"));
 		JTextField textNom = new JTextField();
-		nom.add(textNom);
+		nomClient.add(textNom);
 		
 		JFrame fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
@@ -139,6 +139,6 @@ public class Menu{
 	
 	public static void main(String[] args){
 		Menu con = new Menu();
-		//con.MenuPrincipal();
+		con.MenuPrincipal();
 	}
 }
