@@ -19,6 +19,8 @@ public class Action implements ActionListener {
 		if(((JButton) e.getSource()).getText() == "Nouveau Client"){
 			Gestionclient gclient = new Gestionclient();
 			gclient.creerClient();
+			Menu con2 = new Menu();
+			con2.AffClient("test");
 		}
 		if(((JButton) e.getSource()).getText() == "Supprimer Client") {
 			Gestionclient gclient = new Gestionclient();

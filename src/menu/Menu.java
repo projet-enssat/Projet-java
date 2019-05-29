@@ -3,6 +3,16 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Menu{
+
+	public JPanel bouton(String nom) {
+		JPanel panel = new JPanel();
+		FlowLayout pospanel = new FlowLayout();
+		panel.setLayout(pospanel);
+		JButton bouton = new JButton(nom);
+		bouton.addActionListener(new Action());
+		panel.add(bouton);
+		return panel;
+	}
 	
 	public void AffClient(String nom) {
 		JPanel nomClient = new JPanel();
@@ -16,10 +26,11 @@ public class Menu{
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipal = new GridLayout(4,1);
 		fenetre.setLayout(grillePrincipal);
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetre.add(nomClient);
 		fenetre.setVisible(true);
 		
 	}
+	
 	public void MenuPrincipal() {
 		//pour creer des espaces sans rien
 		JPanel vide = new JPanel();
@@ -60,48 +71,6 @@ public class Menu{
 		JLabel labelVehicule = new JLabel("Véhicule");
 		vehicule.add(labelVehicule);
 		
-		JPanel nouvClient = new JPanel();
-		FlowLayout posNouvClient = new FlowLayout();
-		nouvClient.setLayout(posNouvClient);
-		JButton boutonNouvClient = new JButton("Nouveau Client");
-		boutonNouvClient.addActionListener(new Action());
-		nouvClient.add(boutonNouvClient);
-		
-		JPanel nouvLocation = new JPanel();
-		FlowLayout posNouvLocation = new FlowLayout();
-		nouvLocation.setLayout(posNouvLocation);
-		JButton boutonNouvLocation = new JButton("Début Location");
-		boutonNouvLocation.addActionListener(new Action());
-		nouvLocation.add(boutonNouvLocation);
-		
-		JPanel nouvVehicule = new JPanel();
-		FlowLayout posNouvVehicule = new FlowLayout();
-		nouvVehicule.setLayout(posNouvVehicule);
-		JButton boutonNouvVehicule = new JButton("Nouveau Véhicule");
-		boutonNouvVehicule.addActionListener(new Action());
-		nouvVehicule.add(boutonNouvVehicule);
-		
-		JPanel suppClient = new JPanel();
-		FlowLayout posSuppClient = new FlowLayout();
-		suppClient.setLayout(posSuppClient);
-		JButton boutonSuppClient = new JButton("Supprimer Client");
-		boutonSuppClient.addActionListener(new Action());
-		suppClient.add(boutonSuppClient);
-		
-		JPanel suppLocation = new JPanel();
-		FlowLayout posSuppLocation = new FlowLayout();
-		suppLocation.setLayout(posSuppLocation);
-		JButton boutonSuppLocation = new JButton("Fin Location");
-		boutonSuppLocation.addActionListener(new Action());
-		suppLocation.add(boutonSuppLocation);
-		
-		JPanel suppVehicule = new JPanel();
-		FlowLayout posSuppVehicule = new FlowLayout();
-		suppVehicule.setLayout(posSuppVehicule);
-		JButton boutonSuppVehicule = new JButton("Suprimer Véhicule");
-		boutonSuppVehicule.addActionListener(new Action());
-		suppVehicule.add(boutonSuppVehicule);
-		
 		//mise en place des choix d'actions (location, client, véhicule : nouvelle ou fin)
 		JPanel action = new JPanel();
 		GridLayout grilleaction = new GridLayout(3,3);
@@ -109,12 +78,12 @@ public class Menu{
 		action.add(client);
 		action.add(location);
 		action.add(vehicule);
-		action.add(nouvClient);
-		action.add(nouvLocation);
-		action.add(nouvVehicule);
-		action.add(suppClient);
-		action.add(suppLocation);
-		action.add(suppVehicule);
+		action.add(bouton("Nouveau Client"));
+		action.add(bouton("Début Location"));
+		action.add(bouton("Nouveau Véhicule"));
+		action.add(bouton("Supprimer Client"));
+		action.add(bouton("Fin Location"));
+		action.add(bouton("Suprimer Véhicule"));
 		
 		JPanel test2 = new JPanel();
 		FlowLayout test = new FlowLayout();
