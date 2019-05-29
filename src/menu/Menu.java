@@ -2,21 +2,19 @@ package menu;
 import java.awt.*;
 import javax.swing.*;
 
-public class Menu extends JFrame {
+public class Menu{
 	
 	private static final long serialVersionUID = 1L;
 
-	public void AffClient() {
+	public void AffClient(String nom) {
+		JPanel nom = new JPanel();
+		GridLayout posNom = new GridLayout(1,2);
+		nom.setLayout(posnom);
+		nom.add(new Label("Nom :"));
+		JTextField textNom = new JTextField();
+		nom.add(textNom);
 		
-		JPanel vide = new JPanel();
-		FlowLayout espaceVide = new FlowLayout();
-		vide.setLayout(espaceVide);
-		
-		JPanel optionVerif = new JPanel();
-		GridLayout grilleoption = new GridLayout(1,2);
-		optionVerif.setLayout(grilleoption);
-		
-		JFrame fenetre = new JFrame("Acceuil");
+		JFrame fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipal = new GridLayout(4,1);
 		fenetre.setLayout(grillePrincipal);
@@ -141,6 +139,6 @@ public class Menu extends JFrame {
 	
 	public static void main(String[] args){
 		Menu con = new Menu();
-		con.setVisible(true);
+		con.MenuPrincipal();
 	}
 }
