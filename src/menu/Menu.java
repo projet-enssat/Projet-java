@@ -14,28 +14,51 @@ public class Menu{
 		return panel;
 	}
 	
+	public JPanel vide() {
+		JPanel vide = new JPanel();
+		FlowLayout espaceVide = new FlowLayout();
+		vide.setLayout(espaceVide);
+		return vide;
+	}
+	
+	public JPanel textField(String nom) {
+		JPanel panelSec = new JPanel();
+		GridLayout posPanelS = new GridLayout(1,1);
+		panelSec.setLayout(posPanelS);
+		JTextField text = new JTextField();
+		panelSec.add(text);
+		
+
+		JPanel panelTer = new JPanel();
+		GridLayout posPanelT = new GridLayout(1,3);
+		panelSec.setLayout(posPanelT);
+		panelSec.add(vide());
+		JLabel label = new JLabel(nom);
+		panelSec.add(vide());
+		panelTer.add(label);
+		
+		JPanel panelPrinc = new JPanel();
+		GridLayout posPanelP = new GridLayout(1,2);
+		panelPrinc.setLayout(posPanelP);
+		panelPrinc.add(panelTer);
+		panelPrinc.add(panelSec);
+		return panelPrinc;
+	}
+	
 	public void AffClient(String nom) {
-		JPanel nomClient = new JPanel();
-		GridLayout posNom = new GridLayout(1,2);
-		nomClient.setLayout(posNom);
-		nomClient.add(new Label("Nom :"));
-		JTextField textNom = new JTextField();
-		nomClient.add(textNom);
 		
 		JFrame fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipal = new GridLayout(4,1);
 		fenetre.setLayout(grillePrincipal);
-		fenetre.add(nomClient);
+		fenetre.add(textField("nom :"));
 		fenetre.setVisible(true);
 		
 	}
 	
 	public void MenuPrincipal() {
 		//pour creer des espaces sans rien
-		JPanel vide = new JPanel();
-		FlowLayout espaceVide = new FlowLayout();
-		vide.setLayout(espaceVide);
+		
 				
 		//mise en place des options de modification et de verification des locations
 		JPanel optionVerif = new JPanel();
@@ -51,7 +74,7 @@ public class Menu{
 		option1.add(option2, BorderLayout.WEST);
 		option2.add(boutonoption, BorderLayout.NORTH);
 		optionVerif.add(option1);
-		optionVerif.add(vide);
+		optionVerif.add(vide());
 		
 		JPanel client = new JPanel();
 		FlowLayout posClient = new FlowLayout();
