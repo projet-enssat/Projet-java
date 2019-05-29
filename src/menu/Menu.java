@@ -12,6 +12,10 @@ public class Menu extends JFrame {
 		FlowLayout espaceVide = new FlowLayout();
 		vide.setLayout(espaceVide);
 		
+		JPanel optionVerif = new JPanel();
+		GridLayout grilleoption = new GridLayout(1,2);
+		optionVerif.setLayout(grilleoption);
+		
 		JFrame fenetre = new JFrame("Acceuil");
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipal = new GridLayout(4,1);
