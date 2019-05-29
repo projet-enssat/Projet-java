@@ -8,6 +8,17 @@ public class Menu extends JFrame {
 
 	public void AffClient() {
 		
+		JPanel vide = new JPanel();
+		FlowLayout espaceVide = new FlowLayout();
+		vide.setLayout(espaceVide);
+		
+		JFrame fenetre = new JFrame("Acceuil");
+		fenetre.setBounds(600,200,700,500);
+		GridLayout grillePrincipal = new GridLayout(4,1);
+		fenetre.setLayout(grillePrincipal);
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenetre.setVisible(true);
+		
 	}
 	public void MenuPrincipal() {
 		//pour creer des espaces sans rien
