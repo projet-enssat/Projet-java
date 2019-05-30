@@ -23,18 +23,18 @@ public class Menu{
 	
 	public JPanel textField(String nom) {
 		JPanel panelSec = new JPanel();
-		GridLayout posPanelS = new GridLayout(1,1);
+		GridLayout posPanelS = new GridLayout(3,1);
 		panelSec.setLayout(posPanelS);
+		panelSec.add(vide());
 		JTextField text = new JTextField();
 		panelSec.add(text);
 		
 
 		JPanel panelTer = new JPanel();
 		GridLayout posPanelT = new GridLayout(1,3);
-		panelSec.setLayout(posPanelT);
-		panelSec.add(vide());
+		panelTer.setLayout(posPanelT);
+		panelTer.add(vide());
 		JLabel label = new JLabel(nom);
-		panelSec.add(vide());
 		panelTer.add(label);
 		
 		JPanel panelPrinc = new JPanel();
@@ -51,7 +51,15 @@ public class Menu{
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipal = new GridLayout(4,1);
 		fenetre.setLayout(grillePrincipal);
-		fenetre.add(textField("nom :"));
+		JPanel nomPrenom = new JPanel();
+		GridLayout posNomPrenom = new GridLayout(1,2);
+		nomPrenom.setLayout(posNomPrenom);
+		nomPrenom.add(textField("nom :"));
+		nomPrenom.add(textField("prenom :"));
+		fenetre.add(nomPrenom);
+		fenetre.add(textField("adresse :"));
+		fenetre.add(textField("Date du permis :"));
+		fenetre.add(textField("Date de fin d'apprentissage :"));
 		fenetre.setVisible(true);
 		
 	}
