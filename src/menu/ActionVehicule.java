@@ -33,6 +33,7 @@ public class ActionVehicule implements ActionListener
 				case 3 : menu.nouvelAvion(); break;
 				default : break;
 			}
+			menu.resetBox();
 		} else if (e.getSource().equals(menu.getEnregistrer()))
 		{
 			String classe = "";

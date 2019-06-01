@@ -28,7 +28,8 @@ public class MenuVehicule extends Menu
 	private static JTextField nbPlaces = new JTextField();
 	private static JButton enregistrer = new JButton("Enregistrer");
 	private static JButton ok = new JButton("OK");
-	private static JComboBox<String> choixV = new JComboBox<String>();
+	private static String vehicule[] = {"","Voiture","Moto","Avion"};
+	private static JComboBox<String> choixV = new JComboBox<String>(vehicule);
 	private static JFrame fenetre = new JFrame("");
 	
 	public void nouveauVehicule() {
@@ -36,17 +37,17 @@ public class MenuVehicule extends Menu
 		fenetre.setBounds(800,400,200,100);
 		FlowLayout layout = new FlowLayout();
 		fenetre.setLayout(layout);
-		
-		choixV.addItem(" ");
-		choixV.addItem("Voiture");
-		choixV.addItem("Moto");
-		choixV.addItem("Avion");
+
 		choixV.addActionListener(new ActionVehicule(this));
 		fenetre.add(comboBoxV(choixV));
 		ok.setEnabled(false);
 		ok.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(ok));
 		fenetre.setVisible(true);
+	}
+	
+	public void resetBox() {
+		choixV.setSelectedIndex(0);
 	}
 	
 	public void nouvelleVoiture()
