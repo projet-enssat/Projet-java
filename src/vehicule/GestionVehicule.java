@@ -11,22 +11,46 @@ import java.io.ObjectOutputStream;
  */
 public class GestionVehicule
 {
-	private Vehicule vehicule;
+	private static Vehicule vehicule;
+	private String classe;
 	
 	public GestionVehicule() {}
 	
-	public GestionVehicule(String classe)
+	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
+						   String immatriculation, int vitesse, Float km, int puissance,
+						   int nbPlaces, Float nbHeuresVol, int nbMoteurs)
 	{
-		setTypeVehicule(classe);
+		setClasse(classe);
+		setVehicule(modele, etat, prixJour, marque, immatriculation, vitesse, km,
+					puissance, nbPlaces, nbHeuresVol, nbMoteurs);
 	}
 	
-	public void setTypeVehicule(String classe)
+	public void setVehicule(String modele, String etat, Float prixJour, String marque,
+							String immatriculation, int vitesse, Float km, int puissance,
+							int nbPlaces, Float nbHeuresVol, int nbMoteurs)
 	{
 		switch (classe)
 		{
-			case "Voiture" : vehicule = new Voiture(); break;
-			case "Moto" : vehicule = new Moto(); break;
-			case "Avion" : vehicule = new Avion(); break;
+			case "Voiture" : vehicule = new Voiture(modele, etat, prixJour, marque,
+												immatriculation, vitesse, km, puissance, nbPlaces);
+							break;
+			case "Moto" : vehicule = new Moto(modele, etat, prixJour, marque,
+											  immatriculation, vitesse, km, puissance);
+							break;
+			case "Avion" : vehicule = new Avion(modele, etat, prixJour, marque,
+												immatriculation, vitesse, nbHeuresVol, nbMoteurs);
+							break;
+			default : break;
+		}
+	}
+	
+	public void ajouterVehicule()
+	{
+		switch (classe)
+		{
+			case "Voiture" : ajouterVoiture(); break;
+			case "Moto" : ajouterMoto(); break;
+			case "Avion" : ajouterAvion(); break;
 			default : break;
 		}
 	}
@@ -122,5 +146,10 @@ public class GestionVehicule
 		} catch (IOException | ClassNotFoundException e)
 		{ e.printStackTrace(); }
 		return liste;
+	}
+	
+	public void setClasse(String classe)
+	{
+		this.classe= classe;
 	}
 }

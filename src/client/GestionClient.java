@@ -1,5 +1,6 @@
 package client;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class GestionClient
 		client = new Client();
 	}
 	
-	public void setClient(String nom, String prenom, String adresse, Date date1, Date date2)
+	public void setClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);
 	}
@@ -31,7 +32,7 @@ public class GestionClient
 	 */
 	public void ajouterClient()
 	{
-		ListeLocations liste = lireClients();
+		ListeClients liste = lireClients();
 		if (liste.contains(client))
 		{ 
 			liste.add(client);
@@ -42,7 +43,7 @@ public class GestionClient
 	/** Sérialise la liste des clients pour mettre à jour l'archive "clients".
 	 * @param liste	 Liste à sérialiser.
 	 */
-	public void enregistrerClients(ListeLocations liste)
+	public void enregistrerClients(ListeClients liste)
 	{
 		try
 		{
@@ -59,7 +60,7 @@ public class GestionClient
 	 */
 	public void supprimerClient()
 	{
-		ListeLocations liste = lireClients();
+		ListeClients liste = lireClients();
 		liste.remove(client);
 		enregistrerClients(liste);
 	}
@@ -67,16 +68,18 @@ public class GestionClient
 	/** Désérialise la liste des clients à partir de l'archive "clients".
 	 * @return	Liste des clients enregistrés.
 	 */
-	private static ListeLocations lireClients()
+	public ListeClients lireClients()
 	{
-		ListeLocations liste = new ListeLocations();
+		ListeClients liste = new ListeClients();
 		
 		try
-		{
-			FileInputStream fis = new FileInputStream("clients");
-			ObjectInputStream in = new ObjectInputStream(fis);
-			liste = (ListeLocations) in.readObject();
-			fis.close();
+		{	try
+			{
+				FileInputStream fis = new FileInputStream("clients");
+				ObjectInputStream in = new ObjectInputStream(fis);
+				liste = (ListeClients) in.readObject();
+				fis.close();
+			} catch (EOFException eof) {}
 		} catch (IOException | ClassNotFoundException e)
 		{ e.printStackTrace(); }
 		return liste;

@@ -5,21 +5,21 @@ public class Client {
 	private String nom;
 	private String prenom;
 	private String adresse;
-	private Date dateapprentissage;
-	private Date datepermis;
+	private String dateApprentissage;
+	private String datePermis;
 	
 	//Constructeur
 	
 	public Client() {
-		this("inconnue","inconnue","inconnue",new Date(10/12/1900),new Date(10/12/1900));
+		this("inconnue","inconnue","inconnue","00/00/0000","00/00/0000");
 	}
 	
-	public Client(String nom, String prenom, String adresse, Date date1, Date date2) {
+	public Client(String nom, String prenom, String adresse, String date1, String date2) {
 		this.nom=nom;
 		this.prenom=prenom;
 		this.adresse=adresse;
-		this.dateapprentissage=date1;
-		this.datepermis=date2;
+		this.dateApprentissage=date1;
+		this.datePermis=date2;
 	}
 	
 	//getters and setters
@@ -42,17 +42,17 @@ public class Client {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public Date getDateapprentissage() {
-		return dateapprentissage;
+	public String getDateApprentissage() {
+		return dateApprentissage;
 	}
-	public void setDateapprentissage(Date dateapprentissage) {
-		this.dateapprentissage = dateapprentissage;
+	public void setDateApprentissage(String dateapprentissage) {
+		this.dateApprentissage = dateapprentissage;
 	}
-	public Date getDatepermis() {
-		return datepermis;
+	public String getDatePermis() {
+		return datePermis;
 	}
-	public void setDatepermis(Date datepermis) {
-		this.datepermis = datepermis;
+	public void setDatePermis(String datepermis) {
+		this.datePermis = datepermis;
 	}
 
 
@@ -60,17 +60,13 @@ public class Client {
 	
 	@Override
 	public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateapprentissage="
-				+ dateapprentissage + ", datepermis=" + datepermis + "]";
+		return nom + "#" + prenom + "#" + adresse +"#" + dateApprentissage + "#" + datePermis;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
-		result = prime * result + ((dateapprentissage == null) ? 0 : dateapprentissage.hashCode());
-		result = prime * result + ((datepermis == null) ? 0 : datepermis.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		return result;
@@ -85,21 +81,6 @@ public class Client {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (adresse == null) {
-			if (other.adresse != null)
-				return false;
-		} else if (!adresse.equals(other.adresse))
-			return false;
-		if (dateapprentissage == null) {
-			if (other.dateapprentissage != null)
-				return false;
-		} else if (!dateapprentissage.equals(other.dateapprentissage))
-			return false;
-		if (datepermis == null) {
-			if (other.datepermis != null)
-				return false;
-		} else if (!datepermis.equals(other.datepermis))
-			return false;
 		if (nom == null) {
 			if (other.nom != null)
 				return false;

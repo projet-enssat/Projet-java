@@ -6,7 +6,6 @@ public abstract class Vehicule {
 	private Float prixJour;
 	private String marque;
 	private String immatriculation;
-	private int vitesseMax;
 	
 	public Vehicule() {
 		this("inconnue","inconnue",new Float(0),"inconnue","inconnue",0);
@@ -19,7 +18,6 @@ public abstract class Vehicule {
 		this.prixJour = prixJour;
 		this.marque = marque;
 		this.immatriculation = immatriculation;
-		vitesseMax=vitesse;
 	}
 	
 	@Override
@@ -31,7 +29,6 @@ public abstract class Vehicule {
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
 		result = prime * result + ((modele == null) ? 0 : modele.hashCode());
 		result = prime * result + ((prixJour == null) ? 0 : prixJour.hashCode());
-		result = prime * result + vitesseMax;
 		return result;
 	}
 
@@ -69,8 +66,6 @@ public abstract class Vehicule {
 				return false;
 		} else if (!prixJour.equals(other.prixJour))
 			return false;
-		if (vitesseMax != other.vitesseMax)
-			return false;
 		return true;
 	}
 
@@ -103,12 +98,6 @@ public abstract class Vehicule {
 	}
 	public void setImmatriculation(String immatriculation) {
 		this.immatriculation = immatriculation;
-	}
-	public int getVitesseMax() {
-		return vitesseMax;
-	}
-	public void setVitesseMax(int vitesseMax) {
-		this.vitesseMax = vitesseMax;
 	}
 	
 }

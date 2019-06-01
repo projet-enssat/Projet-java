@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public abstract class Menu {
 	
@@ -23,6 +24,15 @@ public abstract class Menu {
 		FlowLayout espaceVide = new FlowLayout();
 		vide.setLayout(espaceVide);
 		return vide;
+	}
+	
+	public JPanel comboBoxV(JComboBox<String> comboBox)
+	{
+		JPanel panel = new JPanel();
+		FlowLayout pospanel = new FlowLayout();
+		panel.setLayout(pospanel);
+		panel.add(comboBox);
+		return panel;
 	}
 	
 	public JPanel textField(String nom, JTextField text) {

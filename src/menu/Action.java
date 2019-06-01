@@ -9,10 +9,10 @@ import client.GestionClient;
 
 public class Action implements ActionListener {
 
-	Menuprincipal menu;
+	MenuPrincipal menu;
 	
 	public Action(Menu menu) {
-		this.menu=(Menuprincipal)menu;
+		this.menu=(MenuPrincipal)menu;
 	}
 	
 	@Override
@@ -20,8 +20,8 @@ public class Action implements ActionListener {
 		switch(((JButton) e.getSource()).getText())
 		{
 			case "Nouveau Client" :
-				Menuclient client = new Menuclient();
-				client.AffMenu("Nouveau Client");
+				MenuClient client = new MenuClient();
+				client.affMenu("Nouveau Client");
 				break;
 			case "Supprimer Client" :
 				GestionClient gsClient = new GestionClient();
@@ -34,13 +34,14 @@ public class Action implements ActionListener {
 				
 				break;
 			case "Nouveau Véhicule" :
-				
+				MenuVehicule vehicule = new MenuVehicule();
+				vehicule.nouveauVehicule();
 				break;
 			case "Supprimer Véhicule" :
 				
 				break;
 			case "Options" :
-				
+				System.out.println(new GestionClient().lireClients());
 				break;
 		}
 	}
