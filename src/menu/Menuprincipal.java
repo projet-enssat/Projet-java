@@ -2,7 +2,7 @@ package menu;
 import java.awt.*;
 import javax.swing.*;
 
-public class Menu{
+public class Menuprincipal{
 
 	public JPanel bouton(String nom) {
 		JPanel panel = new JPanel();
@@ -68,7 +68,7 @@ public class Menu{
 		
 	}
 	
-	public void MenuPrincipal() {
+	public Menuprincipal() {
 		//pour creer des espaces sans rien
 		
 				
@@ -135,12 +135,7 @@ public class Menu{
 		principal.setVisible(true);
 	}
 	
-	public Menu() {
-
-	}
-	
 	public static void main(String[] args){
-		Menu con = new Menu();
-		con.MenuPrincipal();
+		Menuprincipal con = new Menuprincipal();
 	}
 }
