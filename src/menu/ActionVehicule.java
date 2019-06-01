@@ -25,7 +25,7 @@ public class ActionVehicule implements ActionListener
 		}
 	 	if (e.getSource().equals(menu.getOK()))
 		{
-			menu.getFenetre().setVisible(false);
+			menu.getFenetreChoix().dispose();
 			switch (menu.getChoixV().getSelectedIndex())
 			{
 				case 1 : menu.nouvelleVoiture(); break;
@@ -45,7 +45,7 @@ public class ActionVehicule implements ActionListener
 				default : break;
 			}
 			menu.enregistrement(classe);
-			menu.getFenetre().setVisible(false);
+			menu.getFenetre().dispose();
 		}
 	}
 }

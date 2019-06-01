@@ -1,8 +1,6 @@
 package menu;
 
 import java.awt.GridLayout;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,22 +10,21 @@ import client.Client;
 import client.GestionClient;
 
 public class MenuClient extends Menu {
-	JTextField adresse = new JTextField("Entrez votre adresse avec code postal et ville");
-	JTextField prenom = new JTextField();
-	JTextField nomClient = new JTextField();
-	JTextField datePermis = new JTextField();
-	JTextField dateApprentissage = new JTextField();
-	JButton enregistrer = new JButton("Enregistrer");
+	
+	private static JTextField adresse = new JTextField("Entrez votre adresse avec code postal et ville");
+	private static JTextField prenom = new JTextField();
+	private static JTextField nomClient = new JTextField();
+	private static JTextField datePermis = new JTextField();
+	private static JTextField dateApprentissage = new JTextField();
+	private static JButton validation = new JButton();
 	
 	public MenuClient() {
 		
 	}
 	
 	public void enregistrement() {
-		GestionClient gClient = new GestionClient();
-		gClient.setClient(nomClient.getText(),prenom.getText(),adresse.getText(),
-						  dateApprentissage.getText(), datePermis.getText());
-		gClient.ajouterClient();
+		new GestionClient(nomClient.getText(),prenom.getText(),adresse.getText(),
+						  dateApprentissage.getText(), datePermis.getText()).ajouterClient();
 	}
 	
 	public void affMenu(String nom) {
@@ -46,10 +43,22 @@ public class MenuClient extends Menu {
 		fenetre.add(textField("Adresse :",adresse));
 		fenetre.add(textField("Date du permis :",datePermis));
 		fenetre.add(textField("Date de fin d'apprentissage :",dateApprentissage));
-		enregistrer.addActionListener(new ActionClient(this));
-		fenetre.add(bouton(enregistrer));
+		validation.addActionListener(new ActionClient(this));
+		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 		
+	}
+	
+	public void insererclient(Client client) {
+		adresse.setText(client.getAdresse());
+		prenom.setText(client.getPrenom());
+		datePermis.setText(client.getDatePermis());
+		nomClient.setText(client.getNom());
+		dateApprentissage.setText(client.getDateApprentissage());
+	}
+	
+	public void setValidation(String nomboutton) {
+		validation.setText(nomboutton);
 	}
 	
 }

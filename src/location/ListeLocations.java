@@ -8,7 +8,7 @@ import client.Client;
 /** Intermédiaire pour sérialiser et enregistrer des clients.
  * @author Dejan Paris
  */
-public class ListeLocations extends ArrayList<Client> implements Serializable
+public class ListeLocations extends ArrayList<Location> implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 }

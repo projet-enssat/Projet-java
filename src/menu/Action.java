@@ -20,12 +20,14 @@ public class Action implements ActionListener {
 		switch(((JButton) e.getSource()).getText())
 		{
 			case "Nouveau Client" :
-				MenuClient client = new MenuClient();
-				client.affMenu("Nouveau Client");
+				MenuClient nouvclient = new MenuClient();
+				nouvclient.setValidation("enregistrer");
+				nouvclient.affMenu("Nouveau Client");
 				break;
 			case "Supprimer Client" :
-				GestionClient gsClient = new GestionClient();
-				gsClient.supprimerClient();
+				MenuClient suppclient = new MenuClient();
+				suppclient.setValidation("rechercher");
+				suppclient.affMenu("Supprimer Client");
 				break;
 			case "Début Location" :
 				

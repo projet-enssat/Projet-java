@@ -22,6 +22,11 @@ public class GestionClient
 		client = new Client();
 	}
 	
+	public GestionClient(String nom, String prenom, String adresse, String date1, String date2)
+	{
+		client = new Client(nom,prenom,adresse,date1,date2);
+	}
+	
 	public void setClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);
