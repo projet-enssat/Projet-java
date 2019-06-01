@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import location.Gestionlocation;
-import client.Gestionclient;
-import client.Client;
+import vehicule.GestionVehicule;
+import client.GestionClient;
 
 public class Action implements ActionListener {
 
@@ -15,33 +14,32 @@ public class Action implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(((JButton) e.getSource()).getText() == "Nouveau Client"){
-			Gestionclient gclient = new Gestionclient();
-			gclient.creerClient();
-			Menu con2 = new Menu();
-			con2.AffClient("test");
-		}
-		if(((JButton) e.getSource()).getText() == "Supprimer Client") {
-			Gestionclient gclient = new Gestionclient();
-			gclient.supprimerClient();
-		}
-		if(((JButton) e.getSource()).getText() == "Début Location") {
-			Gestionlocation glocation = new Gestionlocation();
-			glocation.nouvelleLocation();
-		}
-		if(((JButton) e.getSource()).getText() == "Fin Location") {
-			Gestionlocation glocation = new Gestionlocation();
-			glocation.finLocation();
-		}
-		if(((JButton) e.getSource()).getText() == "Nouveau Véhicule") {
-			Gestionvehicule gvehicule = new Gestionvehicule();
-			gvehicule.nouvellevehicule();
-		}
-		if(((JButton) e.getSource()).getText() == "Suprimer Véhicule") {
-			Gestionvehicule gvehicule = new Gestionvehicule();
-			gvehicule.finvehicule();
+		switch(((JButton) e.getSource()).getText())
+		{
+			case "Nouveau Client" :
+				GestionClient gnClient = new GestionClient();
+				Menu con2 = new Menu();
+				con2.AffClient("test");
+				break;
+			case "Supprimer Client" :
+				GestionClient gsClient = new GestionClient();
+				gsClient.supprimerClient();
+				break;
+			case "Début Location" :
+				
+				break;
+			case "Fin Location" :
+				
+				break;
+			case "Nouveau Véhicule" :
+				
+				break;
+			case "Supprimer Véhicule" :
+				
+				break;
+			case "Options" :
+				
+				break;
 		}
 	}
-
 }

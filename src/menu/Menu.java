@@ -49,17 +49,21 @@ public class Menu{
 		
 		JFrame fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
-		GridLayout grillePrincipal = new GridLayout(4,1);
-		fenetre.setLayout(grillePrincipal);
+		GridLayout grillePrincipale = new GridLayout(4,1);
+		fenetre.setLayout(grillePrincipale);
 		JPanel nomPrenom = new JPanel();
 		GridLayout posNomPrenom = new GridLayout(1,2);
 		nomPrenom.setLayout(posNomPrenom);
-		nomPrenom.add(textField("nom :"));
-		nomPrenom.add(textField("prenom :"));
+		JPanel champNom = textField("Nom :");
+		nomPrenom.add(champNom);
+		nomPrenom.add(textField("Prenom :"));
 		fenetre.add(nomPrenom);
-		fenetre.add(textField("adresse :"));
+		fenetre.add(textField("Adresse :"));
 		fenetre.add(textField("Date du permis :"));
 		fenetre.add(textField("Date de fin d'apprentissage :"));
+		JButton enregistrer = new JButton("Enregistrer");
+		enregistrer.addActionListener(new Action());
+		fenetre.add(enregistrer);
 		fenetre.setVisible(true);
 		
 	}
@@ -78,7 +82,7 @@ public class Menu{
 		JPanel option2 = new JPanel();
 		BorderLayout posOption2 = new BorderLayout();
 		option2.setLayout(posOption2);
-		JButton boutonoption = new JButton("option");
+		JButton boutonoption = new JButton("Options");
 		option1.add(option2, BorderLayout.WEST);
 		option2.add(boutonoption, BorderLayout.NORTH);
 		optionVerif.add(option1);
@@ -114,13 +118,13 @@ public class Menu{
 		action.add(bouton("Nouveau Véhicule"));
 		action.add(bouton("Supprimer Client"));
 		action.add(bouton("Fin Location"));
-		action.add(bouton("Suprimer Véhicule"));
+		action.add(bouton("Supprimer Véhicule"));
 		
 		JPanel test2 = new JPanel();
 		FlowLayout test = new FlowLayout();
 		test2.setLayout(test);
 		
-		JFrame principal = new JFrame("Acceuil");
+		JFrame principal = new JFrame("Accueil");
 		principal.setBounds(600,200,700,500);
 		GridLayout grillePrincipal = new GridLayout(4,1);
 		principal.setLayout(grillePrincipal);
