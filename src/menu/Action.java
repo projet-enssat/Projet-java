@@ -10,16 +10,12 @@ import client.GestionClient;
 
 public class Action implements ActionListener {
 
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(((JButton) e.getSource()).getText())
 		{
 			case "Nouveau Client" :
-				GestionClient gnClient = new GestionClient();
-				Menuprincipal con2 = new Menuprincipal();
-				con2.AffClient("test");
+				Menuclient con2 = new Menuclient("Nouevau Client");
 				break;
 			case "Supprimer Client" :
 				GestionClient gsClient = new GestionClient();
