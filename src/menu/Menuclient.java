@@ -16,6 +16,7 @@ public class Menuclient extends Menu {
 	JTextField nomclient = new JTextField();
 	JTextField datepermis = new JTextField();
 	JTextField dateapprentissage = new JTextField();
+	JButton enregistrer = new JButton("enregistrer");
 	
 	public Menuclient() {
 		
@@ -42,14 +43,15 @@ public class Menuclient extends Menu {
 		JPanel nomPrenom = new JPanel();
 		GridLayout posNomPrenom = new GridLayout(1,2);
 		nomPrenom.setLayout(posNomPrenom);
-		JPanel champNom = textFieldvide("Nom :",nomclient);
+		JPanel champNom = textField("Nom :",nomclient);
 		nomPrenom.add(champNom);
-		nomPrenom.add(textFieldvide("Prenom :",prenom));
+		nomPrenom.add(textField("Prenom :",prenom));
 		fenetre.add(nomPrenom);
-		fenetre.add(textFieldplein("Adresse :",adresse));
-		fenetre.add(textFieldvide("Date du permis :",datepermis));
-		fenetre.add(textFieldvide("Date de fin d'apprentissage :",dateapprentissage));
-		fenetre.add(boutonclient("enregistrer"));
+		fenetre.add(textField("Adresse :",adresse));
+		fenetre.add(textField("Date du permis :",datepermis));
+		fenetre.add(textField("Date de fin d'apprentissage :",dateapprentissage));
+		enregistrer.addActionListener(new Actionclient(this));
+		fenetre.add(bouton(enregistrer));
 		fenetre.setVisible(true);
 		
 	}

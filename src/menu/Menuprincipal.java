@@ -4,6 +4,13 @@ import javax.swing.*;
 
 public class Menuprincipal extends Menu{
 	
+	JButton nouvclient = new JButton("Nouveau Client");
+	JButton nouvloc = new JButton("Début Location");
+	JButton nouvvehi = new JButton("Nouveau Véhicule");
+	JButton suppclient = new JButton("Supprimer Client");
+	JButton supploc = new JButton("Fin Location");
+	JButton suppvehi = new JButton("Supprimer Véhicule");
+
 	public Menuprincipal() {
 		//pour creer des espaces sans rien
 		
@@ -49,12 +56,18 @@ public class Menuprincipal extends Menu{
 		action.add(client);
 		action.add(location);
 		action.add(vehicule);
-		action.add(boutonprinc("Nouveau Client"));
-		action.add(boutonprinc("Début Location"));
-		action.add(boutonprinc("Nouveau Véhicule"));
-		action.add(boutonprinc("Supprimer Client"));
-		action.add(boutonprinc("Fin Location"));
-		action.add(boutonprinc("Supprimer Véhicule"));
+		nouvclient.addActionListener(new Action(this));
+		action.add(bouton(nouvclient));
+		nouvloc.addActionListener(new Action(this));
+		action.add(bouton(nouvloc));
+		nouvvehi.addActionListener(new Action(this));
+		action.add(bouton(nouvvehi));
+		suppclient.addActionListener(new Action(this));
+		action.add(bouton(suppclient));
+		supploc.addActionListener(new Action(this));
+		action.add(bouton(supploc));
+		suppvehi.addActionListener(new Action(this));
+		action.add(bouton(suppvehi));
 		
 		JPanel test2 = new JPanel();
 		FlowLayout test = new FlowLayout();
