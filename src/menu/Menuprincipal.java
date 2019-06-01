@@ -13,13 +13,13 @@ public class Menuprincipal extends Menu{
 		JPanel nomPrenom = new JPanel();
 		GridLayout posNomPrenom = new GridLayout(1,2);
 		nomPrenom.setLayout(posNomPrenom);
-		JPanel champNom = textField("Nom :");
+		JPanel champNom = textFieldvide("Nom :");
 		nomPrenom.add(champNom);
-		nomPrenom.add(textField("Prenom :"));
+		nomPrenom.add(textFieldvide("Prenom :"));
 		fenetre.add(nomPrenom);
-		fenetre.add(textField("Adresse :"));
-		fenetre.add(textField("Date du permis :"));
-		fenetre.add(textField("Date de fin d'apprentissage :"));
+		fenetre.add(textFieldplein("Adresse :","Entrez votre adresse avec code postal et ville"));
+		fenetre.add(textFieldvide("Date du permis :"));
+		fenetre.add(textFieldvide("Date de fin d'apprentissage :"));
 		JButton enregistrer = new JButton("Enregistrer");
 		enregistrer.addActionListener(new Action());
 		fenetre.add(enregistrer);
