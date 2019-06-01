@@ -3,8 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Menuprincipal extends Menu{
-
-	
 	
 	public Menuprincipal() {
 		//pour creer des espaces sans rien
@@ -51,12 +49,12 @@ public class Menuprincipal extends Menu{
 		action.add(client);
 		action.add(location);
 		action.add(vehicule);
-		action.add(bouton("Nouveau Client"));
-		action.add(bouton("Début Location"));
-		action.add(bouton("Nouveau Véhicule"));
-		action.add(bouton("Supprimer Client"));
-		action.add(bouton("Fin Location"));
-		action.add(bouton("Supprimer Véhicule"));
+		action.add(boutonprinc("Nouveau Client"));
+		action.add(boutonprinc("Début Location"));
+		action.add(boutonprinc("Nouveau Véhicule"));
+		action.add(boutonprinc("Supprimer Client"));
+		action.add(boutonprinc("Fin Location"));
+		action.add(boutonprinc("Supprimer Véhicule"));
 		
 		JPanel test2 = new JPanel();
 		FlowLayout test = new FlowLayout();

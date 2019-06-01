@@ -5,17 +5,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import vehicule.GestionVehicule;
 import client.GestionClient;
 
 public class Action implements ActionListener {
 
+	Menuprincipal menu;
+	
+	public Action(Menu menu) {
+		this.menu=(Menuprincipal)menu;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(((JButton) e.getSource()).getText())
 		{
 			case "Nouveau Client" :
-				Menuclient con2 = new Menuclient("Nouevau Client");
+				Menuclient client = new Menuclient();
+				client.AffMenu("Nouveau Client");
 				break;
 			case "Supprimer Client" :
 				GestionClient gsClient = new GestionClient();

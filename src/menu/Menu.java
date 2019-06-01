@@ -10,12 +10,22 @@ import javax.swing.JTextField;
 
 public abstract class Menu {
 	
-	public JPanel bouton(String nom) {
+	public JPanel boutonprinc(String nom) {
 		JPanel panel = new JPanel();
 		FlowLayout pospanel = new FlowLayout();
 		panel.setLayout(pospanel);
 		JButton bouton = new JButton(nom);
-		bouton.addActionListener(new Action());
+		bouton.addActionListener(new Action(this));
+		panel.add(bouton);
+		return panel;
+	}
+	
+	public JPanel boutonclient(String nom) {
+		JPanel panel = new JPanel();
+		FlowLayout pospanel = new FlowLayout();
+		panel.setLayout(pospanel);
+		JButton bouton = new JButton(nom);
+		bouton.addActionListener(new Actionclient(this));
 		panel.add(bouton);
 		return panel;
 	}
@@ -27,12 +37,11 @@ public abstract class Menu {
 		return vide;
 	}
 	
-	public JPanel textFieldvide(String nom) {
+	public JPanel textFieldvide(String nom, JTextField text) {
 		JPanel panelSec = new JPanel();
 		GridLayout posPanelS = new GridLayout(3,1);
 		panelSec.setLayout(posPanelS);
 		panelSec.add(vide());
-		JTextField text = new JTextField();
 		panelSec.add(text);
 		
 
@@ -51,12 +60,11 @@ public abstract class Menu {
 		return panelPrinc;
 	}
 	
-	public JPanel textFieldplein(String nom, String message) {
+	public JPanel textFieldplein(String nom, JTextField text) {
 		JPanel panelSec = new JPanel();
 		GridLayout posPanelS = new GridLayout(3,1);
 		panelSec.setLayout(posPanelS);
 		panelSec.add(vide());
-		JTextField text = new JTextField(message);
 		panelSec.add(text);
 		
 
