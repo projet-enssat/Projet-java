@@ -10,6 +10,7 @@ public abstract class Vehicule implements Serializable
 	private Float prixJour;
 	private String marque;
 	private String immatriculation;
+	private int vitesse;
 	
 	public Vehicule() {
 		this("inconnue","inconnue",new Float(0),"inconnue","inconnue",0);
@@ -22,8 +23,9 @@ public abstract class Vehicule implements Serializable
 		this.prixJour = prixJour;
 		this.marque = marque;
 		this.immatriculation = immatriculation;
+		this.vitesse=vitesse;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -33,6 +35,7 @@ public abstract class Vehicule implements Serializable
 		result = prime * result + ((marque == null) ? 0 : marque.hashCode());
 		result = prime * result + ((modele == null) ? 0 : modele.hashCode());
 		result = prime * result + ((prixJour == null) ? 0 : prixJour.hashCode());
+		result = prime * result + vitesse;
 		return result;
 	}
 
@@ -70,36 +73,55 @@ public abstract class Vehicule implements Serializable
 				return false;
 		} else if (!prixJour.equals(other.prixJour))
 			return false;
+		if (vitesse != other.vitesse)
+			return false;
 		return true;
+	}
+
+	public Float getPrixJour() {
+		return prixJour;
+	}
+
+	public void setPrixJour(Float prixJour) {
+		this.prixJour = prixJour;
+	}
+
+	public int getVitesse() {
+		return vitesse;
+	}
+
+	public void setVitesse(int vitesse) {
+		this.vitesse = vitesse;
 	}
 
 	public String getModele() {
 		return modele;
 	}
+	
 	public void setModele(String modele) {
 		this.modele = modele;
 	}
+	
 	public String getEtat() {
 		return etat;
 	}
+	
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-	public Float getPrixjour() {
-		return prixJour;
-	}
-	public void setPrixjour(Float prixJour) {
-		this.prixJour = prixJour;
-	}
+	
 	public String getMarque() {
 		return marque;
 	}
+	
 	public void setMarque(String marque) {
 		this.marque = marque;
 	}
+	
 	public String getImmatriculation() {
 		return immatriculation;
 	}
+	
 	public void setImmatriculation(String immatriculation) {
 		this.immatriculation = immatriculation;
 	}

@@ -1,5 +1,6 @@
 package client;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -77,10 +78,12 @@ public class GestionClient
 		
 		try
 		{	
+			try {
 				FileInputStream fis = new FileInputStream("clients");
 				ObjectInputStream in = new ObjectInputStream(fis);
 				liste = (ListeClients) in.readObject();
 				fis.close();
+			}catch (EOFException e) {}
 		} catch (IOException | ClassNotFoundException e)
 		{ e.printStackTrace(); }
 		return liste;

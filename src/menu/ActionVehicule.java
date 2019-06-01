@@ -55,7 +55,6 @@ public class ActionVehicule implements ActionListener
 					break;
 				default : break;
 			}
-			menu.resetBox();
 		} else if (e.getSource().equals(menu.getEnregistrer()))
 		{
 			String classe = "";

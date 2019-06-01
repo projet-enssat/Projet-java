@@ -1,5 +1,6 @@
 package vehicule;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,12 +25,27 @@ public class GestionVehicule
 	
 	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
 						   String immatriculation, int vitesse, Float km, int puissance,
-						   int nbPlaces, Float nbHeuresVol, int nbMoteurs)
+						   int nbPlaces)
 	{
 		setClasse(classe);
 		setVehicule(modele, etat, prixJour, marque, immatriculation, vitesse, km,
-					puissance, nbPlaces, nbHeuresVol, nbMoteurs);
+					puissance, nbPlaces, new Float(0),0);
 	}
+	
+	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
+			   String immatriculation, int vitesse, Float nbHeuresVol, int nbMoteurs) {
+		setClasse(classe);
+		setVehicule(modele, etat, prixJour, marque, immatriculation, vitesse, new Float(0),
+					0, 0, nbHeuresVol, nbMoteurs);
+	}
+	
+	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
+			   String immatriculation, int vitesse, int puissance, Float km) {
+		setClasse(classe);
+		setVehicule(modele, etat, prixJour, marque, immatriculation, vitesse, km,
+					puissance, 0, new Float(0),0);
+	}
+	
 	
 	public void setVehicule(String modele, String etat, Float prixJour, String marque,
 							String immatriculation, int vitesse, Float km, int puissance,
@@ -98,6 +114,8 @@ public class GestionVehicule
 	{
 		try
 		{
+			System.out.println(liste);
+			System.out.println("merde.....\n");
 			FileOutputStream fos = new FileOutputStream("vehicules");
 			ObjectOutputStream out = new ObjectOutputStream(fos);
 			out.writeObject(liste);
@@ -195,10 +213,12 @@ public class GestionVehicule
 		
 		try
 		{
-			FileInputStream fis = new FileInputStream("vehicules");
-			ObjectInputStream in = new ObjectInputStream(fis);
-			liste = (ListeVehicules) in.readObject();
-			fis.close();
+			try {
+				FileInputStream fis = new FileInputStream("vehicules");
+				ObjectInputStream in = new ObjectInputStream(fis);
+				liste = (ListeVehicules) in.readObject();
+				fis.close();
+			}catch (EOFException e) {e.printStackTrace();}
 		} catch (IOException | ClassNotFoundException e)
 		{ e.printStackTrace(); }
 		return liste;

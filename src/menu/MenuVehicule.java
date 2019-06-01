@@ -45,14 +45,33 @@ public class MenuVehicule extends Menu {
 	
 	public void enregistrement(String classe)
 	{
-		new GestionVehicule
-			(	classe,
-				modele.getText(), etat.getText(),  new Float(prixJour.getText()),
-				marque.getText(), immat.getText(), new Integer(vitesse.getText()),
-				new Float(km.getText()), 		   new Integer(puissance.getText()),
-				new Integer(nbPlaces.getText()),   new Float(nbHeuresVol.getText()),
-				new Integer(nbMoteurs.getText())
-			).ajouterVehicule();
+		Float prix = new Float(prixJour.getText());
+		Integer vit = new Integer(vitesse.getText());
+		switch (classe)
+		{
+			case "Voiture" : 
+				Float k = new Float(km.getText());
+				Integer puis = new Integer(puissance.getText());
+				Integer pla = new Integer(nbPlaces.getText());
+				new GestionVehicule (classe, modele.getText(), etat.getText(), 
+						prix, marque.getText(), immat.getText(), vit, k, puis, 
+						pla).ajouterVehicule();
+				break;
+			case "Moto" :
+				Float k2 = new Float(km.getText());
+				Integer puis2 = new Integer(puissance.getText());
+				new GestionVehicule (classe, modele.getText(), etat.getText(), 
+						prix, marque.getText(), immat.getText(), vit, puis2, k2
+						).ajouterVehicule();
+				break;
+			case "Avion" :
+				Integer nbmot = new Integer(nbMoteurs.getText());
+				Float nbheu = new Float(nbHeuresVol.getText());
+				new GestionVehicule (classe, modele.getText(), etat.getText(), 
+						prix, marque.getText(), immat.getText(), vit, nbheu, nbmot
+						).ajouterVehicule();
+				break;
+		}
 	}
 	
 	public void affMenu(String nom) {
@@ -113,8 +132,10 @@ public class MenuVehicule extends Menu {
 		
 		choixMod.removeAllItems();
 		choixMod.setMaximumRowCount(5);
+		
 		choixMar.removeAllItems();
 		choixMar.setMaximumRowCount(5);
+		
 		choixImm.removeAllItems();
 		choixImm.setMaximumRowCount(5);
 		choixImm = new GestionVehicule().toutesLesImmats("", "");
@@ -133,6 +154,7 @@ public class MenuVehicule extends Menu {
 		}else {
 			validation.setText("Rechercher");
 		}
+		validation.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
@@ -150,6 +172,7 @@ public class MenuVehicule extends Menu {
 		}else {
 			validation.setText("rechercher");
 		}
+		validation.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
@@ -167,6 +190,7 @@ public class MenuVehicule extends Menu {
 		}else {
 			validation.setText("rechercher");
 		}
+		validation.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
