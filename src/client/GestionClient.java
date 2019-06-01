@@ -33,7 +33,7 @@ public class GestionClient
 	public void ajouterClient()
 	{
 		ListeClients liste = lireClients();
-		if (liste.contains(client))
+		if (!liste.contains(client))
 		{ 
 			liste.add(client);
 			enregistrerClients(liste);
@@ -73,16 +73,13 @@ public class GestionClient
 		ListeClients liste = new ListeClients();
 		
 		try
-		{	try
-			{
+		{	
 				FileInputStream fis = new FileInputStream("clients");
 				ObjectInputStream in = new ObjectInputStream(fis);
 				liste = (ListeClients) in.readObject();
 				fis.close();
-			} catch (EOFException eof) {}
 		} catch (IOException | ClassNotFoundException e)
 		{ e.printStackTrace(); }
 		return liste;
 	}
-
 }

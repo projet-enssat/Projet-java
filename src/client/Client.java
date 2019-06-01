@@ -1,7 +1,12 @@
 package client;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Client {
+public class Client implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nom;
 	private String prenom;
 	private String adresse;
