@@ -26,12 +26,13 @@ public class MenuVehicule extends Menu {
 	private static JTextField km = new JTextField();
 	private static JTextField puissance = new JTextField();
 	private static JTextField nbPlaces = new JTextField();
-	private static JButton enregistrer = new JButton("Enregistrer");
+	private static JButton validation = new JButton("Enregistrer");
 	private static JButton ok = new JButton("OK");
 	private static JComboBox<String> choixV = new JComboBox<String>();
 	private static JFrame fenetre;
 	private static JFrame fenetre2;
 	private static JPanel infoVehicule = new JPanel();
+	private static boolean nouveau = true;
 	
 	public MenuVehicule() {
 		resetBox();
@@ -64,7 +65,23 @@ public class MenuVehicule extends Menu {
 	
 	public void nouveauVehicule() {
 		fenetre2 = new JFrame("Nouveau véhicule");
-		fenetre2.setBounds(800,400,200,100);
+		fenetre2.setBounds(800,400,400,100);
+		FlowLayout layout = new FlowLayout();
+		fenetre2.setLayout(layout);
+
+		choixV.addActionListener(new ActionVehicule(this));
+		fenetre2.add(comboBoxV(choixV));
+		ok.setEnabled(false);
+		ok.setText("OK");
+		ok.addActionListener(new ActionVehicule(this));
+		fenetre2.add(bouton(ok));
+		fenetre2.setVisible(true);
+		nouveau = true;
+	}
+	
+	public void supprimerVehicule() {
+		fenetre2 = new JFrame("Supprimer véhicule");
+		fenetre2.setBounds(800,400,400,100);
 		FlowLayout layout = new FlowLayout();
 		fenetre2.setLayout(layout);
 
@@ -72,8 +89,10 @@ public class MenuVehicule extends Menu {
 		fenetre2.add(comboBoxV(choixV));
 		ok.setEnabled(false);
 		ok.addActionListener(new ActionVehicule(this));
+		ok.setText("rechercher");
 		fenetre2.add(bouton(ok));
 		fenetre2.setVisible(true);
+		nouveau=false;
 	}
 	
 	public void resetBox() {
@@ -84,39 +103,54 @@ public class MenuVehicule extends Menu {
 		choixV.addItem("Avion");
 	}
 	
-	public void nouvelleVoiture()
+	public void Voiture(String nom)
 	{
-		affMenu("Nouvelle Voiture");
+		affMenu(nom);
 		
 		infoVehicule.add(textField("Compteur", km));
 		infoVehicule.add(textField("Puissance", puissance));
 		infoVehicule.add(textField("Places", nbPlaces));
 		fenetre.add(infoVehicule);
-		fenetre.add(bouton(enregistrer));
+		if(fenetre.getTitle()=="Nouvelle Voiture") {
+			validation.setText("enregistrer");
+		}else {
+			validation.setText("rechercher");
+		}
+		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
 	
-	public void nouvelleMoto()
+	public void Moto(String nom)
 	{
-		affMenu("Nouvelle moto");
+		affMenu(nom);
 		
 		infoVehicule.add(textField("Compteur", km));
 		infoVehicule.add(textField("Puissance", puissance));
 		infoVehicule.add(vide());
 		fenetre.add(infoVehicule);
-		fenetre.add(bouton(enregistrer));
+		if(fenetre.getTitle()=="Nouvelle Moto") {
+			validation.setText("enregistrer");
+		}else {
+			validation.setText("rechercher");
+		}
+		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
 	
-	public void nouvelAvion()
+	public void Avion(String nom)
 	{
-		affMenu("Nouvel Avion");
+		affMenu(nom);
 		
 		infoVehicule.add(textField("Heures de vol", nbHeuresVol));
 		infoVehicule.add(textField("Nombre de moteurs", nbMoteurs));
 		infoVehicule.add(vide());
 		fenetre.add(infoVehicule);
-		fenetre.add(bouton(enregistrer));
+		if(fenetre.getTitle()=="Nouvel Avion") {
+			validation.setText("enregistrer");
+		}else {
+			validation.setText("rechercher");
+		}
+		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
 	
@@ -145,9 +179,13 @@ public class MenuVehicule extends Menu {
 		return choixV;
 	}
 	
+	public boolean isnouveau() {
+		return nouveau;
+	}
+	
 	public JButton getEnregistrer()
 	{
-		return enregistrer;
+		return validation;
 	}
 	
 	public JButton getOK()

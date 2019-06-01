@@ -7,13 +7,13 @@ import javax.swing.*;
 
 public class MenuPrincipal extends Menu{
 	
-	JButton nouvClient = new JButton("Nouveau Client");
-	JButton nouvLoc = new JButton("Début Location");
-	JButton nouvVehi = new JButton("Nouveau Véhicule");
-	JButton suppClient = new JButton("Supprimer Client");
-	JButton suppLoc = new JButton("Fin Location");
-	JButton suppVehi = new JButton("Supprimer Véhicule");
-	JButton options = new JButton("Options");
+	private static JButton nouvClient = new JButton("Nouveau Client");
+	private static JButton nouvLoc = new JButton("Début Location");
+	private static JButton nouvVehi = new JButton("Nouveau Véhicule");
+	private static JButton suppClient = new JButton("Supprimer Client");
+	private static JButton suppLoc = new JButton("Fin Location");
+	private static JButton suppVehi = new JButton("Supprimer Véhicule");
+	private static JButton options = new JButton("Options");
 
 	public MenuPrincipal() {
 		//pour creer des espaces sans rien
