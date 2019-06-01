@@ -1,6 +1,7 @@
 package vehicule;
 
 public abstract class VehiculeTerrestre extends Vehicule {
+	private static final long serialVersionUID = 1L;
 	private Float km;
 	private int puissance;
 	

@@ -2,6 +2,8 @@ package vehicule;
 
 public class Moto extends VehiculeTerrestre {
 
+	private static final long serialVersionUID = 1L;
+
 	public Moto() {
 		super();
 	}

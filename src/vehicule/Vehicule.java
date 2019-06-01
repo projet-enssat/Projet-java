@@ -1,6 +1,10 @@
 package vehicule;
 
-public abstract class Vehicule {
+import java.io.Serializable;
+
+public abstract class Vehicule implements Serializable
+{
+	private static final long serialVersionUID = 1L;
 	private String modele;
 	private String etat;
 	private Float prixJour;

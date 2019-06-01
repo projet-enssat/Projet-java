@@ -19,6 +19,19 @@ public class ListeVehicules implements Serializable
 	
 	/** Liste des avions disponibles. */
 	private ArrayList<Avion> listeAvions = new ArrayList<Avion>();
+	
+	public ArrayList<Voiture> getListeV()
+	{
+		return listeVoitures;
+	}
+	public ArrayList<Moto> getListeM()
+	{
+		return listeMotos;
+	}
+	public ArrayList<Avion> getListeA()
+	{
+		return listeAvions;
+	}
 
 	/** Ajoute une voiture à la liste correspondante.
 	 * @param voiture Voiture à ajouter. */

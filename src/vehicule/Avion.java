@@ -1,6 +1,7 @@
 package vehicule;
 
 public class Avion extends VehiculeAerien {
+	private static final long serialVersionUID = 1L;
 
 	public Avion() {
 		super();

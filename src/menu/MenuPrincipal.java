@@ -100,9 +100,7 @@ public class MenuPrincipal extends Menu{
 			fichierLocations.createNewFile();
 			fichierVehicules.createNewFile();
 		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		{ e.printStackTrace(); }
 		
 		MenuPrincipal con = new MenuPrincipal();
 	}

@@ -57,8 +57,8 @@ public class MenuClient extends Menu {
 		dateApprentissage.setText(client.getDateApprentissage());
 	}
 	
-	public void setValidation(String nomboutton) {
-		validation.setText(nomboutton);
+	public void setValidation(String nomBouton) {
+		validation.setText(nomBouton);
 	}
 	
 }

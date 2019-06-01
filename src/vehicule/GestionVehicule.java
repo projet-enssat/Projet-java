@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import javax.swing.JComboBox;
 
 /** Permet la gestion de l'archive contenant les véhicules.
  * @author Dejan Paris
@@ -14,7 +17,10 @@ public class GestionVehicule
 	private static Vehicule vehicule;
 	private String classe;
 	
-	public GestionVehicule() {}
+	public GestionVehicule()
+	{
+		setClasse("");
+	}
 	
 	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
 						   String immatriculation, int vitesse, Float km, int puissance,
@@ -128,6 +134,56 @@ public class GestionVehicule
 		ListeVehicules liste = lireVehicules();
 		liste.retirerAvion((Avion) vehicule);
 		enregistrerVehicules(liste);
+	}
+	
+	public JComboBox<String> toutesLesImmats(String marque, String modele)
+	{
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.addItem(" ");
+		ListeVehicules liste = lireVehicules();
+		if (classe.equals("") | classe.equals("Voiture"))
+		{
+			for (int i=0 ; i<liste.getListeV().size() ; ++i)
+			{
+				Voiture temp = liste.getListeV().get(i);
+				if (marque.equals("") | temp.getMarque().equals(marque))
+				{
+					if (modele.equals("") | temp.getModele().equals(modele))
+					{
+						comboBox.addItem(temp.getImmatriculation());
+					}
+				}
+			}
+		}
+		if (classe.equals("") | classe.equals("Moto"))
+		{
+			for (int i=0 ; i<liste.getListeM().size() ; ++i)
+			{
+				Moto temp = liste.getListeM().get(i);
+				if (marque.equals("") | temp.getMarque().equals(marque))
+				{
+					if (modele.equals("") | temp.getModele().equals(modele))
+					{
+						comboBox.addItem(temp.getImmatriculation());
+					}
+				}
+			}
+		}
+		if (classe.equals("") | classe.equals("Avion"))
+		{
+			for (int i=0 ; i<liste.getListeA().size() ; ++i)
+			{
+				Avion temp = liste.getListeA().get(i);
+				if (marque.equals("") | temp.getMarque().equals(marque))
+				{
+					if (modele.equals("") | temp.getModele().equals(modele))
+					{
+						comboBox.addItem(temp.getImmatriculation());
+					}
+				}
+			}
+		}
+		return comboBox;
 	}
 
 	/** Désérialise la liste des véhicules à partir de l'archive "vehicules".

@@ -36,12 +36,10 @@ public class Action implements ActionListener {
 				
 				break;
 			case "Nouveau Véhicule" :
-				MenuVehicule nouvvehicule = new MenuVehicule();
-				nouvvehicule.nouveauVehicule();
+				new MenuVehicule().nouveauVehicule();
 				break;
 			case "Supprimer Véhicule" :
-				MenuVehicule suppvehicule = new MenuVehicule();
-				suppvehicule.supprimerVehicule();
+				new MenuVehicule().supprimerVehicule();
 				break;
 			case "Options" :
 				System.out.println(new GestionClient().lireClients());

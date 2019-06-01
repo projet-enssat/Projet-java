@@ -1,6 +1,7 @@
 package vehicule;
 
 public abstract class VehiculeAerien extends Vehicule {
+	private static final long serialVersionUID = 1L;
 	private Float nbHeureVol;
 	private int nbMoteur;
 	

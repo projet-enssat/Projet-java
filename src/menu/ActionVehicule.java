@@ -30,7 +30,7 @@ public class ActionVehicule implements ActionListener
 			switch (menu.getChoixV().getSelectedIndex())
 			{
 				case 1 : 
-					if(menu.isnouveau()) {
+					if(menu.isNouveau()) {
 						nom= "Nouvelle Voiture";
 					}else {
 						nom= "Supprimer Voiture";
@@ -38,7 +38,7 @@ public class ActionVehicule implements ActionListener
 					menu.Voiture(nom);
 					break;
 				case 2 :
-					if(menu.isnouveau()) {
+					if(menu.isNouveau()) {
 						nom= "Nouvelle Moto";
 					}else {
 						nom= "Supprimer Moto";
@@ -46,7 +46,7 @@ public class ActionVehicule implements ActionListener
 					menu.Moto(nom);
 					break;
 				case 3 : 
-					if(menu.isnouveau()) {
+					if(menu.isNouveau()) {
 						nom= "Nouvel Avion";
 					}else {
 						nom= "Supprimer Avion";

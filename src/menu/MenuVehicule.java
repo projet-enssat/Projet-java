@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import client.GestionClient;
 import vehicule.GestionVehicule;
+import vehicule.ListeVehicules;
 
 public class MenuVehicule extends Menu {
 	
@@ -29,9 +30,13 @@ public class MenuVehicule extends Menu {
 	private static JButton validation = new JButton("Enregistrer");
 	private static JButton ok = new JButton("OK");
 	private static JComboBox<String> choixV = new JComboBox<String>();
+	private static JComboBox<String> choixMar = new JComboBox<String>();
+	private static JComboBox<String> choixMod = new JComboBox<String>();
+	private static JComboBox<String> choixImm = new JComboBox<String>();
 	private static JFrame fenetre;
 	private static JFrame fenetre2;
 	private static JPanel infoVehicule = new JPanel();
+	private static ListeVehicules listeDyn;
 	private static boolean nouveau = true;
 	
 	public MenuVehicule() {
@@ -81,16 +86,20 @@ public class MenuVehicule extends Menu {
 	
 	public void supprimerVehicule() {
 		fenetre2 = new JFrame("Supprimer véhicule");
-		fenetre2.setBounds(800,400,400,100);
+		fenetre2.setBounds(400,400,1100,100);
 		FlowLayout layout = new FlowLayout();
 		fenetre2.setLayout(layout);
 
 		choixV.addActionListener(new ActionVehicule(this));
+		choixMar.addActionListener(new ActionVehicule(this));
+		choixMar.setEnabled(false);
+		choixMod.addActionListener(new ActionVehicule(this));
+		choixMod.setEnabled(false);
+		choixImm.addActionListener(new ActionVehicule(this));
 		fenetre2.add(comboBoxV(choixV));
-		ok.setEnabled(false);
-		ok.addActionListener(new ActionVehicule(this));
-		ok.setText("rechercher");
-		fenetre2.add(bouton(ok));
+		fenetre2.add(comboBoxV(choixMar));
+		fenetre2.add(comboBoxV(choixMod));
+		fenetre2.add(comboBoxV(choixImm));
 		fenetre2.setVisible(true);
 		nouveau=false;
 	}
@@ -101,6 +110,14 @@ public class MenuVehicule extends Menu {
 		choixV.addItem("Voiture");
 		choixV.addItem("Moto");
 		choixV.addItem("Avion");
+		
+		choixMod.removeAllItems();
+		choixMod.setMaximumRowCount(5);
+		choixMar.removeAllItems();
+		choixMar.setMaximumRowCount(5);
+		choixImm.removeAllItems();
+		choixImm.setMaximumRowCount(5);
+		choixImm = new GestionVehicule().toutesLesImmats("", "");
 	}
 	
 	public void Voiture(String nom)
@@ -112,9 +129,9 @@ public class MenuVehicule extends Menu {
 		infoVehicule.add(textField("Places", nbPlaces));
 		fenetre.add(infoVehicule);
 		if(fenetre.getTitle()=="Nouvelle Voiture") {
-			validation.setText("enregistrer");
+			validation.setText("Enregistrer");
 		}else {
-			validation.setText("rechercher");
+			validation.setText("Rechercher");
 		}
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
@@ -179,7 +196,7 @@ public class MenuVehicule extends Menu {
 		return choixV;
 	}
 	
-	public boolean isnouveau() {
+	public boolean isNouveau() {
 		return nouveau;
 	}
 	
