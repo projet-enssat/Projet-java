@@ -18,7 +18,7 @@ public class Action implements ActionListener {
 		{
 			case "Nouveau Client" :
 				GestionClient gnClient = new GestionClient();
-				Menu con2 = new Menu();
+				Menuprincipal con2 = new Menuprincipal();
 				con2.AffClient("test");
 				break;
 			case "Supprimer Client" :
