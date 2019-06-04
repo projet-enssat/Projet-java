@@ -6,9 +6,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 
 /** Permet la gestion de l'archive contenant les véhicules.
  * @author Dejan Paris
@@ -154,10 +157,115 @@ public class GestionVehicule
 		enregistrerVehicules(liste);
 	}
 	
-	public JComboBox<String> toutesLesImmats(String marque, String modele)
+	public JList<String> toutesLesMarques(String dejaEcrit)
 	{
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.addItem(" ");
+		String[] searchList = new String[50];
+		int index = 0;
+		ListeVehicules liste = lireVehicules();
+		if (classe.equals("") | classe.equals("Voiture"))
+		{
+			for (int i=0 ; i<liste.getListeV().size() ; ++i)
+			{
+				Voiture temp = liste.getListeV().get(i);
+				if (dejaEcrit.equals("") | dejaEcrit.equals
+								(temp.getMarque().substring(0,dejaEcrit.length()-1)))
+				{
+					searchList[index] = temp.getMarque();
+					++index;
+				}
+			}
+		}
+		if (classe.equals("") | classe.equals("Moto"))
+		{
+			for (int i=0 ; i<liste.getListeM().size() ; ++i)
+			{
+				Moto temp = liste.getListeM().get(i);
+				if (dejaEcrit.equals("") | dejaEcrit.equals
+						(temp.getMarque().substring(0,dejaEcrit.length()-1)))
+				{
+					searchList[index] = temp.getMarque();
+					++index;
+				}
+			}
+		}
+		if (classe.equals("") | classe.equals("Avion"))
+		{
+			for (int i=0 ; i<liste.getListeA().size() ; ++i)
+			{
+				Avion temp = liste.getListeA().get(i);
+				if (dejaEcrit.equals("") | dejaEcrit.equals
+						(temp.getMarque().substring(0,dejaEcrit.length()-1)))
+				{
+					searchList[index] = temp.getMarque();
+					++index;
+				}
+			}
+		}
+		JList<String> barreDeRecherche = new JList<String>(searchList);
+		return barreDeRecherche;
+	}
+	
+	public JList<String> tousLesModeles(String marque, String dejaEcrit)
+	{
+		String[] searchList = new String[50];
+		int index = 0;
+		ListeVehicules liste = lireVehicules();
+		if (classe.equals("") | classe.equals("Voiture"))
+		{
+			for (int i=0 ; i<liste.getListeV().size() ; ++i)
+			{
+				Voiture temp = liste.getListeV().get(i);
+				if (marque.equals("") | temp.getMarque().equals(marque))
+				{
+					if (dejaEcrit.equals("") | dejaEcrit.equals
+									(temp.getModele().substring(0,dejaEcrit.length()-1)))
+					{
+						searchList[index] = temp.getModele();
+						++index;
+					}
+				}
+			}
+		}
+		if (classe.equals("") | classe.equals("Moto"))
+		{
+			for (int i=0 ; i<liste.getListeM().size() ; ++i)
+			{
+				Moto temp = liste.getListeM().get(i);
+				if (marque.equals("") | temp.getMarque().equals(marque))
+				{
+					if (dejaEcrit.equals("") | dejaEcrit.equals
+									(temp.getModele().substring(0,dejaEcrit.length()-1)))
+					{
+						searchList[index] = temp.getModele();
+						++index;
+					}
+				}
+			}
+		}
+		if (classe.equals("") | classe.equals("Avion"))
+		{
+			for (int i=0 ; i<liste.getListeA().size() ; ++i)
+			{
+				Avion temp = liste.getListeA().get(i);
+				if (marque.equals("") | temp.getMarque().equals(marque))
+				{
+					if (dejaEcrit.equals("") | dejaEcrit.equals
+									(temp.getModele().substring(0,dejaEcrit.length()-1)))
+					{
+						searchList[index] = temp.getModele();
+						++index;
+					}
+				}
+			}
+		}
+		JList<String> barreDeRecherche = new JList<String>(searchList);
+		return barreDeRecherche;
+	}
+	
+	public JList<String> toutesLesImmats(String marque, String modele, String dejaEcrit)
+	{
+		String[] searchList = new String[50];
+		int index = 0;
 		ListeVehicules liste = lireVehicules();
 		if (classe.equals("") | classe.equals("Voiture"))
 		{
@@ -168,7 +276,10 @@ public class GestionVehicule
 				{
 					if (modele.equals("") | temp.getModele().equals(modele))
 					{
-						comboBox.addItem(temp.getImmatriculation());
+						if (dejaEcrit.equals("") | dejaEcrit.equals
+									(temp.getImmatriculation().substring(0,dejaEcrit.length()-1)))
+						searchList[index] = temp.getImmatriculation();
+						++index;
 					}
 				}
 			}
@@ -182,7 +293,10 @@ public class GestionVehicule
 				{
 					if (modele.equals("") | temp.getModele().equals(modele))
 					{
-						comboBox.addItem(temp.getImmatriculation());
+						if (dejaEcrit.equals("") | dejaEcrit.equals
+								(temp.getImmatriculation().substring(0,dejaEcrit.length()-1)))
+						searchList[index] = temp.getImmatriculation();
+						++index;
 					}
 				}
 			}
@@ -196,12 +310,16 @@ public class GestionVehicule
 				{
 					if (modele.equals("") | temp.getModele().equals(modele))
 					{
-						comboBox.addItem(temp.getImmatriculation());
+						if (dejaEcrit.equals("") | dejaEcrit.equals
+								(temp.getImmatriculation().substring(0,dejaEcrit.length()-1)))
+						searchList[index] = temp.getImmatriculation();
+						++index;
 					}
 				}
 			}
 		}
-		return comboBox;
+		JList<String> barreDeRecherche = new JList<String>(searchList);
+		return barreDeRecherche;
 	}
 
 	/** Désérialise la liste des véhicules à partir de l'archive "vehicules".
