@@ -39,9 +39,11 @@ public class GestionClient
 		if(!test.isEmpty()) {
 			for(int i=0;i<liste.size();i++) {
 				Client tmp = liste.get(i);
-				if(test.equals(tmp.getNom().substring(0,test.length()))) {
-					searchList[index]=tmp.getNom();
-					index++;
+				if(tmp.getAdresse().length()>test.length()) {
+					if(test.equals(tmp.getNom().substring(0,test.length()))) {
+						searchList[index]=tmp.getNom();
+						index++;
+					}
 				}
 			}
 		}
@@ -56,9 +58,11 @@ public class GestionClient
 		if(!test.isEmpty()) {
 			for(int i=0;i<liste.size();i++) {
 				Client tmp = liste.get(i);
-				if(test.equals(tmp.getPrenom().substring(0,test.length()))) {
-					searchList[index]=tmp.getPrenom();
-					index++;
+				if(tmp.getAdresse().length()>test.length()) {
+					if(test.equals(tmp.getPrenom().substring(0,test.length()))) {
+						searchList[index]=tmp.getPrenom();
+						index++;
+					}
 				}
 			}
 		}
@@ -73,9 +77,11 @@ public class GestionClient
 		if(!test.isEmpty()) {
 			for(int i=0;i<liste.size();i++) {
 				Client tmp = liste.get(i);
-				if(test.equals(tmp.getAdresse().substring(0,test.length()))) {
-					searchList[index]=tmp.getAdresse();
-					index++;
+				if(tmp.getAdresse().length()>test.length()) {
+					if(test.equals(tmp.getAdresse().substring(0,test.length()))) {
+						searchList[index]=tmp.getAdresse();
+						index++;
+					}
 				}
 			}
 		}

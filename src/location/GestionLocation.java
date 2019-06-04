@@ -24,7 +24,7 @@ public class GestionLocation
 	/**
 	 * Constructeur.
 	 */
-	public GestionLocation(Client client, Vehicule vehicule, Calendar debut, Calendar fin, boolean reduction)
+	public GestionLocation(Client client, Vehicule vehicule, String debut, String fin, boolean reduction)
 	{
 		location = new Location(client, vehicule, debut, fin, reduction);
 	}

@@ -3,6 +3,7 @@ package menu;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -11,21 +12,19 @@ import client.GestionClient;
 import location.GestionLocation;
 import location.ListeLocations;
 
-<<<<<<< HEAD
 public class MenuClient extends Menu {
 	
 	private static JTextField adresse = new JTextField();
-=======
-public class MenuClient extends Menu
-{
-
-	private static JTextField adresse = new JTextField("Entrez votre adresse avec code postal et ville");
->>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
 	private static JTextField prenom = new JTextField();
 	private static JTextField nomClient = new JTextField();
 	private static JTextField datePermis = new JTextField();
 	private static JTextField dateApprentissage = new JTextField();
 	private static JButton validation = new JButton();
+	
+	private static JFrame fenetre;
+	private static JList<String> listNom;
+	private static JList<String> listPrenom;
+	private static JList<String> listAdresse;
 
 	public MenuClient()
 	{
@@ -52,26 +51,19 @@ public class MenuClient extends Menu
 		validation.setText("Valider");
 		fenetre.add(validation);
 		fenetre.setVisible(true);
+	}
 
 	public void enregistrement()
 	{
 		new GestionClient(nomClient.getText(), prenom.getText(), adresse.getText(), dateApprentissage.getText(),
 				datePermis.getText()).ajouterClient();
 	}
-	
-	public void enregistrement() {
-		new GestionClient(nomClient.getText(),prenom.getText(),adresse.getText(),
-						  dateApprentissage.getText(), datePermis.getText()).ajouterClient();
-	}
-	
-	public void affMenu(String nom) {
 		
-=======
+
 
 	public void affMenu(String nom)
 	{
-
->>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
+		
 		JFrame fenetre = new JFrame(nom);
 		fenetre.setBounds(600, 200, 700, 500);
 		GridLayout grillePrincipale = new GridLayout(5, 1);
