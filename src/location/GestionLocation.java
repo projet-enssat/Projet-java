@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 
+import javax.swing.JList;
+
 import client.Client;
 import vehicule.Vehicule;
 
@@ -22,11 +24,15 @@ public class GestionLocation
 	/**
 	 * Constructeur.
 	 */
-	public GestionLocation(Client client, Vehicule vehicule, Calendar debut, Calendar fin, boolean reduction)
+	public GestionLocation(Client client, Vehicule vehicule, String debut, String fin, boolean reduction)
 	{
 		location = new Location(client, vehicule, debut, fin, reduction);
 	}
 
+	public GestionLocation()
+	{
+	}
+	
 	/**
 	 * Ajoute une nouvelle location à l'archive.
 	 * 
@@ -38,7 +44,7 @@ public class GestionLocation
 		if (liste.contains(location))
 		{
 			liste.add(location);
-			enregistrerClients(liste);
+			enregistrerLocation(liste);
 		}
 	}
 
@@ -47,7 +53,7 @@ public class GestionLocation
 	 * 
 	 * @param liste Liste à sérialiser.
 	 */
-	public void enregistrerClients(ListeLocations liste)
+	public void enregistrerLocation(ListeLocations liste)
 	{
 		try
 		{

@@ -7,9 +7,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+
+import javax.swing.JList;
+
+/** Permet la gestion de l'archive contenant les clients.
+=======
 /**
  * Permet la gestion de l'archive contenant les clients.
  * 
+>>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
  * @author Dejan Paris
  */
 public class GestionClient
@@ -24,6 +30,65 @@ public class GestionClient
 		client = new Client();
 	}
 
+	
+	public JList<String> rechercherNom(String test){
+		
+		String[] searchList = new String [50];
+		int index=0;
+		ListeClients liste = lireClients();
+		if(!test.isEmpty()) {
+			for(int i=0;i<liste.size();i++) {
+				Client tmp = liste.get(i);
+				if(tmp.getAdresse().length()>test.length()) {
+					if(test.equals(tmp.getNom().substring(0,test.length()))) {
+						searchList[index]=tmp.getNom();
+						index++;
+					}
+				}
+			}
+		}
+		JList<String> listNom = new JList<String>(searchList);
+		return listNom;
+	}
+	
+	public JList<String> rechercherPrenom(String test){
+		String[] searchList = new String [50];
+		int index=0;
+		ListeClients liste = lireClients();
+		if(!test.isEmpty()) {
+			for(int i=0;i<liste.size();i++) {
+				Client tmp = liste.get(i);
+				if(tmp.getAdresse().length()>test.length()) {
+					if(test.equals(tmp.getPrenom().substring(0,test.length()))) {
+						searchList[index]=tmp.getPrenom();
+						index++;
+					}
+				}
+			}
+		}
+		JList<String> listPrenom = new JList<String>(searchList);
+		return listPrenom;
+	}
+	
+	public JList<String> rechercherAdresse(String test){
+		String[] searchList = new String [50];
+		int index=0;
+		ListeClients liste = lireClients();
+		if(!test.isEmpty()) {
+			for(int i=0;i<liste.size();i++) {
+				Client tmp = liste.get(i);
+				if(tmp.getAdresse().length()>test.length()) {
+					if(test.equals(tmp.getAdresse().substring(0,test.length()))) {
+						searchList[index]=tmp.getAdresse();
+						index++;
+					}
+				}
+			}
+		}
+		JList<String> listAdresse = new JList<String>(searchList);
+		return listAdresse;
+	}
+	
 	public GestionClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);

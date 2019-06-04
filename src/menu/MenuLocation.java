@@ -24,6 +24,15 @@ public class MenuLocation extends Menu {
 		
 	}
 	
+	public void recherche() {
+		if(client==null) {
+			MenuClient rechClient = new MenuClient();
+			rechClient.recherche();
+		}else if(vehicule==null) {
+			MenuVehicule rechVehicule = new MenuVehicule();
+		}
+	}
+	
 	public void enregistrement(boolean reduction) {
 		new GestionLocation(client, vehicule, debut.getText(), fin.getText(), reduction).ajouterLocation();
 		fenetre.dispose();

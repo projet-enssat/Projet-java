@@ -93,14 +93,21 @@ public class MenuVehicule extends Menu
 
 	public void affMenu(String nom)
 	{
-		fenetre = null;
-		infoVehicule = null;
-		fenetre = new JFrame(nom);
-		fenetre.setBounds(400, 200, 1100, 500);
+		if(fenetre!=null) {
+			fenetre.removeAll();
+			fenetre.setName(nom);
+		}else {
+			fenetre = new JFrame(nom);
+			fenetre.setBounds(400,200,1100,500);
+		}
+		if(infoVehicule!=null) {
+			infoVehicule.removeAll();
+		}else {
+			infoVehicule = new JPanel();
+		}
 		GridLayout grillePrincipale = new GridLayout(2, 1);
 		fenetre.setLayout(grillePrincipale);
 		GridLayout grilleInfo = new GridLayout(3, 3);
-		infoVehicule = new JPanel();
 		infoVehicule.setLayout(grilleInfo);
 		addGeneralTextFields();
 	}
