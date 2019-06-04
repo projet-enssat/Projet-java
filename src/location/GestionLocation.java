@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 
+import javax.swing.JList;
+
 import client.Client;
 import vehicule.Vehicule;
 
@@ -33,14 +35,14 @@ public class GestionLocation
 		if (liste.contains(location))
 		{ 
 			liste.add(location);
-			enregistrerClients(liste);
+			enregistrerLocation(liste);
 		}
 	}
 	
 	/** Sérialise la liste des locations pour mettre à jour l'archive "locations".
 	 * @param liste	 Liste à sérialiser.
 	 */
-	public void enregistrerClients(ListeLocations liste)
+	public void enregistrerLocation(ListeLocations liste)
 	{
 		try
 		{

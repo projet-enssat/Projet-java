@@ -9,10 +9,12 @@ import javax.swing.JTextField;
 
 import client.Client;
 import client.GestionClient;
+import location.GestionLocation;
+import location.ListeLocations;
 
 public class MenuClient extends Menu {
 	
-	private static JTextField adresse = new JTextField("Entrez votre adresse avec code postal et ville");
+	private static JTextField adresse = new JTextField();
 	private static JTextField prenom = new JTextField();
 	private static JTextField nomClient = new JTextField();
 	private static JTextField datePermis = new JTextField();
@@ -32,31 +34,23 @@ public class MenuClient extends Menu {
 	public void recherche() {
 		fenetre = new JFrame("Choississez le Client");
 		fenetre.setBounds(600,200,700,500);
-		GridLayout grillePrincipale = new GridLayout(2,3);
+		GridLayout grillePrincipale = new GridLayout(3,3);
 		fenetre.setLayout(grillePrincipale);
 		fenetre.add(textField("Nom :",nomClient));
 		fenetre.add(textField("Prenom :",prenom));
-		adresse.setText("");
 		fenetre.add(textField("Adresse :",adresse));
-		fenetre.add(rechercherNom());
-		fenetre.add(rechercherPrenom());
-		fenetre.add(rechercherAdresse());
+		GestionClient gestion = new GestionClient();
+		listNom = gestion.rechercherNom(nomClient.getText());
+		listNom.addListSelectionListener(new ActionClient(this));
+		listPrenom = gestion.rechercherPrenom(prenom.getText());
+		listAdresse = gestion.rechercherAdresse(adresse.getText());
+		fenetre.add(listNom);
+		fenetre.add(listPrenom);
+		fenetre.add(listAdresse);
+		fenetre.add(vide());
+		validation.setText("Valider");
+		fenetre.add(validation);
 		fenetre.setVisible(true);
-	}
-	
-	public JList<String> rechercherNom(){
-		listNom = new JList<String>();
-		return listNom;
-	}
-	
-	public JList<String> rechercherPrenom(){
-		listPrenom = new JList<String>();
-		return listPrenom;
-	}
-	
-	public JList<String> rechercherAdresse(){
-		listAdresse = new JList<String>();
-		return listAdresse;
 	}
 	
 	public void enregistrement() {
