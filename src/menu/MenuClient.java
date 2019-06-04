@@ -31,7 +31,6 @@ public class MenuClient extends Menu
 	{
 
 	}
-<<<<<<< HEAD
 	
 	public void recherche() {
 		fenetre = new JFrame("Choississez le Client");
@@ -53,15 +52,12 @@ public class MenuClient extends Menu
 		validation.setText("Valider");
 		fenetre.add(validation);
 		fenetre.setVisible(true);
-=======
 
 	public void enregistrement()
 	{
 		new GestionClient(nomClient.getText(), prenom.getText(), adresse.getText(), dateApprentissage.getText(),
 				datePermis.getText()).ajouterClient();
->>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
 	}
-<<<<<<< HEAD
 	
 	public void enregistrement() {
 		new GestionClient(nomClient.getText(),prenom.getText(),adresse.getText(),

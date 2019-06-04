@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-<<<<<<< HEAD
+
 import javax.swing.JList;
 
 /** Permet la gestion de l'archive contenant les clients.
@@ -29,7 +29,7 @@ public class GestionClient
 	{
 		client = new Client();
 	}
-<<<<<<< HEAD
+
 	
 	public JList<String> rechercherNom(String test){
 		
@@ -83,9 +83,6 @@ public class GestionClient
 		return listAdresse;
 	}
 	
-=======
-
->>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
 	public GestionClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);

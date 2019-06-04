@@ -6,12 +6,8 @@ import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-<<<<<<< HEAD
+
 public class ActionClient implements ActionListener,ListSelectionListener {
-=======
-public class ActionClient implements ActionListener
-{
->>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
 
 	MenuClient menu;
 
