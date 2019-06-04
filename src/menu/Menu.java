@@ -1,7 +1,9 @@
 package menu;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,23 +12,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
-public abstract class Menu {
-	
-	public JPanel bouton(JButton bouton) {
+public abstract class Menu
+{
+
+	public JPanel bouton(JButton bouton)
+	{
 		JPanel panel = new JPanel();
 		FlowLayout pospanel = new FlowLayout();
 		panel.setLayout(pospanel);
 		panel.add(bouton);
 		return panel;
 	}
-	
-	public JPanel vide() {
+
+	public JPanel vide()
+	{
 		JPanel vide = new JPanel();
 		FlowLayout espaceVide = new FlowLayout();
 		vide.setLayout(espaceVide);
 		return vide;
 	}
-	
+
 	public JPanel comboBoxV(JComboBox<String> comboBox)
 	{
 		JPanel panel = new JPanel();
@@ -35,7 +40,7 @@ public abstract class Menu {
 		panel.add(comboBox);
 		return panel;
 	}
-	
+
 	public JPanel listV(JList<String> list)
 	{
 		JPanel panel = new JPanel();
@@ -44,28 +49,38 @@ public abstract class Menu {
 		panel.add(list);
 		return panel;
 	}
-	
-	public JPanel textField(String nom, JTextField text) {
+
+	public JPanel textFieldNoLabel(JTextField tf)
+	{
+
+		JPanel panel = new JPanel();
+		GridLayout pospanel = new GridLayout(1, 1);
+		panel.setLayout(pospanel);
+		panel.add(tf);
+		return panel;
+	}
+
+	public JPanel textField(String nom, JTextField text)
+	{
 		JPanel panelSec = new JPanel();
-		GridLayout posPanelS = new GridLayout(3,1);
+		GridLayout posPanelS = new GridLayout(3, 1);
 		panelSec.setLayout(posPanelS);
 		panelSec.add(vide());
 		panelSec.add(text);
-		
 
 		JPanel panelTer = new JPanel();
-		GridLayout posPanelT = new GridLayout(1,3);
+		GridLayout posPanelT = new GridLayout(1, 3);
 		panelTer.setLayout(posPanelT);
 		panelTer.add(vide());
 		JLabel label = new JLabel(nom);
 		panelTer.add(label);
-		
+
 		JPanel panelPrinc = new JPanel();
-		GridLayout posPanelP = new GridLayout(1,2);
+		GridLayout posPanelP = new GridLayout(1, 2);
 		panelPrinc.setLayout(posPanelP);
 		panelPrinc.add(panelTer);
 		panelPrinc.add(panelSec);
 		return panelPrinc;
 	}
-	
+
 }
