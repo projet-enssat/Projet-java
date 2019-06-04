@@ -1,21 +1,32 @@
 package menu;
 
 import java.awt.GridLayout;
+import java.util.Calendar;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import client.Client;
 import client.GestionClient;
+import location.GestionLocation;
+import vehicule.Vehicule;
 
-public class MenuLocation {
+public class MenuLocation extends Menu {
 
-public MenuLocation() {
+	private static JTextField debut = new JTextField();
+	private static JTextField fin = new JTextField();
+	private static Client client;
+	private static Vehicule vehicule;
+	private static JFrame fenetre;
+	
+	public MenuLocation() {
 		
 	}
 	
-	public void enregistrement() {
-		
+	public void enregistrement(boolean reduction) {
+		new GestionLocation(client, vehicule, debut.getText(), fin.getText(), reduction).ajouterLocation();
+		fenetre.dispose();
 	}
 	
 	public void affMenu(String nom) {
@@ -27,6 +38,7 @@ public MenuLocation() {
 		JPanel nomPrenom = new JPanel();
 		GridLayout posNomPrenom = new GridLayout(1,2);
 		nomPrenom.setLayout(posNomPrenom);
+		
 		/*JPanel champNom = textField("Nom :",nomClient);
 		nomPrenom.add(champNom);
 		nomPrenom.add(textField("Prenom :",prenom));
@@ -40,7 +52,7 @@ public MenuLocation() {
 		
 	}
 	
-	public void insererclient(Client client) {
+	public void insererLocation(Client client) {
 		
 	}
 	

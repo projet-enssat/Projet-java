@@ -3,6 +3,7 @@ package menu;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,8 +20,42 @@ public class MenuClient extends Menu {
 	private static JButton validation = new JButton();
 	private static JFrame fenetre;
 	
+	private static JList<String> listNom;
+	private static JList<String> listPrenom;
+	private static JList<String> listAdresse;
+	
 	public MenuClient() {
 		
+	}
+	
+	public void recherche() {
+		fenetre = new JFrame("Choississez le Client");
+		fenetre.setBounds(600,200,700,500);
+		GridLayout grillePrincipale = new GridLayout(2,3);
+		fenetre.setLayout(grillePrincipale);
+		fenetre.add(textField("Nom :",nomClient));
+		fenetre.add(textField("Prenom :",prenom));
+		adresse.setText("");
+		fenetre.add(textField("Adresse :",adresse));
+		fenetre.add(rechercherNom());
+		fenetre.add(rechercherPrenom());
+		fenetre.add(rechercherAdresse());
+		fenetre.setVisible(true);
+	}
+	
+	public JList<String> rechercherNom(){
+		listNom = new JList<String>();
+		return listNom;
+	}
+	
+	public JList<String> rechercherPrenom(){
+		listPrenom = new JList<String>();
+		return listPrenom;
+	}
+	
+	public JList<String> rechercherAdresse(){
+		listAdresse = new JList<String>();
+		return listAdresse;
 	}
 	
 	public void enregistrement() {
@@ -51,7 +86,7 @@ public class MenuClient extends Menu {
 		
 	}
 	
-	public void insererclient(Client client) {
+	public void insererClient(Client client) {
 		adresse.setText(client.getAdresse());
 		prenom.setText(client.getPrenom());
 		datePermis.setText(client.getDatePermis());
