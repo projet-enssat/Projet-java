@@ -17,7 +17,6 @@ public class MenuClient extends Menu {
 	private static JTextField datePermis = new JTextField();
 	private static JTextField dateApprentissage = new JTextField();
 	private static JButton validation = new JButton();
-	private static JFrame fenetre;
 	
 	public MenuClient() {
 		
@@ -26,12 +25,11 @@ public class MenuClient extends Menu {
 	public void enregistrement() {
 		new GestionClient(nomClient.getText(),prenom.getText(),adresse.getText(),
 						  dateApprentissage.getText(), datePermis.getText()).ajouterClient();
-		fenetre.dispose();
 	}
 	
 	public void affMenu(String nom) {
 		
-		fenetre = new JFrame(nom);
+		JFrame fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipale = new GridLayout(5,1);
 		fenetre.setLayout(grillePrincipale);

@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -32,6 +33,15 @@ public abstract class Menu {
 		FlowLayout pospanel = new FlowLayout();
 		panel.setLayout(pospanel);
 		panel.add(comboBox);
+		return panel;
+	}
+	
+	public JPanel listV(JList<String> list)
+	{
+		JPanel panel = new JPanel();
+		FlowLayout pospanel = new FlowLayout();
+		panel.setLayout(pospanel);
+		panel.add(list);
 		return panel;
 	}
 	

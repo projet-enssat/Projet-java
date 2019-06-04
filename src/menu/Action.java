@@ -21,7 +21,7 @@ public class Action implements ActionListener {
 		{
 			case "Nouveau Client" :
 				MenuClient nouvclient = new MenuClient();
-				nouvclient.setValidation("Enregistrer");
+				nouvclient.setValidation("enregistrer");
 				nouvclient.affMenu("Nouveau Client");
 				break;
 			case "Supprimer Client" :

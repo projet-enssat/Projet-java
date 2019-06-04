@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class ActionVehicule implements ActionListener
+public class ActionVehicule implements ActionListener, ListSelectionListener
 {
 	MenuVehicule menu;
 	
@@ -68,5 +70,11 @@ public class ActionVehicule implements ActionListener
 			menu.enregistrement(classe);
 			menu.getFenetre().dispose();
 		}
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e)
+	{
+		
 	}
 }

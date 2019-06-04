@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -30,9 +31,9 @@ public class MenuVehicule extends Menu {
 	private static JButton validation = new JButton("Enregistrer");
 	private static JButton ok = new JButton("OK");
 	private static JComboBox<String> choixV = new JComboBox<String>();
-	private static JComboBox<String> choixMar = new JComboBox<String>();
-	private static JComboBox<String> choixMod = new JComboBox<String>();
-	private static JComboBox<String> choixImm = new JComboBox<String>();
+	private static JList<String> choixMar = new JList<String>();
+	private static JList<String> choixMod = new JList<String>();
+	private static JList<String> choixImm = new JList<String>();
 	private static JFrame fenetre;
 	private static JFrame fenetre2;
 	private static JPanel infoVehicule = new JPanel();
@@ -110,15 +111,15 @@ public class MenuVehicule extends Menu {
 		fenetre2.setLayout(layout);
 
 		choixV.addActionListener(new ActionVehicule(this));
-		choixMar.addActionListener(new ActionVehicule(this));
+		choixMar.addListSelectionListener(new ActionVehicule(this));
 		choixMar.setEnabled(false);
-		choixMod.addActionListener(new ActionVehicule(this));
+		choixMod.addListSelectionListener(new ActionVehicule(this));
 		choixMod.setEnabled(false);
-		choixImm.addActionListener(new ActionVehicule(this));
+		choixImm.addListSelectionListener(new ActionVehicule(this));
 		fenetre2.add(comboBoxV(choixV));
-		fenetre2.add(comboBoxV(choixMar));
-		fenetre2.add(comboBoxV(choixMod));
-		fenetre2.add(comboBoxV(choixImm));
+		fenetre2.add(listV(choixMar));
+		fenetre2.add(listV(choixMod));
+		fenetre2.add(listV(choixImm));
 		fenetre2.setVisible(true);
 		nouveau=false;
 	}
@@ -130,15 +131,12 @@ public class MenuVehicule extends Menu {
 		choixV.addItem("Moto");
 		choixV.addItem("Avion");
 		
-		choixMod.removeAllItems();
-		choixMod.setMaximumRowCount(5);
+		choixMod.removeAll();
 		
-		choixMar.removeAllItems();
-		choixMar.setMaximumRowCount(5);
+		choixMar.removeAll();
 		
-		choixImm.removeAllItems();
-		choixImm.setMaximumRowCount(5);
-		choixImm = new GestionVehicule().toutesLesImmats("", "");
+		choixImm.removeAll();
+		choixImm = new GestionVehicule().toutesLesImmats("", "", "");
 	}
 	
 	public void Voiture(String nom)
