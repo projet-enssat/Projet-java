@@ -24,6 +24,10 @@ public class MenuLocation extends Menu {
 		
 	}
 	
+	public void recherche() {
+		
+	}
+	
 	public void enregistrement(boolean reduction) {
 		new GestionLocation(client, vehicule, debut.getText(), fin.getText(), reduction).ajouterLocation();
 		fenetre.dispose();

@@ -29,6 +29,10 @@ public class GestionLocation
 		location = new Location(client, vehicule, debut, fin, reduction);
 	}
 
+	public GestionLocation()
+	{
+	}
+	
 	/**
 	 * Ajoute une nouvelle location à l'archive.
 	 * 

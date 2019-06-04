@@ -33,7 +33,8 @@ public class Action implements ActionListener
 				suppclient.affMenu("Supprimer Client");
 				break;
 			case "Début Location":
-
+				MenuLocation nouvLoc = new MenuLocation();
+				nouvLoc.recherche();
 				break;
 			case "Fin Location":
 
