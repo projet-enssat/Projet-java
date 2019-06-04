@@ -1,4 +1,5 @@
 package location;
+
 import java.util.Calendar;
 
 import client.Client;
@@ -8,11 +9,11 @@ public class Location
 {
 	private Client client;
 	private Vehicule vehicule;
-	private String debut, fin;
+	private Calendar debut, fin;
 	private boolean reduction;
 	private boolean rendu;
-	
-	public Location(Client client, Vehicule vehicule, String debut, String fin, boolean reduction)
+
+	public Location(Client client, Vehicule vehicule, Calendar debut, Calendar fin, boolean reduction)
 	{
 		super();
 		this.client = client;
@@ -43,22 +44,22 @@ public class Location
 		this.vehicule = vehicule;
 	}
 
-	public String getDebut()
+	public Calendar getDebut()
 	{
 		return debut;
 	}
 
-	public void setDebut(String debut)
+	public void setDebut(Calendar debut)
 	{
 		this.debut = debut;
 	}
 
-	public String getFin()
+	public Calendar getFin()
 	{
 		return fin;
 	}
 
-	public void setFin(String fin)
+	public void setFin(Calendar fin)
 	{
 		this.fin = fin;
 	}
@@ -82,5 +83,5 @@ public class Location
 	{
 		this.rendu = rendu;
 	}
-	
+
 }

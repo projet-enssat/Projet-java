@@ -12,35 +12,42 @@ import javax.swing.JList;
 import client.Client;
 import vehicule.Vehicule;
 
-/** Permet la gestion de l'archive contenant les locations.
+/**
+ * Permet la gestion de l'archive contenant les locations.
+ * 
  * @author Dejan Paris
  */
 public class GestionLocation
 {
 	private Location location;
-	
-	/** Constructeur.
+
+	/**
+	 * Constructeur.
 	 */
-	public GestionLocation(Client client, Vehicule vehicule, String debut, String fin, boolean reduction)
+	public GestionLocation(Client client, Vehicule vehicule, Calendar debut, Calendar fin, boolean reduction)
 	{
 		location = new Location(client, vehicule, debut, fin, reduction);
 	}
-	
-	/** Ajoute une nouvelle location à l'archive.
-	 * @param location	Location à enregistrer.
+
+	/**
+	 * Ajoute une nouvelle location à l'archive.
+	 * 
+	 * @param location Location à enregistrer.
 	 */
 	public void ajouterLocation()
 	{
 		ListeLocations liste = lireLocations();
 		if (liste.contains(location))
-		{ 
+		{
 			liste.add(location);
 			enregistrerLocation(liste);
 		}
 	}
-	
-	/** Sérialise la liste des locations pour mettre à jour l'archive "locations".
-	 * @param liste	 Liste à sérialiser.
+
+	/**
+	 * Sérialise la liste des locations pour mettre à jour l'archive "locations".
+	 * 
+	 * @param liste Liste à sérialiser.
 	 */
 	public void enregistrerLocation(ListeLocations liste)
 	{
@@ -51,16 +58,20 @@ public class GestionLocation
 			out.writeObject(liste);
 			fos.close();
 		} catch (IOException e)
-		{ e.printStackTrace(); }
+		{
+			e.printStackTrace();
+		}
 	}
-	
-	/** Désérialise la liste des locations à partir de l'archive "locations".
-	 * @return	Liste des locations enregistrées.
+
+	/**
+	 * Désérialise la liste des locations à partir de l'archive "locations".
+	 * 
+	 * @return Liste des locations enregistrées.
 	 */
 	private static ListeLocations lireLocations()
 	{
 		ListeLocations liste = new ListeLocations();
-		
+
 		try
 		{
 			FileInputStream fis = new FileInputStream("locations");
@@ -68,7 +79,9 @@ public class GestionLocation
 			liste = (ListeLocations) in.readObject();
 			fis.close();
 		} catch (IOException | ClassNotFoundException e)
-		{ e.printStackTrace(); }
+		{
+			e.printStackTrace();
+		}
 		return liste;
 	}
 

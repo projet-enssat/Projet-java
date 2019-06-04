@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import client.Client;
 
-/** Intermédiaire pour sérialiser et enregistrer des clients.
+/**
+ * Intermédiaire pour sérialiser et enregistrer des clients.
+ * 
  * @author Dejan Paris
  */
 public class ListeLocations extends ArrayList<Location> implements Serializable

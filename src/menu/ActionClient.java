@@ -6,20 +6,30 @@ import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+<<<<<<< HEAD
 public class ActionClient implements ActionListener,ListSelectionListener {
+=======
+public class ActionClient implements ActionListener
+{
+>>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
 
 	MenuClient menu;
-	
-	public ActionClient(Menu menu) {
-		this.menu=(MenuClient)menu;
+
+	public ActionClient(Menu menu)
+	{
+		this.menu = (MenuClient) menu;
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch(((JButton) e.getSource()).getText())
+	public void actionPerformed(ActionEvent e)
+	{
+		switch (((JButton) e.getSource()).getText())
 		{
-			case "Enregistrer" : menu.enregistrement(); break;
-			default : break;
+			case "Enregistrer":
+				menu.enregistrement();
+				break;
+			default:
+				break;
 		}
 	}
 

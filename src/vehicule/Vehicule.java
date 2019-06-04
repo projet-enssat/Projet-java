@@ -11,23 +11,26 @@ public abstract class Vehicule implements Serializable
 	private String marque;
 	private String immatriculation;
 	private int vitesse;
-	
-	public Vehicule() {
-		this("inconnue","inconnue",new Float(0),"inconnue","inconnue",0);
+
+	public Vehicule()
+	{
+		this("inconnue", "inconnue", new Float(0), "inconnue", "inconnue", 0);
 	}
-	
-	public Vehicule(String modele, String etat, Float prixJour, String marque, String immatriculation, int vitesse) {
+
+	public Vehicule(String modele, String etat, Float prixJour, String marque, String immatriculation, int vitesse)
+	{
 		super();
 		this.modele = modele;
 		this.etat = etat;
 		this.prixJour = prixJour;
 		this.marque = marque;
 		this.immatriculation = immatriculation;
-		this.vitesse=vitesse;
+		this.vitesse = vitesse;
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((etat == null) ? 0 : etat.hashCode());
@@ -40,7 +43,8 @@ public abstract class Vehicule implements Serializable
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -48,27 +52,32 @@ public abstract class Vehicule implements Serializable
 		if (getClass() != obj.getClass())
 			return false;
 		Vehicule other = (Vehicule) obj;
-		if (etat == null) {
+		if (etat == null)
+		{
 			if (other.etat != null)
 				return false;
 		} else if (!etat.equals(other.etat))
 			return false;
-		if (immatriculation == null) {
+		if (immatriculation == null)
+		{
 			if (other.immatriculation != null)
 				return false;
 		} else if (!immatriculation.equals(other.immatriculation))
 			return false;
-		if (marque == null) {
+		if (marque == null)
+		{
 			if (other.marque != null)
 				return false;
 		} else if (!marque.equals(other.marque))
 			return false;
-		if (modele == null) {
+		if (modele == null)
+		{
 			if (other.modele != null)
 				return false;
 		} else if (!modele.equals(other.modele))
 			return false;
-		if (prixJour == null) {
+		if (prixJour == null)
+		{
 			if (other.prixJour != null)
 				return false;
 		} else if (!prixJour.equals(other.prixJour))
@@ -78,52 +87,64 @@ public abstract class Vehicule implements Serializable
 		return true;
 	}
 
-	public Float getPrixJour() {
+	public Float getPrixJour()
+	{
 		return prixJour;
 	}
 
-	public void setPrixJour(Float prixJour) {
+	public void setPrixJour(Float prixJour)
+	{
 		this.prixJour = prixJour;
 	}
 
-	public int getVitesse() {
+	public int getVitesse()
+	{
 		return vitesse;
 	}
 
-	public void setVitesse(int vitesse) {
+	public void setVitesse(int vitesse)
+	{
 		this.vitesse = vitesse;
 	}
 
-	public String getModele() {
+	public String getModele()
+	{
 		return modele;
 	}
-	
-	public void setModele(String modele) {
+
+	public void setModele(String modele)
+	{
 		this.modele = modele;
 	}
-	
-	public String getEtat() {
+
+	public String getEtat()
+	{
 		return etat;
 	}
-	
-	public void setEtat(String etat) {
+
+	public void setEtat(String etat)
+	{
 		this.etat = etat;
 	}
-	
-	public String getMarque() {
+
+	public String getMarque()
+	{
 		return marque;
 	}
-	
-	public void setMarque(String marque) {
+
+	public void setMarque(String marque)
+	{
 		this.marque = marque;
 	}
-	
-	public String getImmatriculation() {
+
+	public String getImmatriculation()
+	{
 		return immatriculation;
 	}
-	
-	public void setImmatriculation(String immatriculation) {
+
+	public void setImmatriculation(String immatriculation)
+	{
 		this.immatriculation = immatriculation;
 	}
-	
+
 }

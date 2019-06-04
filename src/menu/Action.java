@@ -7,42 +7,44 @@ import javax.swing.JButton;
 
 import client.GestionClient;
 
-public class Action implements ActionListener {
+public class Action implements ActionListener
+{
 
 	MenuPrincipal menu;
-	
-	public Action(Menu menu) {
-		this.menu=(MenuPrincipal)menu;
+
+	public Action(Menu menu)
+	{
+		this.menu = (MenuPrincipal) menu;
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch(((JButton) e.getSource()).getText())
+	public void actionPerformed(ActionEvent e)
+	{
+		switch (((JButton) e.getSource()).getText())
 		{
-			case "Nouveau Client" :
+			case "Nouveau Client":
 				MenuClient nouvclient = new MenuClient();
 				nouvclient.setValidation("enregistrer");
 				nouvclient.affMenu("Nouveau Client");
 				break;
-			case "Supprimer Client" :
+			case "Supprimer Client":
 				MenuClient suppclient = new MenuClient();
 				suppclient.setValidation("rechercher");
 				suppclient.affMenu("Supprimer Client");
 				break;
-			case "Début Location" :
-				MenuClient chercheClient = new MenuClient();
-				chercheClient.recherche();
+			case "Début Location":
+
 				break;
-			case "Fin Location" :
-				
+			case "Fin Location":
+
 				break;
-			case "Nouveau Véhicule" :
+			case "Nouveau Véhicule":
 				new MenuVehicule().nouveauVehicule();
 				break;
-			case "Supprimer Véhicule" :
+			case "Supprimer Véhicule":
 				new MenuVehicule().supprimerVehicule();
 				break;
-			case "Options" :
+			case "Options":
 				System.out.println(new GestionClient().lireClients());
 				break;
 		}
