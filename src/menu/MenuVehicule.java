@@ -28,16 +28,22 @@ public class MenuVehicule extends Menu {
 	private static JTextField km = new JTextField();
 	private static JTextField puissance = new JTextField();
 	private static JTextField nbPlaces = new JTextField();
+	
 	private static JButton validation = new JButton("Enregistrer");
 	private static JButton ok = new JButton("OK");
+	
 	private static JComboBox<String> choixV = new JComboBox<String>();
+	
 	private static JList<String> choixMar = new JList<String>();
 	private static JList<String> choixMod = new JList<String>();
 	private static JList<String> choixImm = new JList<String>();
+	
 	private static JFrame fenetre;
 	private static JFrame fenetre2;
+	
 	private static JPanel infoVehicule = new JPanel();
 	private static ListeVehicules listeDyn;
+	
 	private static boolean nouveau = true;
 	
 	public MenuVehicule() {
@@ -76,14 +82,21 @@ public class MenuVehicule extends Menu {
 	}
 	
 	public void affMenu(String nom) {
-		fenetre = null;
-		infoVehicule = null;
-		fenetre = new JFrame(nom);
-		fenetre.setBounds(400,200,1100,500);
+		if(fenetre!=null) {
+			fenetre.removeAll();
+			fenetre.setName(nom);
+		}else {
+			fenetre = new JFrame(nom);
+			fenetre.setBounds(400,200,1100,500);
+		}
+		if(infoVehicule!=null) {
+			infoVehicule.removeAll();
+		}else {
+			infoVehicule = new JPanel();
+		}
 		GridLayout grillePrincipale = new GridLayout(2,1);
 		fenetre.setLayout(grillePrincipale);
 		GridLayout grilleInfo = new GridLayout(3,3);
-		infoVehicule = new JPanel();
 		infoVehicule.setLayout(grilleInfo);
 		addGeneralTextFields();
 	}
