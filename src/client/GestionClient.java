@@ -45,7 +45,7 @@ public class GestionClient
 				}
 			}
 		}
-		return teste;
+		return searchList;
 	}
 	
 	public JList<String> rechercherPrenom(String test){
