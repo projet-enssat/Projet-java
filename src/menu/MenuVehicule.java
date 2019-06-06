@@ -18,23 +18,6 @@ public class MenuVehicule extends Menu
 {
 	public void resetBox()
 	{
-		choixV.removeAllItems();
-		choixV.addItem("");
-		choixV.addItem("Voiture");
-		choixV.addItem("Moto");
-		choixV.addItem("Avion");
-
-		choixMod.removeAll();
-		choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
-		choixMod.setPreferredSize(new Dimension(150, 100));
-
-		choixMar.removeAll();
-		choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
-		choixMar.setPreferredSize(new Dimension(150, 100));
-
-		choixImm.removeAll();
-		choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
-		choixImm.setPreferredSize(new Dimension(200, 100));
 	}
 
 	private static JTextField modele = new JTextField();
@@ -64,7 +47,31 @@ public class MenuVehicule extends Menu
 
 	public MenuVehicule()
 	{
-		resetBox();
+
+
+		validation.addActionListener(new ActionVehicule(this));
+
+		ok.addActionListener(new ActionVehicule(this));
+
+		choixV.removeAllItems();
+		choixV.addItem("");
+		choixV.addItem("Voiture");
+		choixV.addItem("Moto");
+		choixV.addItem("Avion");
+		choixV.addActionListener(new ActionVehicule(this));
+
+		choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
+		choixMod.setPreferredSize(new Dimension(150, 100));
+
+		choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
+		choixMar.setPreferredSize(new Dimension(150, 100));
+
+		choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
+		choixImm.setPreferredSize(new Dimension(200, 100));
+		
+		choixMar.addListSelectionListener(new ActionVehicule(this));
+		choixMod.addListSelectionListener(new ActionVehicule(this));
+		choixImm.addListSelectionListener(new ActionVehicule(this));
 	}
 
 	public void enregistrement(String classe)
@@ -124,11 +131,9 @@ public class MenuVehicule extends Menu
 		FlowLayout layout = new FlowLayout();
 		fenetre2.setLayout(layout);
 
-		choixV.addActionListener(new ActionVehicule(this));
 		fenetre2.add(comboBoxV(choixV));
 		ok.setEnabled(false);
 		ok.setText("OK");
-		ok.addActionListener(new ActionVehicule(this));
 		fenetre2.add(bouton(ok));
 		fenetre2.setVisible(true);
 		nouveau = true;
@@ -142,9 +147,6 @@ public class MenuVehicule extends Menu
 		fenetre2.setLayout(layout);
 
 		
-		choixMar.addListSelectionListener(new ActionVehicule(this));
-		choixMod.addListSelectionListener(new ActionVehicule(this));
-		choixImm.addListSelectionListener(new ActionVehicule(this));
 		fenetre2.add(comboBoxV(choixV));
 		fenetre2.add(textFieldNoLabel(texteMar));
 		fenetre2.add(textFieldNoLabel(texteMod));
@@ -172,7 +174,6 @@ public class MenuVehicule extends Menu
 		{
 			validation.setText("Rechercher");
 		}
-		validation.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
@@ -192,7 +193,6 @@ public class MenuVehicule extends Menu
 		{
 			validation.setText("rechercher");
 		}
-		validation.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
@@ -212,7 +212,6 @@ public class MenuVehicule extends Menu
 		{
 			validation.setText("rechercher");
 		}
-		validation.addActionListener(new ActionVehicule(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
@@ -231,8 +230,8 @@ public class MenuVehicule extends Menu
 	{
 		GestionVehicule tempGV = new GestionVehicule((String) choixV.getSelectedItem());
 		setChoixMar(tempGV.toutesLesMarques(texteMar.getText()));
-		setChoixMod(tempGV.tousLesModeles("", texteMod.getText()));
-		setChoixImm(tempGV.toutesLesImmats("", "", texteImm.getText()));
+		setChoixMod(tempGV.tousLesModeles(choixMar.getSelectedValue(), texteMod.getText()));
+		setChoixImm(tempGV.toutesLesImmats(choixMar.getSelectedValue(), choixMod.getSelectedValue(), texteImm.getText()));
 	}
 
 	public JFrame getFenetre()

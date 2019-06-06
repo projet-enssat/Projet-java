@@ -249,7 +249,7 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeV().size(); ++i)
 				{
 					Voiture temp = liste.getListeV().get(i);
-					if (marque.equals("") || temp.getMarque().equals(marque))
+					if (marque == null || temp.getMarque().equals(marque))
 					{
 						if (dejaEcrit.length() <= temp.getModele().length())
 						{
@@ -266,7 +266,7 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeM().size(); ++i)
 				{
 					Moto temp = liste.getListeM().get(i);
-					if (marque.equals("") || temp.getMarque().equals(marque))
+					if (marque == null || temp.getMarque().equals(marque))
 					{
 						if (dejaEcrit.length() <= temp.getModele().length())
 						{
@@ -283,7 +283,7 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeA().size(); ++i)
 				{
 					Avion temp = liste.getListeA().get(i);
-					if (marque.equals("") || temp.getMarque().equals(marque))
+					if (marque == null || temp.getMarque().equals(marque))
 					{
 						if (dejaEcrit.length() <= temp.getModele().length())
 						{
@@ -303,16 +303,16 @@ public class GestionVehicule
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
-		if (!dejaEcrit.contentEquals(""))
+		if (!dejaEcrit.equals(""))
 		{
 			if (classe.equals("") || classe.equals("Voiture"))
 			{
 				for (int i = 0; i < liste.getListeV().size(); ++i)
 				{
 					Voiture temp = liste.getListeV().get(i);
-					if (marque.equals("") || temp.getMarque().equals(marque))
+					if (marque == null || temp.getMarque().equals(marque))
 					{
-						if (modele.equals("") || temp.getModele().equals(modele))
+						if (modele == null || temp.getModele().equals(modele))
 						{
 							if (dejaEcrit.length() <= temp.getImmatriculation().length())
 							{
@@ -330,9 +330,9 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeM().size(); ++i)
 				{
 					Moto temp = liste.getListeM().get(i);
-					if (marque.equals("") || temp.getMarque().equals(marque))
+					if (marque == null || temp.getMarque().equals(marque))
 					{
-						if (modele.equals("") || temp.getModele().equals(modele))
+						if (modele == null || temp.getModele().equals(modele))
 						{
 							if (dejaEcrit.length() <= temp.getImmatriculation().length())
 							{
@@ -350,9 +350,9 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeA().size(); ++i)
 				{
 					Avion temp = liste.getListeA().get(i);
-					if (marque.equals("") || temp.getMarque().equals(marque))
+					if (marque == null || temp.getMarque().equals(marque))
 					{
-						if (modele.equals("") || temp.getModele().equals(modele))
+						if (modele == null || temp.getModele().equals(modele))
 						{
 							if (dejaEcrit.length() <= temp.getImmatriculation().length())
 							{
