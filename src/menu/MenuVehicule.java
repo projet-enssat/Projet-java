@@ -16,10 +16,6 @@ import vehicule.GestionVehicule;
 
 public class MenuVehicule extends Menu
 {
-	public void resetBox()
-	{
-	}
-
 	private static JTextField modele = new JTextField();
 	private static JTextField etat = new JTextField();
 	private static JTextField prixJour = new JTextField();
