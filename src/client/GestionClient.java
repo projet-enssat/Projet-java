@@ -65,22 +65,19 @@ public class GestionClient
 	}
 	
 	public DefaultListModel<String> rechercherAdresse(String test){
-		String[] searchList = new String [50];
-		int index=0;
+		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
 		if(!test.isEmpty()) {
 			for(int i=0;i<liste.size();i++) {
 				Client tmp = liste.get(i);
 				if(tmp.getAdresse().length()>test.length()) {
 					if(test.equals(tmp.getAdresse().substring(0,test.length()))) {
-						searchList[index]=tmp.getAdresse();
-						index++;
+						searchList.addElement(tmp.getAdresse());
 					}
 				}
 			}
 		}
-		JList<String> listAdresse = new JList<String>(searchList);
-		return listAdresse;
+		return searchList;
 	}
 	
 	public GestionClient(String nom, String prenom, String adresse, String date1, String date2)

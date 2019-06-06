@@ -59,7 +59,7 @@ public class MenuClient extends Menu {
 		adresse.addActionListener(new ActionClient(this));
 		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
 		listNom.addListSelectionListener(new ActionClient(this));
-		listPrenom.setModel(rechercherPrenom(prenom.getText()));
+		listPrenom.setModel(gestion.rechercherPrenom(prenom.getText()));
 		listAdresse.setModel(gestion.rechercherAdresse(adresse.getText()));
 		fenetre.add(listNom);
 		fenetre.add(listPrenom);
