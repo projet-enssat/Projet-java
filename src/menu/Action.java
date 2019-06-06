@@ -24,12 +24,12 @@ public class Action implements ActionListener
 		{
 			case "Nouveau Client":
 				MenuClient nouvclient = new MenuClient();
-				nouvclient.setValidation("enregistrer");
+				nouvclient.setValidation("Enregistrer");
 				nouvclient.affMenu("Nouveau Client");
 				break;
 			case "Supprimer Client":
 				MenuClient suppclient = new MenuClient();
-				suppclient.setValidation("rechercher");
+				suppclient.setValidation("Rechercher");
 				suppclient.affMenu("Supprimer Client");
 				break;
 			case "Début Location":

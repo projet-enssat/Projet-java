@@ -32,7 +32,7 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
-		//new GestionLocation
+		menu.autoComp();
 	}
 
 }

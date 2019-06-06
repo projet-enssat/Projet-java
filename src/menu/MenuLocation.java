@@ -30,7 +30,13 @@ public class MenuLocation extends Menu {
 			rechClient.recherche();
 		}else if(vehicule==null) {
 			MenuVehicule rechVehicule = new MenuVehicule();
+		}else {
+			this.nouvLocation();
 		}
+	}
+	
+	public void nouvLocation() {
+		
 	}
 	
 	public void enregistrement(boolean reduction) {

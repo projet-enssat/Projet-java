@@ -31,6 +31,10 @@ public class MenuClient extends Menu {
 
 	}
 	
+	public void autoComp() {
+		
+	}
+	
 	public void recherche() {
 		fenetre = new JFrame("Choississez le Client");
 		fenetre.setBounds(600,200,700,500);
