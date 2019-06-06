@@ -60,13 +60,13 @@ public class MenuVehicule extends Menu
 		choixV.addItem("Avion");
 		choixV.addActionListener(new ActionVehicule(this));
 
-		choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
+		choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
 		choixMod.setPreferredSize(new Dimension(150, 100));
 
 		choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
 		choixMar.setPreferredSize(new Dimension(150, 100));
 
-		choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
+		choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
 		choixImm.setPreferredSize(new Dimension(200, 100));
 		
 		choixMar.addListSelectionListener(new ActionVehicule(this));
@@ -228,10 +228,18 @@ public class MenuVehicule extends Menu
 	
 	public void autoCompletion()
 	{
+		((ActionVehicule) choixMar.getListSelectionListeners()[0]).toggle();
+		((ActionVehicule) choixMod.getListSelectionListeners()[0]).toggle();
+		((ActionVehicule) choixImm.getListSelectionListeners()[0]).toggle();
+		
 		GestionVehicule tempGV = new GestionVehicule((String) choixV.getSelectedItem());
 		setChoixMar(tempGV.toutesLesMarques(texteMar.getText()));
 		setChoixMod(tempGV.tousLesModeles(choixMar.getSelectedValue(), texteMod.getText()));
 		setChoixImm(tempGV.toutesLesImmats(choixMar.getSelectedValue(), choixMod.getSelectedValue(), texteImm.getText()));
+
+		((ActionVehicule) choixMar.getListSelectionListeners()[0]).toggle();
+		((ActionVehicule) choixMod.getListSelectionListeners()[0]).toggle();
+		((ActionVehicule) choixImm.getListSelectionListeners()[0]).toggle();
 	}
 
 	public JFrame getFenetre()
