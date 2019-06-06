@@ -1,5 +1,6 @@
 package menu;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 
 import vehicule.GestionVehicule;
 
@@ -23,13 +25,16 @@ public class MenuVehicule extends Menu
 		choixV.addItem("Avion");
 
 		choixMod.removeAll();
-		choixMod = new GestionVehicule().tousLesModeles("", "");
+		choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
+		choixMod.setPreferredSize(new Dimension(150, 100));
 
 		choixMar.removeAll();
-		choixMar = new GestionVehicule().toutesLesMarques("");
+		choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
+		choixMar.setPreferredSize(new Dimension(150, 100));
 
 		choixImm.removeAll();
-		choixImm = new GestionVehicule().toutesLesImmats("", "", "");
+		choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
+		choixImm.setPreferredSize(new Dimension(200, 100));
 	}
 
 	private static JTextField modele = new JTextField();
@@ -221,6 +226,14 @@ public class MenuVehicule extends Menu
 		infoVehicule.add(textField("Immatriculation", immat));
 		infoVehicule.add(textField("Vitesse", vitesse));
 	}
+	
+	public void autoCompletion()
+	{
+		GestionVehicule tempGV = new GestionVehicule((String) choixV.getSelectedItem());
+		setChoixMar(tempGV.toutesLesMarques(texteMar.getText()));
+		setChoixMod(tempGV.tousLesModeles("", texteMod.getText()));
+		setChoixImm(tempGV.toutesLesImmats("", "", texteImm.getText()));
+	}
 
 	public JFrame getFenetre()
 	{
@@ -256,15 +269,30 @@ public class MenuVehicule extends Menu
 	{
 		return texteMar;
 	}
+	
+	public void setTexteMar(String texte)
+	{
+		texteMar.setText(texte);
+	}
 
 	public JTextField getTexteMod()
 	{
 		return texteMod;
 	}
+	
+	public void setTexteMod(String texte)
+	{
+		texteMod.setText(texte);
+	}
 
 	public JTextField getTexteImm()
 	{
 		return texteImm;
+	}
+	
+	public void setTexteImm(String texte)
+	{
+		texteImm.setText(texte);
 	}
 
 	public JList<String> getChoixMar()
@@ -272,11 +300,9 @@ public class MenuVehicule extends Menu
 		return choixMar;
 	}
 
-	public void setChoixMar(JList<String> choixMar)
+	public void setChoixMar(ListModel<String> model)
 	{
-		choixMar.removeAll();
-		MenuVehicule.choixMar = choixMar;
-		choixMar.repaint();
+		choixMar.setModel(model);
 	}
 
 	public JList<String> getChoixMod()
@@ -284,11 +310,9 @@ public class MenuVehicule extends Menu
 		return choixMod;
 	}
 
-	public void setChoixMod(JList<String> choixMod)
+	public void setChoixMod(ListModel<String> model)
 	{
-		choixMod.removeAll();
-		MenuVehicule.choixMod = choixMod;
-		choixMod.repaint();
+		choixMod.setModel(model);
 	}
 
 	public JList<String> getChoixImm()
@@ -296,10 +320,8 @@ public class MenuVehicule extends Menu
 		return choixImm;
 	}
 
-	public void setChoixImm(JList<String> choixImm)
+	public void setChoixImm(ListModel<String> model)
 	{
-		choixImm.removeAll();
-		MenuVehicule.choixImm = choixImm;
-		choixImm.repaint();
+		choixImm.setModel(model);
 	}
 }

@@ -186,10 +186,9 @@ public class GestionVehicule
 		enregistrerVehicules(liste);
 	}
 
-	public JList<String> toutesLesMarques(String dejaEcrit)
+	public DefaultListModel<String> toutesLesMarques(String dejaEcrit)
 	{
-		String[] searchList = new String[50];
-		int index = 0;
+		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
 		if (!dejaEcrit.equals(""))
 		{
@@ -202,8 +201,7 @@ public class GestionVehicule
 					{
 						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
 						{
-							searchList[index] = temp.getMarque();
-							++index;
+							searchList.addElement(temp.getMarque());
 						}
 					}
 				}
@@ -217,8 +215,7 @@ public class GestionVehicule
 					{
 						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
 						{
-							searchList[index] = temp.getMarque();
-							++index;
+							searchList.addElement(temp.getMarque());
 						}
 					}
 				}
@@ -232,21 +229,18 @@ public class GestionVehicule
 					{
 						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
 						{
-							searchList[index] = temp.getMarque();
-							++index;
+							searchList.addElement(temp.getMarque());
 						}
 					}
 				}
 			}
 		}
-		JList<String> barreDeRecherche = new JList<String>(searchList);
-		return barreDeRecherche;
+		return searchList;
 	}
 
-	public JList<String> tousLesModeles(String marque, String dejaEcrit)
+	public DefaultListModel<String> tousLesModeles(String marque, String dejaEcrit)
 	{
-		String[] searchList = new String[50];
-		int index = 0;
+		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
 		if (!dejaEcrit.equals(""))
 		{
@@ -261,8 +255,7 @@ public class GestionVehicule
 						{
 							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
 							{
-								searchList[index] = temp.getModele();
-								++index;
+								searchList.addElement(temp.getModele());
 							}
 						}
 					}
@@ -279,8 +272,7 @@ public class GestionVehicule
 						{
 							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
 							{
-								searchList[index] = temp.getModele();
-								++index;
+								searchList.addElement(temp.getModele());
 							}
 						}
 					}
@@ -297,22 +289,19 @@ public class GestionVehicule
 						{
 							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
 							{
-								searchList[index] = temp.getModele();
-								++index;
+								searchList.addElement(temp.getModele());
 							}
 						}
 					}
 				}
 			}
 		}
-		JList<String> barreDeRecherche = new JList<String>(searchList);
-		return barreDeRecherche;
+		return searchList;
 	}
 
-	public JList<String> toutesLesImmats(String marque, String modele, String dejaEcrit)
+	public DefaultListModel<String> toutesLesImmats(String marque, String modele, String dejaEcrit)
 	{
-		String[] searchList = new String[50];
-		int index = 0;
+		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
 		if (!dejaEcrit.contentEquals(""))
 		{
@@ -329,8 +318,7 @@ public class GestionVehicule
 							{
 								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
 								{
-									searchList[index] = temp.getImmatriculation();
-									++index;
+									searchList.addElement(temp.getImmatriculation());
 								}
 							}
 						}
@@ -350,8 +338,7 @@ public class GestionVehicule
 							{
 								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
 								{
-									searchList[index] = temp.getImmatriculation();
-									++index;
+									searchList.addElement(temp.getImmatriculation());
 								}
 							}
 						}
@@ -371,8 +358,7 @@ public class GestionVehicule
 							{
 								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
 								{
-									searchList[index] = temp.getImmatriculation();
-									++index;
+									searchList.addElement(temp.getImmatriculation());
 								}
 							}
 						}
@@ -380,8 +366,7 @@ public class GestionVehicule
 				}
 			}
 		}
-		JList<String> barreDeRecherche = new JList<String>(searchList);
-		return barreDeRecherche;
+		return searchList;
 	}
 
 	/**
@@ -401,10 +386,7 @@ public class GestionVehicule
 				ObjectInputStream in = new ObjectInputStream(fis);
 				liste = (ListeVehicules) in.readObject();
 				fis.close();
-			} catch (EOFException e)
-			{
-				e.printStackTrace();
-			}
+			} catch (EOFException e) {}
 		} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
