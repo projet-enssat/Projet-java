@@ -22,8 +22,8 @@ public class MenuClient extends Menu {
 	
 	private static JFrame fenetre;
 	private static JList<String> listNom = new JList<String>();
-	private static JList<String> listPrenom;
-	private static JList<String> listAdresse;
+	private static JList<String> listPrenom = new JList<String>();
+	private static JList<String> listAdresse = new JList<String>();
 
 	public MenuClient()
 	{
