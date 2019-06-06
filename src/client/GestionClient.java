@@ -33,24 +33,17 @@ public class GestionClient
 	
 	public DefaultListModel<String> rechercherNom(String test){
 		
-		String[] searchList = new String [50];
-		int index=0;
+		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
 		if(!test.isEmpty()) {
 			for(int i=0;i<liste.size();i++) {
 				Client tmp = liste.get(i);
 				if(tmp.getAdresse().length()>test.length()) {
 					if(test.equals(tmp.getNom().substring(0,test.length()))) {
-						searchList[index]=tmp.getNom();
-						index++;
-						System.out.println(tmp.getNom()+"  "+searchList[index-1]);
+						searchList.addElement(tmp.getNom());
 					}
 				}
 			}
-		}
-		DefaultListModel<String> teste = new DefaultListModel<String>();
-		for(int i=0;i<index;i++) {
-			teste.addElement(searchList[i]);
 		}
 		return teste;
 	}
