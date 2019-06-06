@@ -9,8 +9,6 @@ import javax.swing.JTextField;
 
 import client.Client;
 import client.GestionClient;
-import location.GestionLocation;
-import location.ListeLocations;
 
 public class MenuClient extends Menu {
 	
@@ -61,6 +59,7 @@ public class MenuClient extends Menu {
 	{
 		new GestionClient(nomClient.getText(), prenom.getText(), adresse.getText(), dateApprentissage.getText(),
 				datePermis.getText()).ajouterClient();
+		fenetre.dispose();
 	}
 		
 
@@ -68,7 +67,7 @@ public class MenuClient extends Menu {
 	public void affMenu(String nom)
 	{
 		
-		JFrame fenetre = new JFrame(nom);
+		fenetre = new JFrame(nom);
 		fenetre.setBounds(600, 200, 700, 500);
 		GridLayout grillePrincipale = new GridLayout(5, 1);
 		fenetre.setLayout(grillePrincipale);
