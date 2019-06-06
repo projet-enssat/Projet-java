@@ -91,8 +91,8 @@ public class ActionVehicule implements ActionListener, ListSelectionListener
 		{
 			GestionVehicule tempGV = new GestionVehicule((String) menu.getChoixV().getSelectedItem());
 			menu.setChoixMar(tempGV.toutesLesMarques(menu.getTexteMar().getText()));
-			menu.setChoixMod(tempGV.tousLesModeles("", menu.getTexteMod().getText()));
-			menu.setChoixImm(tempGV.toutesLesImmats("", "", menu.getTexteImm().getText()));
+			menu.setChoixMod(tempGV.tousLesModeles(null, menu.getTexteMod().getText()));
+			menu.setChoixImm(tempGV.toutesLesImmats(null, null, menu.getTexteImm().getText()));
 		}
 	}
 
@@ -102,6 +102,17 @@ public class ActionVehicule implements ActionListener, ListSelectionListener
 		if (e.getSource().equals(menu.getChoixMar()))
 		{
 			menu.setTexteMar((menu.getChoixMar().getSelectedValue()));
+			menu.autoCompletion();
+		}
+		if (e.getSource().equals(menu.getChoixMod()))
+		{
+			menu.setTexteMod((menu.getChoixMod().getSelectedValue()));
+			menu.autoCompletion();
+		}
+		if (e.getSource().equals(menu.getChoixImm()))
+		{
+			menu.setTexteImm((menu.getChoixImm().getSelectedValue()));
+			menu.autoCompletion();
 		}
 	}
 }
