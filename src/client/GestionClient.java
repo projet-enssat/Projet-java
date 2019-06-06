@@ -43,7 +43,7 @@ public void rechercherClient(){
 		int i = liste.indexOf(client);
 		System.out.println(client.toString());
 		client= liste.get(i);
-		System.out.println(client.toString());
+		System.out.println(client.toString()+"test");
 	}
 	
 	public void validerSuppression(String nomClient) {
