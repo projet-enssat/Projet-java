@@ -101,6 +101,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener
 	{
 		if (e.getSource().equals(menu.getChoixMar()))
 		{
+			menu.setTexteMar((menu.getChoixMar().getSelectedValue()));
 		}
 	}
 }
