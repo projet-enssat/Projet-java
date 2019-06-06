@@ -198,10 +198,13 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeV().size(); ++i)
 				{
 					Voiture temp = liste.getListeV().get(i);
-					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+					if (dejaEcrit.length() <= temp.getMarque().length())
 					{
-						searchList[index] = temp.getMarque();
-						++index;
+						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+						{
+							searchList[index] = temp.getMarque();
+							++index;
+						}
 					}
 				}
 			}
@@ -210,10 +213,13 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeM().size(); ++i)
 				{
 					Moto temp = liste.getListeM().get(i);
-					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+					if (dejaEcrit.length() <= temp.getMarque().length())
 					{
-						searchList[index] = temp.getMarque();
-						++index;
+						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+						{
+							searchList[index] = temp.getMarque();
+							++index;
+						}
 					}
 				}
 			}
@@ -222,10 +228,13 @@ public class GestionVehicule
 				for (int i = 0; i < liste.getListeA().size(); ++i)
 				{
 					Avion temp = liste.getListeA().get(i);
-					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+					if (dejaEcrit.length() <= temp.getMarque().length())
 					{
-						searchList[index] = temp.getMarque();
-						++index;
+						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+						{
+							searchList[index] = temp.getMarque();
+							++index;
+						}
 					}
 				}
 			}
@@ -248,10 +257,13 @@ public class GestionVehicule
 					Voiture temp = liste.getListeV().get(i);
 					if (marque.equals("") || temp.getMarque().equals(marque))
 					{
-						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+						if (dejaEcrit.length() <= temp.getModele().length())
 						{
-							searchList[index] = temp.getModele();
-							++index;
+							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+							{
+								searchList[index] = temp.getModele();
+								++index;
+							}
 						}
 					}
 				}
@@ -263,10 +275,13 @@ public class GestionVehicule
 					Moto temp = liste.getListeM().get(i);
 					if (marque.equals("") || temp.getMarque().equals(marque))
 					{
-						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+						if (dejaEcrit.length() <= temp.getModele().length())
 						{
-							searchList[index] = temp.getModele();
-							++index;
+							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+							{
+								searchList[index] = temp.getModele();
+								++index;
+							}
 						}
 					}
 				}
@@ -278,10 +293,13 @@ public class GestionVehicule
 					Avion temp = liste.getListeA().get(i);
 					if (marque.equals("") || temp.getMarque().equals(marque))
 					{
-						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+						if (dejaEcrit.length() <= temp.getModele().length())
 						{
-							searchList[index] = temp.getModele();
-							++index;
+							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+							{
+								searchList[index] = temp.getModele();
+								++index;
+							}
 						}
 					}
 				}
@@ -307,9 +325,14 @@ public class GestionVehicule
 					{
 						if (modele.equals("") || temp.getModele().equals(modele))
 						{
-							if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
-								searchList[index] = temp.getImmatriculation();
-							++index;
+							if (dejaEcrit.length() <= temp.getImmatriculation().length())
+							{
+								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
+								{
+									searchList[index] = temp.getImmatriculation();
+									++index;
+								}
+							}
 						}
 					}
 				}
@@ -323,9 +346,14 @@ public class GestionVehicule
 					{
 						if (modele.equals("") || temp.getModele().equals(modele))
 						{
-							if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
-								searchList[index] = temp.getImmatriculation();
-							++index;
+							if (dejaEcrit.length() <= temp.getImmatriculation().length())
+							{
+								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
+								{
+									searchList[index] = temp.getImmatriculation();
+									++index;
+								}
+							}
 						}
 					}
 				}
@@ -339,9 +367,14 @@ public class GestionVehicule
 					{
 						if (modele.equals("") || temp.getModele().equals(modele))
 						{
-							if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
-								searchList[index] = temp.getImmatriculation();
-							++index;
+							if (dejaEcrit.length() <= temp.getImmatriculation().length())
+							{
+								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
+								{
+									searchList[index] = temp.getImmatriculation();
+									++index;
+								}
+							}
 						}
 					}
 				}

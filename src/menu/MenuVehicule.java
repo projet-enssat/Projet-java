@@ -56,7 +56,6 @@ public class MenuVehicule extends Menu
 	private static JFrame fenetre2;
 	private static JPanel infoVehicule = new JPanel();
 	private static boolean nouveau = true;
-	private ActionVehicule choixVAL = new ActionVehicule(this);
 
 	public MenuVehicule()
 	{

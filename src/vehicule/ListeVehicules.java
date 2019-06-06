@@ -96,4 +96,9 @@ public class ListeVehicules implements Serializable
 	{
 		listeAvions.remove(avion);
 	}
+
+	public String toString()
+	{
+		return listeVoitures.toString() + "##" + listeMotos.toString() + "##" + listeAvions.toString();
+	}
 }
