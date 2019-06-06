@@ -18,9 +18,10 @@ public class MenuClient extends Menu {
 	private static JTextField datePermis = new JTextField();
 	private static JTextField dateApprentissage = new JTextField();
 	private static JButton validation = new JButton();
+	private static GestionClient gestion = new GestionClient();
 	
 	private static JFrame fenetre;
-	private static JList<String> listNom;
+	private static JList<String> listNom = new JList<String>();
 	private static JList<String> listPrenom;
 	private static JList<String> listAdresse;
 
@@ -33,16 +34,33 @@ public class MenuClient extends Menu {
 		
 	}
 	
+	public void refreshNom() {
+		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
+		System.out.println(nomClient.getText());
+	}
+	
+	public void refreshPrenom() {
+		listPrenom = gestion.rechercherPrenom(prenom.getText());
+		System.out.println(prenom.getText());
+	}
+	
+	public void refreshAdresse() {
+		listAdresse = gestion.rechercherAdresse(adresse.getText());
+		System.out.println(adresse.getText());
+	}
+
 	public void recherche() {
 		fenetre = new JFrame("Choississez le Client");
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipale = new GridLayout(3,3);
 		fenetre.setLayout(grillePrincipale);
 		fenetre.add(textField("Nom :",nomClient));
+		nomClient.addActionListener(new ActionClient(this));
 		fenetre.add(textField("Prenom :",prenom));
+		prenom.addActionListener(new ActionClient(this));
 		fenetre.add(textField("Adresse :",adresse));
-		GestionClient gestion = new GestionClient();
-		listNom = gestion.rechercherNom(nomClient.getText());
+		adresse.addActionListener(new ActionClient(this));
+		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
 		listNom.addListSelectionListener(new ActionClient(this));
 		listPrenom = gestion.rechercherPrenom(prenom.getText());
 		listAdresse = gestion.rechercherAdresse(adresse.getText());
@@ -99,6 +117,18 @@ public class MenuClient extends Menu {
 	public void setValidation(String nomBouton)
 	{
 		validation.setText(nomBouton);
+	}
+	
+	public JTextField getAdresse() {
+		return adresse;
+	}
+
+	public JTextField getPrenom() {
+		return prenom;
+	}
+
+	public JTextField getNomClient() {
+		return nomClient;
 	}
 
 }

@@ -19,13 +19,22 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		switch (((JButton) e.getSource()).getText())
-		{
-			case "Enregistrer":
-				menu.enregistrement();
-				break;
-			default:
-				break;
+		if(e.getSource().getClass()==(new JButton().getClass())){
+			switch (((JButton) e.getSource()).getText())
+			{
+				case "Enregistrer":
+					menu.enregistrement();
+					break;
+				default:
+					break;
+			}
+		}
+		if (e.getSource().equals(menu.getNomClient())){
+			menu.refreshNom();
+		}else if(e.getSource().equals(menu.getPrenom())){
+			menu.refreshPrenom();
+		}else if(e.getSource().equals(menu.getAdresse())){
+			menu.refreshAdresse();
 		}
 	}
 

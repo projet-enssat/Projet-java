@@ -30,7 +30,7 @@ public class Action implements ActionListener
 			case "Supprimer Client":
 				MenuClient suppclient = new MenuClient();
 				suppclient.setValidation("Rechercher");
-				suppclient.affMenu("Supprimer Client");
+				suppclient.recherche();
 				break;
 			case "Début Location":
 				MenuLocation nouvLoc = new MenuLocation();

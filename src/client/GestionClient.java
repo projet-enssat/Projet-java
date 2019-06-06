@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 /** Permet la gestion de l'archive contenant les clients.
@@ -31,7 +31,7 @@ public class GestionClient
 	}
 
 	
-	public JList<String> rechercherNom(String test){
+	public DefaultListModel<String> rechercherNom(String test){
 		
 		String[] searchList = new String [50];
 		int index=0;
@@ -43,12 +43,16 @@ public class GestionClient
 					if(test.equals(tmp.getNom().substring(0,test.length()))) {
 						searchList[index]=tmp.getNom();
 						index++;
+						System.out.println(tmp.getNom()+"  "+searchList[index-1]);
 					}
 				}
 			}
 		}
-		JList<String> listNom = new JList<String>(searchList);
-		return listNom;
+		DefaultListModel<String> teste = new DefaultListModel<String>();
+		for(int i=0;i<index;i++) {
+			teste.addElement(searchList[i]);
+		}
+		return teste;
 	}
 	
 	public JList<String> rechercherPrenom(String test){
