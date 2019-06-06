@@ -36,17 +36,14 @@ public class MenuClient extends Menu {
 	
 	public void refreshNom() {
 		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
-		System.out.println(nomClient.getText());
 	}
 	
 	public void refreshPrenom() {
-		listPrenom = gestion.rechercherPrenom(prenom.getText());
-		System.out.println(prenom.getText());
+		listPrenom.setModel(gestion.rechercherPrenom(prenom.getText()));
 	}
 	
 	public void refreshAdresse() {
-		listAdresse = gestion.rechercherAdresse(adresse.getText());
-		System.out.println(adresse.getText());
+		listAdresse.setModel(gestion.rechercherAdresse(adresse.getText()));
 	}
 
 	public void recherche() {
@@ -62,8 +59,8 @@ public class MenuClient extends Menu {
 		adresse.addActionListener(new ActionClient(this));
 		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
 		listNom.addListSelectionListener(new ActionClient(this));
-		listPrenom = gestion.rechercherPrenom(prenom.getText());
-		listAdresse = gestion.rechercherAdresse(adresse.getText());
+		listPrenom.setModel(rechercherPrenom(prenom.getText()));
+		listAdresse.setModel(gestion.rechercherAdresse(adresse.getText()));
 		fenetre.add(listNom);
 		fenetre.add(listPrenom);
 		fenetre.add(listAdresse);
