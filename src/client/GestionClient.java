@@ -38,7 +38,7 @@ public class GestionClient
 		rechercherClient();
 	}
 	
-public void rechercherClient(){
+	public void rechercherClient(){
 		ListeClients liste = lireClients();
 		int i = liste.indexOf(client);
 		System.out.println(client.toString());
@@ -110,32 +110,12 @@ public void rechercherClient(){
 		return searchList;
 	}
 	
-	public DefaultListModel<String> tousAdresse(){
+	public DefaultListModel<String> tous(){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
 		for(int i=0;i<liste.size();i++) {
 			Client tmp = liste.get(i);
-			searchList.addElement(tmp.getAdresse());
-		}
-		return searchList;
-	}
-	
-	public DefaultListModel<String> tousPrenom(){
-		DefaultListModel<String> searchList = new DefaultListModel<String>();
-		ListeClients liste = lireClients();
-		for(int i=0;i<liste.size();i++) {
-			Client tmp = liste.get(i);
-			searchList.addElement(tmp.getPrenom());
-		}
-		return searchList;
-	}
-	
-	public DefaultListModel<String> tousNom(){
-		DefaultListModel<String> searchList = new DefaultListModel<String>();
-		ListeClients liste = lireClients();
-		for(int i=0;i<liste.size();i++) {
-			Client tmp = liste.get(i);
-			searchList.addElement(tmp.getNom());
+			searchList.addElement(tmp.getNom()+" "+tmp.getPrenom()+" "+tmp.getAdresse());
 		}
 		return searchList;
 	}

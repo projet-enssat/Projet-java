@@ -5,7 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 import client.Client;
 import client.GestionClient;
@@ -25,10 +27,19 @@ public class MenuClient extends Menu {
 	private static JList<String> listNom = new JList<String>();
 	private static JList<String> listPrenom = new JList<String>();
 	private static JList<String> listAdresse = new JList<String>();
+	
+	private static JScrollPane scrollListNom = new JScrollPane();
+	private static JScrollPane scrollListPrenom = new JScrollPane();
+	private static JScrollPane scrollListAdresse = new JScrollPane();
 
 	public MenuClient()
 	{
 		listNom.addListSelectionListener(new ActionClient(this));
+		nomClient.addActionListener(new ActionClient(this));
+		prenom.addActionListener(new ActionClient(this));
+		adresse.addActionListener(new ActionClient(this));
+		affichage.addActionListener(new ActionClient(this));
+		validation.addActionListener(new ActionClient(this));
 	}
 	
 	public void autoComp(Object test) {
@@ -39,9 +50,9 @@ public class MenuClient extends Menu {
 	}
 	
 	public void refreshTous() {
-		listNom.setModel(gestion.tousNom());
-		listPrenom.setModel(gestion.tousPrenom());
-		listAdresse.setModel(gestion.tousAdresse());
+		listNom.setModel(gestion.tous());
+		listPrenom.setModel(gestion.tous());
+		listAdresse.setModel(gestion.tous());
 	}
 	
 	public void refreshNom() {
@@ -62,24 +73,23 @@ public class MenuClient extends Menu {
 		GridLayout grillePrincipale = new GridLayout(3,3);
 		fenetre.setLayout(grillePrincipale);
 		fenetre.add(textField("Nom :",nomClient));
-		nomClient.addActionListener(new ActionClient(this));
 		nomClient.setText("");
 		fenetre.add(textField("Prenom :",prenom));
-		prenom.addActionListener(new ActionClient(this));
 		prenom.setText("");
 		fenetre.add(textField("Adresse :",adresse));
-		adresse.addActionListener(new ActionClient(this));
 		adresse.setText("");
 		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
 		listPrenom.setModel(gestion.rechercherPrenom(prenom.getText()));
 		listAdresse.setModel(gestion.rechercherAdresse(adresse.getText()));
-		fenetre.add(listNom);
-		fenetre.add(listPrenom);
-		fenetre.add(listAdresse);
+		scrollListNom = new JScrollPane(listNom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListPrenom = new JScrollPane(listPrenom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListAdresse = new JScrollPane(listAdresse,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		fenetre.add(scrollListNom);
+		fenetre.add(scrollListPrenom);
+		fenetre.add(scrollListAdresse);
 		validation.setText("Valider");
 		fenetre.add(validation);
 		fenetre.add(vide());
-		affichage.addActionListener(new ActionClient(this));
 		fenetre.add(affichage);
 		fenetre.setVisible(true);
 	}
@@ -110,7 +120,6 @@ public class MenuClient extends Menu {
 		fenetre.add(textField("Adresse :", adresse));
 		fenetre.add(textField("Date du permis :", datePermis));
 		fenetre.add(textField("Date de fin d'apprentissage :", dateApprentissage));
-		validation.addActionListener(new ActionClient(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 

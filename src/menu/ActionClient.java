@@ -48,6 +48,8 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
+		if(!e.getValueIsAdjusting()) {
 			menu.autoComp(((JList<String>) e.getSource()).getSelectedValue());
+		}
 	}
 }
