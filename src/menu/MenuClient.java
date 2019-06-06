@@ -18,6 +18,7 @@ public class MenuClient extends Menu {
 	private static JTextField datePermis = new JTextField();
 	private static JTextField dateApprentissage = new JTextField();
 	private static JButton validation = new JButton();
+	private static JButton affichage = new JButton("Tous");
 	private static GestionClient gestion = new GestionClient();
 	
 	private static JFrame fenetre;
@@ -27,11 +28,20 @@ public class MenuClient extends Menu {
 
 	public MenuClient()
 	{
-
+		listNom.addListSelectionListener(new ActionClient(this));
 	}
 	
-	public void autoComp() {
-		
+	public void autoComp(Object test) {
+		String client = (String) test;
+		if(client.contains(" ")) {
+			gestion.select(client);
+		}
+	}
+	
+	public void refreshTous() {
+		listNom.setModel(gestion.tousNom());
+		listPrenom.setModel(gestion.tousPrenom());
+		listAdresse.setModel(gestion.tousAdresse());
 	}
 	
 	public void refreshNom() {
@@ -53,20 +63,24 @@ public class MenuClient extends Menu {
 		fenetre.setLayout(grillePrincipale);
 		fenetre.add(textField("Nom :",nomClient));
 		nomClient.addActionListener(new ActionClient(this));
+		nomClient.setText("");
 		fenetre.add(textField("Prenom :",prenom));
 		prenom.addActionListener(new ActionClient(this));
+		prenom.setText("");
 		fenetre.add(textField("Adresse :",adresse));
 		adresse.addActionListener(new ActionClient(this));
+		adresse.setText("");
 		listNom.setModel(gestion.rechercherNom(nomClient.getText()));
-		listNom.addListSelectionListener(new ActionClient(this));
 		listPrenom.setModel(gestion.rechercherPrenom(prenom.getText()));
 		listAdresse.setModel(gestion.rechercherAdresse(adresse.getText()));
 		fenetre.add(listNom);
 		fenetre.add(listPrenom);
 		fenetre.add(listAdresse);
-		fenetre.add(vide());
 		validation.setText("Valider");
 		fenetre.add(validation);
+		fenetre.add(vide());
+		affichage.addActionListener(new ActionClient(this));
+		fenetre.add(affichage);
 		fenetre.setVisible(true);
 	}
 

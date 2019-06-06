@@ -3,6 +3,7 @@ package menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -10,7 +11,7 @@ import javax.swing.event.ListSelectionListener;
 public class ActionClient implements ActionListener,ListSelectionListener {
 
 	MenuClient menu;
-
+	boolean test = false;
 	public ActionClient(Menu menu)
 	{
 		this.menu = (MenuClient) menu;
@@ -24,6 +25,12 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 			{
 				case "Enregistrer":
 					menu.enregistrement();
+					break;
+				case "Tous":
+					menu.refreshTous();
+					break;
+				case "Valider":
+					System.out.println("presque mais pas fini");
 					break;
 				default:
 					break;
@@ -41,7 +48,6 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
-		menu.autoComp();
+			menu.autoComp(((JList<String>) e.getSource()).getSelectedValue());
 	}
-
 }
