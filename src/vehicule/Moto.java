@@ -16,4 +16,9 @@ public class Moto extends VehiculeTerrestre
 		super(modele, etat, prixjour, marque, immatriculation, vitesse, km, puissance);
 	}
 
+	public String toString()
+	{
+		return getMarque() + "#" + getModele() + "#" + getEtat() + "#" + getImmatriculation() + "#" + getPrixJour().toString() + "#" +
+				new Integer(getVitesse()).toString() + "#" + getKm().toString() + "#" + new Integer(getPuissance()).toString();
+	}
 }

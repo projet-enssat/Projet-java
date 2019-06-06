@@ -27,4 +27,10 @@ public class Voiture extends VehiculeTerrestre
 		this.nbPlace = nbPlace;
 	}
 
+	public String toString()
+	{
+		return getMarque() + "#" + getModele() + "#" + getEtat() + "#" + getImmatriculation() + "#" + getPrixJour().toString() + "#" +
+				new Integer(getVitesse()).toString() + "#" + getKm().toString() + "#" + new Integer(getPuissance()).toString() + "#" +
+				new Integer(nbPlace).toString();
+	}
 }

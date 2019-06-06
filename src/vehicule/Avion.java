@@ -15,4 +15,9 @@ public class Avion extends VehiculeAerien
 		super(modele, etat, prixjour, marque, immatriculation, vitesse, nbHeureVol, nbMoteur);
 	}
 
+	public String toString()
+	{
+		return getMarque() + "#" + getModele() + "#" + getEtat() + "#" + getImmatriculation() + "#" + getPrixJour().toString() + "#" +
+				new Integer(getVitesse()).toString() + "#" + getNbHeureVol().toString() + "#" + new Integer(getNbMoteur()).toString();
+	}
 }
