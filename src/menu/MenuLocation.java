@@ -294,7 +294,7 @@ public class MenuLocation extends Menu {
 		marqueTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modéle :"));
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modele :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
