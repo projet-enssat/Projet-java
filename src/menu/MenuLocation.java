@@ -106,7 +106,6 @@ public class MenuLocation extends Menu {
 			debutTF = new JTextField();
 			debutTF.addActionListener(new ActionLocation(this));
 		}
-		debutTF.setEnabled(false);
 		debutTF.setText("");
 		
 		if (finTF == null)
