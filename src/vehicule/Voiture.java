@@ -57,6 +57,7 @@ public class Voiture extends VehiculeTerrestre
 		this.nbPlace = nbPlace;
 	}
 
+	
 	@Override
 	public String toString()
 	{

@@ -63,6 +63,7 @@ public class Action implements ActionListener
 				new MenuVehicule().nouveauVehicule();
 				break;
 			case "Modifier Vehicule":
+				new MenuVehicule().modifierVehicule();
 				break;
 			case "Supprimer Vehicule":
 				new MenuVehicule().supprimerVehicule();

@@ -13,7 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.ListModel;
 
 import action.ActionVehicule;
+import client.GestionClient;
+import vehicule.Avion;
 import vehicule.GestionVehicule;
+import vehicule.Moto;
+import vehicule.Voiture;
 
 /**
  * Classe d'affichage des fenetres concernant les vehicules.
@@ -49,6 +53,10 @@ public class MenuVehicule extends Menu
 	/** Element graphique */
 	private static JButton validation2;
 	/** Element graphique */
+	private static JButton validation3;
+	/** Element graphique */
+	private static JButton validation4;
+	/** Element graphique */
 	private static JButton ok;
 	/** Element graphique */
 	private static JComboBox<String> choixV;
@@ -73,6 +81,9 @@ public class MenuVehicule extends Menu
 	/** Element graphique */
 	private static JPanel infoVehicule = new JPanel();
 	
+	/** Acces a l'archive "vehicules". */
+	GestionVehicule gestionVehicule = new GestionVehicule();
+	
 	/** Indique quelle fenetre est ouverte. */
 	private static boolean nouveau = true;
 
@@ -91,6 +102,18 @@ public class MenuVehicule extends Menu
 		{
 			validation2 = new JButton("Supprimer");
 			validation2.addActionListener(new ActionVehicule(this));
+		}
+		
+		if (validation3 == null)
+		{
+			validation3 = new JButton("Rechercher");
+			validation3.addActionListener(new ActionVehicule(this));
+		}
+		
+		if (validation4 == null)
+		{
+			validation4 = new JButton("Modifier");
+			validation4.addActionListener(new ActionVehicule(this));
 		}
 		
 		if (ok == null)
@@ -164,24 +187,49 @@ public class MenuVehicule extends Menu
 	public void enregistrement(String classe)
 	{
 		Float prix = new Float(prixJour.getText());
-		Integer vit = new Integer(vitesse.getText());
+		Integer vit;
+		if(vitesse.getText().contains(".")) {
+			vit = new Integer(vitesse.getText().substring(0,vitesse.getText().indexOf(".")));
+		}else {
+			vit = new Integer(vitesse.getText());
+		}
 		switch (classe)
 		{
 			case "Voiture":
 				Float k = new Float(km.getText());
-				Integer puis = new Integer(puissance.getText());
-				Integer pla = new Integer(nbPlaces.getText());
+				Integer puis ;
+				if(puissance.getText().contains(".")) {
+					puis = new Integer(puissance.getText().substring(0,puissance.getText().indexOf(".")));
+				}else {
+					puis = new Integer(puissance.getText());
+				}
+				Integer pla ;
+				if(nbPlaces.getText().contains(".")) {
+					pla = new Integer(nbPlaces.getText().substring(0,nbPlaces.getText().indexOf(".")));
+				}else {
+					pla = new Integer(nbPlaces.getText());
+				}
 				new GestionVehicule(classe, modele.getText(), etat.getText(), prix, marque.getText(), immat.getText(),
 						vit, k, puis, pla).ajouterVehicule();
 				break;
 			case "Moto":
 				Float k2 = new Float(km.getText());
-				Integer puis2 = new Integer(puissance.getText());
+				Integer puis2 ;
+				if(puissance.getText().contains(".")) {
+					puis2 = new Integer(puissance.getText().substring(0,puissance.getText().indexOf(".")));
+				}else {
+					puis2 = new Integer(puissance.getText());
+				}
 				new GestionVehicule(classe, modele.getText(), etat.getText(), prix, marque.getText(), immat.getText(),
 						vit, puis2, k2).ajouterVehicule();
 				break;
 			case "Avion":
-				Integer nbmot = new Integer(nbMoteurs.getText());
+				Integer nbmot ;
+				if(nbMoteurs.getText().contains(".")) {
+					nbmot = new Integer(nbMoteurs.getText().substring(0,nbMoteurs.getText().indexOf(".")));
+				}else {
+					nbmot = new Integer(nbMoteurs.getText());
+				}
 				Float nbheu = new Float(nbHeuresVol.getText());
 				new GestionVehicule(classe, modele.getText(), etat.getText(), prix, marque.getText(), immat.getText(),
 						vit, nbheu, nbmot).ajouterVehicule();
@@ -236,7 +284,143 @@ public class MenuVehicule extends Menu
 		fenetre2.add(bouton(ok));
 		fenetre2.setVisible(true);
 	}
+	
+	/**
+	 * Resst les valeurs déjà entrez dans les JTextField.
+	 */
+	public void reset() {
+		texteMar.setText("");
+		texteMod.setText("");
+		texteImm.setText("");
+	}
 
+	/**
+	 * Affiche la fenetre de selection de vehicule à modifier.
+	 */
+	public void modifier()
+	{
+		gestionVehicule.setVehicule(null);
+		gestionVehicule.rechercheVehicule(texteImm.getText().toLowerCase());
+		if (!(gestionVehicule.getVehicule() == null))
+		{
+			fenetre3.dispose();
+			String classV = gestionVehicule.getVehicule().getClass().toString();
+			String classe = classV.substring(classV.indexOf(".")+1);
+			System.out.println(classe);
+			switch (classe)
+			{
+				case "Voiture":
+					modvoiture("Modifier Voiture");
+					Voiture voit = (Voiture) gestionVehicule.getVehicule();
+					km.setText(voit.getKm().toString());
+					puissance.setText(new Float(voit.getPuissance()).toString());
+					nbPlaces.setText(new Float(voit.getNbPlace()).toString());
+					break;
+				case "Moto":
+					modmoto("Modifier Moto");
+					Moto mot = (Moto) gestionVehicule.getVehicule();
+					km.setText(mot.getKm().toString());
+					puissance.setText(new Float(mot.getPuissance()).toString());
+					break;
+				case "Avion":
+					modavion("Modifier Avion");
+					Avion avi = (Avion) gestionVehicule.getVehicule();
+					nbHeuresVol.setText(avi.getNbHeureVol().toString());
+					nbMoteurs.setText(new Float(avi.getNbMoteur()).toString());
+					break;
+				default:
+					break;
+			}
+			modele.setText(gestionVehicule.getVehicule().getModele());
+			marque.setText(gestionVehicule.getVehicule().getMarque());
+			immat.setText(gestionVehicule.getVehicule().getImmatriculation());
+			etat.setText(gestionVehicule.getVehicule().getEtat());
+			prixJour.setText(gestionVehicule.getVehicule().getPrixJour().toString());
+			vitesse.setText(new Float(gestionVehicule.getVehicule().getVitesse()).toString());
+		} else {
+			Erreur("Erreur de selection Vehicule","Le Vehicule que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencez");
+		}
+	}
+	
+	/**
+	 * Enregistre les modifictaion apporter et ferme la fenêtre
+	 */
+	public void enregistrerMod() {
+		String classV = gestionVehicule.getVehicule().getClass().toString();
+		String classe = classV.substring(classV.indexOf(".")+1);
+		System.out.println(classe);
+		switch (classe)
+		{
+			case "Voiture":
+				Voiture voit = (Voiture) gestionVehicule.getVehicule();
+				if(immat.getText()!=voit.getImmatriculation()
+						|| marque.getText()!=voit.getMarque()
+						|| modele.getText()!=voit.getModele()
+						|| etat.getText()!=voit.getEtat()
+						|| prixJour.getText()!=voit.getPrixJour().toString()
+						|| vitesse.getText()!=new Float(voit.getVitesse()).toString()
+						|| km.getText()!=voit.getKm().toString()
+						|| nbPlaces.getText()!=new Float(voit.getNbPlace()).toString()) {
+					gestionVehicule.supprimerVehicule();
+					enregistrement(classe);
+				}
+				break;
+			case "Moto":
+				Moto mot = (Moto) gestionVehicule.getVehicule();
+				if(immat.getText()!=mot.getImmatriculation()
+						|| marque.getText()!=mot.getMarque()
+						|| modele.getText()!=mot.getModele()
+						|| etat.getText()!=mot.getEtat()
+						|| prixJour.getText()!=mot.getPrixJour().toString()
+						|| vitesse.getText()!=new Float(mot.getVitesse()).toString()
+						|| km.getText()!=mot.getKm().toString()) {
+					gestionVehicule.supprimerVehicule();
+					enregistrement(classe);
+				}
+				break;
+			case "Avion":
+				Avion avi = (Avion) gestionVehicule.getVehicule();
+				if(immat.getText()!=avi.getImmatriculation()
+						|| marque.getText()!=avi.getMarque()
+						|| modele.getText()!=avi.getModele()
+						|| etat.getText()!=avi.getEtat()
+						|| prixJour.getText()!=avi.getPrixJour().toString()
+						|| vitesse.getText()!=new Float(avi.getVitesse()).toString()
+						|| nbMoteurs.getText()!=new Float(avi.getNbMoteur()).toString()
+						|| nbHeuresVol.getText()!= avi.getNbHeureVol().toString()) {
+					gestionVehicule.supprimerVehicule();
+					enregistrement(classe);
+				}
+				break;
+			default:
+				break;
+		}
+		fenetre.dispose();
+	}
+	
+	/**
+	 * Affiche la fenetre de selection de vehicule à modifier.
+	 */
+	public void modifierVehicule()
+	{
+		nouveau = false;
+		if (fenetre3 != null) { fenetre3.removeAll(); }
+		fenetre3 = new JFrame("Selectionner vehicule à modifier");
+		fenetre3.setBounds(400, 400, 1100, 200);
+		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetre3.setLayout(new GridLayout(2, 4));
+		fenetre3.add(comboBoxV2(choixV));
+		fenetre3.add(textFieldLabelAbove(texteMar, "Marque :"));
+		fenetre3.add(textFieldLabelAbove(texteMod, "Modèle :"));
+		fenetre3.add(textFieldLabelAbove(texteImm, "Immatriculation :"));
+		
+		fenetre3.add(bouton(validation3));
+		fenetre3.add(listV(choixMar));
+		fenetre3.add(listV(choixMod));
+		fenetre3.add(listV(choixImm));
+		fenetre3.setVisible(true);
+	}
+	
 	/**
 	 * Affiche la fenetre de suppression de vehicule.
 	 */
@@ -259,12 +443,28 @@ public class MenuVehicule extends Menu
 		fenetre3.add(listV(choixImm));
 		fenetre3.setVisible(true);
 	}
+	
+	/**
+	 * Affiche la fenetre de modification de voiture.
+	 * @param nom Titre de la fenetre.
+	 */
+	public void modvoiture(String nom)
+	{
+		affMenu(nom);
+
+		infoVehicule.add(textFieldLabelLeft("Compteur", km));
+		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
+		infoVehicule.add(textFieldLabelLeft("Places", nbPlaces));
+		fenetre.add(infoVehicule);
+		fenetre.add(bouton(validation4));
+		fenetre.setVisible(true);
+	}
 
 	/**
 	 * Affiche la fenetre de creation de voiture.
 	 * @param nom Titre de la fenetre.
 	 */
-	public void Voiture(String nom)
+	public void voiture(String nom)
 	{
 		affMenu(nom);
 
@@ -277,10 +477,26 @@ public class MenuVehicule extends Menu
 	}
 
 	/**
+	 * Affiche la fenetre de modification de moto.
+	 * @param nom Titre de la fenetre.
+	 */
+	public void modmoto(String nom)
+	{
+		affMenu(nom);
+
+		infoVehicule.add(textFieldLabelLeft("Compteur", km));
+		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
+		infoVehicule.add(vide());
+		fenetre.add(infoVehicule);
+		fenetre.add(bouton(validation4));
+		fenetre.setVisible(true);
+	}
+	
+	/**
 	 * Affiche la fenetre de creation de moto.
 	 * @param nom Titre de la fenetre.
 	 */
-	public void Moto(String nom)
+	public void moto(String nom)
 	{
 		affMenu(nom);
 
@@ -291,12 +507,29 @@ public class MenuVehicule extends Menu
 		fenetre.add(bouton(validation1));
 		fenetre.setVisible(true);
 	}
+	
+	/**
+	 * Affiche la fenetre de modifictaion d'avion.
+	 * @param nom Titre de la fenetre.
+	 */
+	public void modavion(String nom)
+	{
+		affMenu(nom);
+
+		infoVehicule.add(textFieldLabelLeft("Heures de vol", nbHeuresVol));
+		infoVehicule.add(textFieldLabelLeft("Nombre de moteurs", nbMoteurs));
+		infoVehicule.add(vide());
+		fenetre.add(infoVehicule);
+		fenetre.add(bouton(validation4));
+		fenetre.setVisible(true);
+	}
+
 
 	/**
 	 * Affiche la fenetre de creation d'avion.
 	 * @param nom Titre de la fenetre.
 	 */
-	public void Avion(String nom)
+	public void avion(String nom)
 	{
 		affMenu(nom);
 
@@ -420,6 +653,16 @@ public class MenuVehicule extends Menu
 	public JButton getSupprimer()
 	{
 		return validation2;
+	}
+	
+	public JButton getModifier()
+	{
+		return validation4;
+	}
+	
+	public JButton getRechercher()
+	{
+		return validation3;
 	}
 
 	/**

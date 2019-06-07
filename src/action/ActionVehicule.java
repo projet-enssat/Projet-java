@@ -60,7 +60,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 						{
 							nom = "Supprimer Voiture";
 						}
-						menu.Voiture(nom);
+						menu.voiture(nom);
 						break;
 					case 2:
 						if (menu.isNouveau())
@@ -70,7 +70,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 						{
 							nom = "Supprimer Moto";
 						}
-						menu.Moto(nom);
+						menu.moto(nom);
 						break;
 					case 3:
 						if (menu.isNouveau())
@@ -80,7 +80,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 						{
 							nom = "Supprimer Avion";
 						}
-						menu.Avion(nom);
+						menu.avion(nom);
 						break;
 					default:
 						break;
@@ -122,9 +122,14 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 						break;
 				}
 				menu.validerVehicule(classe);
-			} else if (e.getSource().equals(menu.getChoixV()) && !menu.isNouveau())
+			} else if (e.getSource().equals(menu.getRechercher())) {
+				menu.modifier();
+			}else if (e.getSource().equals(menu.getModifier())) {
+				menu.enregistrerMod();
+			}else if (e.getSource().equals(menu.getChoixV()) && !menu.isNouveau())
 			{
 				menu.autoCompletion();
+				menu.reset();
 			}
 		}
 	}
