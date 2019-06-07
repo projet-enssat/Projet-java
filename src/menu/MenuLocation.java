@@ -36,6 +36,10 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JTextField immatTF;
 	/** Element graphique */
+	private static JTextField kmTF;
+	/** Element graphique */
+	private static JTextField prixTF;
+	/** Element graphique */
 	private static JList<String> choixNom;
 	/** Element graphique */
 	private static JList<String> choixPre;
@@ -54,7 +58,7 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JFrame fenetre2;
 	/** Element graphique */
-	private static JCheckBox reduction = new JCheckBox("Reduction");
+	private static JCheckBox reduction = new JCheckBox("Réduction");
 
 	/** Acces a l'archive "clients". */
 	private static GestionClient gestionClient = new GestionClient();
@@ -129,6 +133,18 @@ public class MenuLocation extends Menu {
 		{
 			immatTF = new JTextField();
 			immatTF.getDocument().addDocumentListener(new ActionLocation(this));
+		}
+
+		if (kmTF == null)
+		{
+			kmTF = new JTextField();
+			kmTF.getDocument().addDocumentListener(new ActionLocation(this));
+		}
+
+		if (prixTF == null)
+		{
+			prixTF = new JTextField();
+			prixTF.setEnabled(false);
 		}
 		
 		if (choixNom == null)
@@ -291,9 +307,9 @@ public class MenuLocation extends Menu {
 		debutTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
 		finTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Fin :"));
+		fenetre2.add(textFieldLabelAbove(finTF, "Fin :"));
 		fenetre2.add(textFieldLabelAbove(kmTF, "Kilomètres parcourus :"));
-		fenetre2.add(bouton(validation2));
+		fenetre2.add(bouton(validation3));
 		fenetre2.add(vide());
 		fenetre2.add(vide());
 		fenetre2.add(listV(choixImm));
