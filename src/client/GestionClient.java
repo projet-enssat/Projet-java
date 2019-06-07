@@ -9,12 +9,9 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.DefaultListModel;
 
-/** Permet la gestion de l'archive contenant les clients.
-=======
 /**
  * Permet la gestion de l'archive contenant les clients.
- * 
->>>>>>> branch 'master' of https://github.com/projet-enssat/Projet-java
+ * @author Celia Ellmann
  * @author Dejan Paris
  */
 public class GestionClient
