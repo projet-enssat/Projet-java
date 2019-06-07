@@ -336,6 +336,7 @@ public class MenuLocation extends Menu {
 
 		debutTF.setEnabled(false);
 		debutTF.setText(gestionLocation.getLocation().getDebut());
+		System.out.println(gestionLocation.getLocation().getDebut());
 		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
 		finTF.setEnabled(false);
 		finTF.setText(gestionLocation.getLocation().getFin());
@@ -419,6 +420,7 @@ public class MenuLocation extends Menu {
 	 */
 	public void validerLocation() {
 		gestionLocation = new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction.isSelected());
+		gestionLocation.setLocation(gestionLocation.rechercheLocation());
 		if (!(gestionLocation.rechercheLocation() == null))
 		{
 			fenetre2.dispose();
@@ -664,6 +666,7 @@ public class MenuLocation extends Menu {
 			}
 		}
 		if(debutCorrect && finCorrect) {
+			validation3.setEnabled(true);
 			long difference = dateFin.getTimeInMillis() - dateDebut.getTimeInMillis();
 			Calendar diff = new GregorianCalendar();
 			if(diff.get(Calendar.DAY_OF_MONTH)>7 || diff.get(Calendar.MONTH)>1) {
