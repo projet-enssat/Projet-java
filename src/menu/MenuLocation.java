@@ -182,14 +182,9 @@ public class MenuLocation extends Menu {
 		fenetre.add(panelVehi);
 
 		JPanel panelLoc = new JPanel(new GridLayout(4,1));
-		
-		JPanel panelDebut = new JPanel();
-		panelDebut.add(textFieldLabelAbove(debutTF, "Date de Début :"));
-		panelLoc.add(panelDebut);
-		
-		JPanel panelFin = new JPanel();
-		panelFin.add(textFieldLabelAbove(finTF, "Date de Fin : "));
-		panelLoc.add(panelFin);
+
+		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Début :"));
+		panelLoc.add(textFieldLabelAbove(finTF, "Date de Fin : "));
 		
 		JPanel panelReduction = new JPanel();
 		reduction.setEnabled(false);
