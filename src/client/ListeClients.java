@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Intermédiaire pour sérialiser et enregistrer des clients.
- * 
+ * Intermediaire pour serialiser et enregistrer des clients.
+ * @author Celia Ellmann
  * @author Dejan Paris
  */
 public class ListeClients extends ArrayList<Client> implements Serializable

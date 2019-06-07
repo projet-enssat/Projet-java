@@ -67,6 +67,8 @@ public class MenuClient extends Menu {
 			validation = new JButton();
 			validation.addActionListener(new ActionClient(this));
 		}
+		datePermis.setText("");
+		dateApprentissage.setText("");
 	}
 	
 	public void autoComp(Object test) {
