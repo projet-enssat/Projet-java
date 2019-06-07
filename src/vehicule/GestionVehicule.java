@@ -204,6 +204,10 @@ public class GestionVehicule
 	 */
 	public void supprimerVehicule()
 	{
+		if(classe == "") {
+			classe = (vehicule.getClass()).toString();
+			classe = classe.substring(classe.indexOf(".")+1);
+		}
 		switch (classe)
 		{
 			case "Voiture":
