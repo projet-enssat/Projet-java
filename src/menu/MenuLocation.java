@@ -292,7 +292,7 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		marqueTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));s
+		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(modeleTF, "Modéle :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
