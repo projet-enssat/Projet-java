@@ -371,14 +371,14 @@ public class MenuLocation extends Menu {
 			}
 		}else if(debutCorrect){
 			reduction.setEnabled(false);
-			finTF.setText("Format : jj/mm/aaaa");
+			finTF.setText("Format : jj/mm/aaaa svp");
 		}else if(finCorrect){
 			reduction.setEnabled(false);
-			debutTF.setText("Format : jj/mm/aaaa");
+			debutTF.setText("Format : jj/mm/aaaa svp");
 		}else {
 			reduction.setEnabled(false);
-			debutTF.setText("Format : jj/mm/aaaa");
-			finTF.setText("Format : jj/mm/aaaa");
+			debutTF.setText("Format : jj/mm/aaaa svp");
+			finTF.setText("Format : jj/mm/aaaa svp");
 		}
 	}
 	
