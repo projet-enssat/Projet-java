@@ -16,16 +16,24 @@ import javax.swing.DefaultListModel;
  */
 public class GestionClient
 {
+	/**
+	 * Client a gerer.
+	 */
 	private Client client;
 
 	/**
 	 * Constructeur.
+	 * @deprecated Utiliser de preference GestionClient(String, String, String, String, String).
 	 */
 	public GestionClient()
 	{
 		client = new Client();
 	}
 
+	/**
+	 * Parse une chaine de caracteres representant un client, pour recuperer ses nom, prenom, adresse.
+	 * @param client Client a parser.
+	 */
 	public void select(String client) {
 		this.client.setDateApprentissage("");
 		this.client.setDatePermis("");
@@ -37,13 +45,21 @@ public class GestionClient
 		System.out.println(this.client+"~");
 		rechercherClient();
 	}
-	
+
+	/**
+	 * Recupere les dates de permis et de fin d'apprentissage du client dans l'archive "clients".
+	 */
 	public void rechercherClient(){
 		ListeClients liste = lireClients();
 		int i = liste.indexOf(client);
 		client = liste.get(i);
 	}
-	
+
+	/**
+	 * Recherche tous les clients dont le nom commence par les caracteres de test.
+	 * @param test Nom ou debut du nom a rechercher.
+	 * @return Un modele de JList contenant tous les clients correspondant au critere test.
+	 */
 	public DefaultListModel<String> rechercherNom(String test){
 		
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -60,7 +76,12 @@ public class GestionClient
 		}
 		return searchList;
 	}
-	
+
+	/**
+	 * Recherche tous les clients dont le prenom commence par les caracteres de test.
+	 * @param test Prenom ou debut du prenom a rechercher.
+	 * @return Un modele de JList contenant tous les clients correspondant au critere test.
+	 */
 	public DefaultListModel<String> rechercherPrenom(String test){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
@@ -76,7 +97,12 @@ public class GestionClient
 		}
 		return searchList;
 	}
-	
+
+	/**
+	 * Recherche tous les clients dont l'adresse commence par les caracteres de test.
+	 * @param test Adresse ou debut de l'adresse a rechercher.
+	 * @return Un modele de JList contenant tous les clients correspondant au critere test.
+	 */
 	public DefaultListModel<String> rechercherAdresse(String test){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
@@ -92,7 +118,11 @@ public class GestionClient
 		}
 		return searchList;
 	}
-	
+
+	/**
+	 * Extrait tous les clients de l'archive "clients".
+	 * @return Un modele de JList contenant tous les clients enregistres.
+	 */
 	public DefaultListModel<String> tous(){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
@@ -102,21 +132,37 @@ public class GestionClient
 		}
 		return searchList;
 	}
-	
+
+	/**
+	 * Constructeur
+	 * @param nom Nom du cient a gerer.
+	 * @param prenom Prenom du client a gerer.
+	 * @param adresse Adresse postale du client a gerer.
+	 * @param date1 Fin de periode probatoire du permis.
+	 * @param date2 Date d'obtention du permis.
+	 */
 	public GestionClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);
 	}
 
+	/**
+	 * Remplace client.
+	 * @param nom Nom du cient a gerer.
+	 * @param prenom Prenom du client a gerer.
+	 * @param adresse Adresse postale du client a gerer.
+	 * @param date1 Fin de periode probatoire du permis.
+	 * @param date2 Date d'obtention du permis.
+	 */
 	public void setClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);
 	}
 
 	/**
-	 * Ajoute un nouveau client à l'archive, s'il n'est pas encore enregistré.
+	 * Ajoute un nouveau client a�l'archive, s'il n'est pas encore enregistre.
 	 * 
-	 * @param client Client à enregistrer.
+	 * @param client Client a�enregistrer.
 	 */
 	public void ajouterClient()
 	{
@@ -129,9 +175,9 @@ public class GestionClient
 	}
 
 	/**
-	 * Sérialise la liste des clients pour mettre à jour l'archive "clients".
+	 * Serialise la liste des clients pour mettre a jour l'archive "clients".
 	 * 
-	 * @param liste Liste à sérialiser.
+	 * @param liste Liste a serialiser.
 	 */
 	public void enregistrerClients(ListeClients liste)
 	{
@@ -148,9 +194,9 @@ public class GestionClient
 	}
 
 	/**
-	 * Retire un client de l'archive, s'il y est enregistré.
+	 * Retire un client de l'archive, s'il y est enregistre.
 	 * 
-	 * @param client Client à supprimer.
+	 * @param client Client a supprimer.
 	 */
 	public void supprimerClient()
 	{
@@ -160,9 +206,9 @@ public class GestionClient
 	}
 
 	/**
-	 * Désérialise la liste des clients à partir de l'archive "clients".
+	 * Deserialise la liste des clients a partir de l'archive "clients".
 	 * 
-	 * @return Liste des clients enregistrés.
+	 * @return Liste des clients enregistres.
 	 */
 	public ListeClients lireClients()
 	{

@@ -16,9 +16,9 @@ public class Client implements Serializable
 	private String prenom;
 	/** Adresse postale. */
 	private String adresse;
-	/** Date d'obtention du permis. */
+	/** Date de fin de la periode probatoire du permis */
 	private String dateApprentissage;
-	/** Date de fin de la periode probatoire du permis. */
+	/** Date d'obtention du permis. */
 	private String datePermis;
 
 	/**
@@ -35,8 +35,8 @@ public class Client implements Serializable
 	 * @param nom Nom du client.
 	 * @param prenom Prenom du client.
 	 * @param adresse Adresse du client.
-	 * @param date1 Date d'obtention du permis.
-	 * @param date2 Fin de periode probatoire.
+	 * @param date1 Fin de periode probatoire.
+	 * @param date2 Date d'obtention du permis.
 	 */
 	public Client(String nom, String prenom, String adresse, String date1, String date2)
 	{
