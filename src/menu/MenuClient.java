@@ -44,9 +44,12 @@ public class MenuClient extends Menu {
 	
 	public void autoComp(Object test) {
 		String client = (String) test;
-		if(client.contains(" ")) {
+		if(client.contains("#")) {
 			gestion.select(client);
 		}
+		nomClient.setText(gestion.getClient().getNom());
+		prenom.setText(gestion.getClient().getPrenom());
+		adresse.setText(gestion.getClient().getAdresse());
 	}
 	
 	public void refreshTous() {
@@ -104,7 +107,13 @@ public class MenuClient extends Menu {
 		fenetre.dispose();
 	}
 		
-
+	public void suppression()
+	{
+		if(gestion.getClient().getDateApprentissage()!="" && gestion.getClient().getDatePermis()!="") {
+			gestion.supprimerClient();
+			fenetre.dispose();
+		}
+	}
 
 	public void affMenu(String nom)
 	{

@@ -30,7 +30,7 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 					menu.refreshTous();
 					break;
 				case "Valider":
-					System.out.println("presque mais pas fini");
+					menu.suppression();
 					break;
 				default:
 					break;
@@ -48,7 +48,7 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
-		if(!e.getValueIsAdjusting()) {
+		if(!e.getValueIsAdjusting() && ((JList<String>) e.getSource()).getSelectedValue()!=null) {
 			menu.autoComp(((JList<String>) e.getSource()).getSelectedValue());
 		}
 	}

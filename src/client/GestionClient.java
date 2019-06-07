@@ -30,35 +30,21 @@ public class GestionClient
 	}
 
 	public void select(String client) {
-		int espace1 = client.indexOf(" ");
+		this.client.setDateApprentissage("");
+		this.client.setDatePermis("");
+		int espace1 = client.indexOf("#");
 		this.client.setNom(client.substring(0, espace1));
-		int espace2 = client.indexOf(" ", espace1+1);
+		int espace2 = client.indexOf("#", espace1+1);
 		this.client.setPrenom(client.substring(espace1+1, espace2));
 		this.client.setAdresse(client.substring(espace2+1));
+		System.out.println(this.client+"~");
 		rechercherClient();
 	}
 	
 	public void rechercherClient(){
 		ListeClients liste = lireClients();
 		int i = liste.indexOf(client);
-		System.out.println(client.toString());
-		client= liste.get(i);
-		System.out.println(client.toString()+"test");
-	}
-	
-	public void validerSuppression(String nomClient) {
-		ListeClients liste = lireClients();
-		String clientCourant="";
-		int i=0;
-		Client tmp =null;
-		while(i<liste.size() && nomClient!=clientCourant) {
-			tmp = liste.get(i);
-			clientCourant = tmp.getNom()+" "+tmp.getPrenom()+" "+tmp.getAdresse();
-			i++;
-		}
-		if (i!=liste.size()) {
-			client = tmp;
-		}
+		client = liste.get(i);
 	}
 	
 	public DefaultListModel<String> rechercherNom(String test){
@@ -70,7 +56,7 @@ public class GestionClient
 				Client tmp = liste.get(i);
 				if(tmp.getNom().length()>(test.length()-1)) {
 					if(test.toLowerCase().equals(tmp.getNom().substring(0,test.length()).toLowerCase())) {
-						searchList.addElement(tmp.getNom()+" "+tmp.getPrenom()+" "+tmp.getAdresse());
+						searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
 					}
 				}
 			}
@@ -86,7 +72,7 @@ public class GestionClient
 				Client tmp = liste.get(i);
 				if(tmp.getPrenom().length()>(test.length()-1)) {
 					if(test.equals(tmp.getPrenom().substring(0,test.length()))) {
-						searchList.addElement(tmp.getNom()+" "+tmp.getPrenom()+" "+tmp.getAdresse());
+						searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
 					}
 				}
 			}
@@ -102,7 +88,7 @@ public class GestionClient
 				Client tmp = liste.get(i);
 				if(tmp.getAdresse().length()>(test.length()-1)) {
 					if(test.equals(tmp.getAdresse().substring(0,test.length()))) {
-						searchList.addElement(tmp.getNom()+" "+tmp.getPrenom()+" "+tmp.getAdresse());
+						searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
 					}
 				}
 			}
@@ -115,7 +101,7 @@ public class GestionClient
 		ListeClients liste = lireClients();
 		for(int i=0;i<liste.size();i++) {
 			Client tmp = liste.get(i);
-			searchList.addElement(tmp.getNom()+" "+tmp.getPrenom()+" "+tmp.getAdresse());
+			searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
 		}
 		return searchList;
 	}
@@ -202,4 +188,9 @@ public class GestionClient
 		}
 		return liste;
 	}
+	
+	public Client getClient() {
+		return client;
+	}
+	
 }
