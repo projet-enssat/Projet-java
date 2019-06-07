@@ -143,4 +143,12 @@ public class GestionLocation
 		return location;
 	}
 
+	/**
+	 * Remplace location.
+	 * @param location Location.
+	 */
+	public void setLocation(Location location)
+	{
+		this.location = location;
+	}
 }
