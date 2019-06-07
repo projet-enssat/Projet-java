@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.text.Document;
-
 import action.ActionClient;
 import client.Client;
 import client.GestionClient;
