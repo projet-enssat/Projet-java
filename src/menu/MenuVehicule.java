@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
+import action.ActionVehicule;
 import vehicule.GestionVehicule;
 
 /**

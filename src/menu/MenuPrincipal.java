@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
+import action.Action;
+
 /**
  * Classe d'affichage de la fenetre d'accueil.
  * @author Celia Ellmann

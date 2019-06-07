@@ -1,4 +1,4 @@
-package menu;
+package action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import client.GestionClient;
+import menu.Menu;
+import menu.MenuClient;
+import menu.MenuLocation;
+import menu.MenuPrincipal;
+import menu.MenuVehicule;
 
 /**
  * Permet la gestion d'evenements declenches par le menu principal.

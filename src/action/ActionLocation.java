@@ -1,4 +1,4 @@
-package menu;
+package action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import menu.MenuLocation;
 
 /**
  * Permet la gestion d'evenements declenches par le menu location.

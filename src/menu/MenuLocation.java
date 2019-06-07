@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 
+import action.ActionLocation;
 import client.GestionClient;
 import location.GestionLocation;
 import vehicule.GestionVehicule;
