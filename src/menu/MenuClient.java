@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -76,17 +77,14 @@ public class MenuClient extends Menu
 		}
 		if(nomClient == null) {
 			nomClient = new JTextField();
-			nomClient.setText("");
 			nomClient.getDocument().addDocumentListener(new ActionClient(this));
 		}
 		if(prenom == null) {
 			prenom = new JTextField();
-			prenom.setText("");
 			prenom.getDocument().addDocumentListener(new ActionClient(this));
 		}
 		if(adresse == null) {
 			adresse = new JTextField();
-			adresse.setText("");
 			adresse.getDocument().addDocumentListener(new ActionClient(this));
 		}
 		if(affichage == null) {
@@ -97,6 +95,9 @@ public class MenuClient extends Menu
 			validation = new JButton();
 			validation.addActionListener(new ActionClient(this));
 		}
+		nomClient.setText("");
+		prenom.setText("");
+		adresse.setText("");
 		datePermis.setText("");
 		dateApprentissage.setText("");
 	}
@@ -180,9 +181,27 @@ public class MenuClient extends Menu
 	 */
 	public void suppression()
 	{
-		if(gestionClient.getClient().getDateApprentissage()!="" && gestionClient.getClient().getDatePermis()!="") {
+		if(gestionClient.EstClient() && gestionClient.getClient().getNom() == nomClient.getText() && gestionClient.getClient().getPrenom() == prenom.getText() && gestionClient.getClient().getAdresse() == adresse.getText()) {
 			gestionClient.supprimerClient();
 			fenetre.dispose();
+		}else {
+			Client client = gestionClient.getClient();
+			client.setNom(nomClient.getText());
+			client.setAdresse(adresse.getText());
+			client.setPrenom(prenom.getText());
+			gestionClient.setClient(client);
+			if(gestionClient.EstClient()) {
+				gestionClient.supprimerClient();
+				fenetre.dispose();
+			}else {
+				JFrame erreur = new JFrame("Erreur de Suppression Client");
+				erreur.setSize(500,200);
+				erreur.setLocationRelativeTo(null);
+				erreur.setLayout(new GridLayout(2,1));
+				erreur.add(new JLabel("Ce que vous voulez effacez n'est pas un client"));
+				erreur.add(new JLabel("Fermez la fenêtre puis vérifier le client"));
+				erreur.setVisible(true);
+			}
 		}
 	}
 

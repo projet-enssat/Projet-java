@@ -54,6 +54,20 @@ public class GestionClient
 		int i = liste.indexOf(client);
 		client = liste.get(i);
 	}
+	
+	/**
+	 * Vérifie si le client existe dans la base de donné et si oui lance la récupération des dates de permis et de fin d'apprentissage
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
+	public boolean EstClient() {
+		ListeClients liste = lireClients();
+		boolean estClient = false;
+		if (liste.contains(client)) {
+			rechercherClient();
+			estClient=true;
+		}
+		return estClient;
+	}
 
 	/**
 	 * Recherche tous les clients dont le nom commence par les caracteres de test.
@@ -142,6 +156,11 @@ public class GestionClient
 	public void setClient(String nom, String prenom, String adresse, String date1, String date2)
 	{
 		client = new Client(nom, prenom, adresse, date1, date2);
+	}
+	
+	public void setClient(Client client)
+	{
+		this.client = client;
 	}
 
 	/**
