@@ -142,7 +142,7 @@ public class MenuLocation extends Menu {
 		
 		JPanel panelClient = new JPanel(new GridLayout(4,1));
 		JPanel panelVehi = new JPanel(new GridLayout(4,1));
-		JPanel panelLoc = new JPanel();
+		JPanel panelLoc = new JPanel(new GridLayout(3,1));
 		
 		JPanel panelNom = new JPanel(new GridLayout(2,1));
 		panelNom.add(textFieldLabelAbove(nomTF, "Nom :"));
@@ -164,22 +164,42 @@ public class MenuLocation extends Menu {
 		
 		
 		JPanel panelMarque = new JPanel(new GridLayout(2,1));
+		marqueTF.setEnabled(false);
 		panelMarque.add(textFieldLabelAbove(marqueTF, "Marque :"));
+		choixMar.setEnabled(false);
 		panelMarque.add(listV(choixMar));
 		panelVehi.add(panelMarque);
 
 		JPanel panelModele = new JPanel(new GridLayout(2,1));
+		modeleTF.setEnabled(false);
 		panelModele.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		choixMod.setEnabled(false);
 		panelModele.add(listV(choixMod));
 		panelVehi.add(panelModele);
 
 		JPanel panelImmat = new JPanel(new GridLayout(2,1));
+		immatTF.setEnabled(false);
 		panelImmat.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
+		choixImm.setEnabled(false);
 		panelImmat.add(listV(choixImm));
 		panelVehi.add(panelImmat);
 		
+		validation2.setEnabled(false);
 		panelVehi.add(bouton(validation2));
 		fenetre.add(panelVehi);
+
+		
+		JPanel panelDates = new JPanel(new GridLayout(3,1));
+		debutTF.setEnabled(false);
+		panelDates.add(textFieldLabelLeft("Début :", debutTF));
+		finTF.setEnabled(false);
+		panelDates.add(textFieldLabelLeft("Fin :", finTF));
+		validation3.setEnabled(false);
+		panelDates.add(bouton(validation3));
+		panelLoc.add(vide());
+		panelLoc.add(panelDates);
+		panelLoc.add(vide());
+		fenetre.add(panelLoc);
 		
 		
 		fenetre.setVisible(true);

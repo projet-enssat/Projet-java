@@ -81,10 +81,14 @@ public abstract class Menu
 
 	public JPanel textFieldLabelLeft(String nom, JTextField tf)
 	{
+		JPanel panelQuad = new JPanel(new BorderLayout());
+		panelQuad.add(vide(), BorderLayout.EAST);
+		panelQuad.add(tf, BorderLayout.CENTER);
+		
 		JPanel panelSec = new JPanel();
 		panelSec.setLayout(new GridLayout(3, 1));
 		panelSec.add(vide());
-		panelSec.add(tf);
+		panelSec.add(panelQuad);
 
 		JPanel panelTer = new JPanel();
 		panelTer.setLayout(new GridLayout(1, 3));
