@@ -13,9 +13,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+/**
+ * Classe abstraite dont heritent toutes celles utilisees pour l'affichage Swing (Menu*.java).
+ * @author Celia Ellmann
+ * @author Dejan Paris
+ */
 public abstract class Menu
 {
-
+	/**
+	 * Incruste un JButton dans un JPanel pour en reduire la taille.
+	 * @param bouton JButton a incruster.
+	 * @return JPanel contenant le JButton entoure d'espace vide.
+	 */
 	public JPanel bouton(JButton bouton)
 	{
 		JPanel panel = new JPanel();
@@ -24,6 +33,10 @@ public abstract class Menu
 		return panel;
 	}
 
+	/**
+	 * Genere un JPanel vide.
+	 * @return JPanel vide.
+	 */
 	public JPanel vide()
 	{
 		JPanel vide = new JPanel();
@@ -31,6 +44,11 @@ public abstract class Menu
 		return vide;
 	}
 
+	/**
+	 * Incruste une JComboBox dans un JPanel pour en reduire la taille.
+	 * @param comboBox JComboBox a incruster.
+	 * @return JPanel contenant la JComboBox entouree d'espace vide.
+	 */
 	public JPanel comboBoxV(JComboBox<String> comboBox)
 	{
 		JPanel panel = new JPanel();
@@ -38,7 +56,11 @@ public abstract class Menu
 		panel.add(comboBox);
 		return panel;
 	}
-	
+	/**
+	 * Incruste une JComboBox dans un JPanel pour en reduire la taille.
+	 * @param comboBox JComboBox a incruster.
+	 * @return JPanel contenant la JComboBox entouree d'espace vide.
+	 */
 	public JPanel comboBoxV2(JComboBox<String> comboBox)
 	{
 		JPanel panel = new JPanel();
@@ -55,7 +77,12 @@ public abstract class Menu
 		
 		return panel;
 	}
-
+	
+	/**
+	 * Incruste une JList dans un JPanel pour en reduire la taille.
+	 * @param list JList a incruster.
+	 * @return JPanel contenant la JList entouree d'espace vide.
+	 */
 	public JPanel listV(JList<String> list)
 	{
 		JPanel panel = new JPanel();
@@ -64,6 +91,12 @@ public abstract class Menu
 		return panel;
 	}
 
+	/**
+	 * Incruste un JTextField dans un JPanel pour en reduire la taille, en ajoutant un JLabel au-dessus.
+	 * @param tf JTextField a incruster.
+	 * @param nom JLabel a ajouter.
+	 * @return JPanel contenant le JTextField au centre, le JLabel au-dessus, entoures d'espace vide.
+	 */
 	public JPanel textFieldLabelAbove(JTextField tf, String nom)
 	{
 		JPanel insidePanel = new JPanel();
@@ -79,6 +112,12 @@ public abstract class Menu
 		return panel;
 	}
 
+	/**
+	 * Incruste un JTextField dans un JPanel pour en reduire la taille, en ajoutant un JLabel a gauche.
+	 * @param tf JTextField a incruster.
+	 * @param nom JLabel a ajouter.
+	 * @return JPanel contenant le JTextField au centre, le JLabel a gauche, entoures d'espace vide.
+	 */
 	public JPanel textFieldLabelLeft(String nom, JTextField tf)
 	{
 		JPanel panelQuad = new JPanel(new BorderLayout());
