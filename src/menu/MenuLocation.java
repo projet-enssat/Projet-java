@@ -57,7 +57,7 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JFrame fenetre2;
 	/** Element graphique */
-	private static JCheckBox reduction = new JCheckBox("Réduction");
+	private static JCheckBox reduction = new JCheckBox("Reduction");
 
 	/** Acces a l'archive "clients". */
 	private static GestionClient gestionClient = new GestionClient();
@@ -190,7 +190,7 @@ public class MenuLocation extends Menu {
 		panelClient.add(panelNom);
 
 		JPanel panelPrenom = new JPanel(new GridLayout(2,1));
-		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prénom :"));
+		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prenom :"));
 		panelPrenom.add(listV(choixPre));
 		panelClient.add(panelPrenom);
 
@@ -211,7 +211,7 @@ public class MenuLocation extends Menu {
 		panelVehi.add(panelMarque);
 
 		JPanel panelModele = new JPanel(new GridLayout(2,1));
-		panelModele.add(textFieldLabelAbove(modeleTF, "Modéle :"));
+		panelModele.add(textFieldLabelAbove(modeleTF, "Modele :"));
 		modeleTF.setEnabled(false);
 		panelVehi.add(panelModele);
 
@@ -226,7 +226,7 @@ public class MenuLocation extends Menu {
 
 		JPanel panelLoc = new JPanel(new GridLayout(4,1));
 
-		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Début :"));
+		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Debut :"));
 		panelLoc.add(textFieldLabelAbove(finTF, "Date de Fin : "));
 		
 		JPanel panelReduction = new JPanel();
@@ -252,7 +252,7 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		fenetre2.add(textFieldLabelAbove(nomTF, "Nom :"));
-		fenetre2.add(textFieldLabelAbove(prenomTF, "Prénom :"));
+		fenetre2.add(textFieldLabelAbove(prenomTF, "Prenom :"));
 		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
 		fenetre2.add(bouton(validation1));
 		fenetre2.add(listV(choixNom));
@@ -273,7 +273,7 @@ public class MenuLocation extends Menu {
 		marqueTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modéle :"));
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modele :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
