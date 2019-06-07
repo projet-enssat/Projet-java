@@ -1,5 +1,7 @@
 package location;
 
+import java.io.Serializable;
+
 import client.Client;
 import vehicule.Vehicule;
 
@@ -8,8 +10,10 @@ import vehicule.Vehicule;
  * @author Celia Ellmann
  * @author Dejan Paris
  */
-public class Location
+public class Location implements Serializable
 {
+	private static final long serialVersionUID = 1L;
+	
 	/** Client concerne. */
 	private Client client;
 	/** Vehicule concerne. */

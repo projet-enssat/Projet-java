@@ -106,6 +106,7 @@ public class MenuLocation extends Menu {
 			debutTF = new JTextField();
 			debutTF.addActionListener(new ActionLocation(this));
 		}
+		debutTF.setEnabled(false);
 		debutTF.setText("");
 		
 		if (finTF == null)
@@ -351,8 +352,10 @@ public class MenuLocation extends Menu {
 	public void validerClient() {
 		if(gestionClient.EstClient()) {
 			validation1.setEnabled(false);
-			if(!validation2.isEnabled()) {
-				validation3.setEnabled(true);
+			if (!validation2.isEnabled())
+			{
+				debutTF.setEnabled(true);
+				finTF.setEnabled(true);
 			}
 		}else {
 			Erreur("Erreur de selection Client","Le Client que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencez");
@@ -366,8 +369,10 @@ public class MenuLocation extends Menu {
 		gestionVehicule.rechercheVehicule(immatTF.getText());
 		if(!(gestionVehicule.getVehicule() == null)) {
 			validation2.setEnabled(false);
-			if(!validation1.isEnabled()) {
-				validation3.setEnabled(true);
+			if (!validation1.isEnabled())
+			{
+				debutTF.setEnabled(true);
+				finTF.setEnabled(true);
 			}
 		}else {
 			Erreur("Erreur de selection Vehicule","Le Vehicule que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencez");
@@ -663,20 +668,14 @@ public class MenuLocation extends Menu {
 			long difference = dateFin.getTimeInMillis() - dateDebut.getTimeInMillis();
 			Calendar diff = new GregorianCalendar();
 			if(diff.get(Calendar.DAY_OF_MONTH)>6 || diff.get(Calendar.MONTH)>0 || diff.get(Calendar.YEAR)>0) {
-				reduction.setEnabled(true);
-			}else {
-				reduction.setEnabled(false);
+				diff.setTimeInMillis(difference);
+				validation3.setEnabled(true);
+				if (diff.get(Calendar.DAY_OF_MONTH)>6 || diff.get(Calendar.MONTH)>0 || diff.get(Calendar.YEAR)>0) {
+					reduction.setEnabled(true);
+				} else {
+					reduction.setEnabled(false);
+				}
 			}
-		}else if(debutCorrect){
-			reduction.setEnabled(false);
-			finTF.setText("Format : jj/mm/aaaa svp");
-		}else if(finCorrect){
-			reduction.setEnabled(false);
-			debutTF.setText("Format : jj/mm/aaaa svp");
-		}else {
-			reduction.setEnabled(false);
-			debutTF.setText("Format : jj/mm/aaaa svp");
-			finTF.setText("Format : jj/mm/aaaa svp");
 		}
 	}
 	

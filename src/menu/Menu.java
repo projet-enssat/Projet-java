@@ -87,6 +87,12 @@ public abstract class Menu
 		return panel;
 	}
 	
+	/**
+	 * Fenetre popup d'erreur.
+	 * @param nom Titre de la fenetre.
+	 * @param ligne1 Texte d'erreur.
+	 * @param ligne2 Texte d'explications.
+	 */
 	public void Erreur(String nom, String ligne1, String ligne2) {
 		JFrame erreur = new JFrame(nom);
 		erreur.setSize(500,200);
@@ -121,6 +127,25 @@ public abstract class Menu
 		insidePanel.add(vide(), BorderLayout.EAST);
 		insidePanel.add(vide(), BorderLayout.WEST);
 		insidePanel.add(tf, BorderLayout.CENTER);
+		
+		JPanel panel = new JPanel(new GridLayout(3,1));
+		panel.add(new JLabel(nom, 0));
+		panel.add(insidePanel);
+		return panel;
+	}
+	
+	/**
+	 * Incruste un JPanel dans un JPanel pour en reduire la taille, en ajoutant un JLabel au-dessus.
+	 * @param p JPanel a incruster.
+	 * @param nom JLabel a ajouter.
+	 * @return JPanel contenant le JTextField au centre, le JLabel au-dessus, entoures d'espace vide.
+	 */
+	public JPanel panelLabelAbove(JPanel p, String nom)
+	{
+		JPanel insidePanel = new JPanel(new BorderLayout());
+		insidePanel.add(vide(), BorderLayout.EAST);
+		insidePanel.add(vide(), BorderLayout.WEST);
+		insidePanel.add(p, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel(new GridLayout(3,1));
 		panel.add(new JLabel(nom, 0));

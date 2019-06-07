@@ -10,7 +10,6 @@ import java.io.ObjectOutputStream;
 import javax.swing.DefaultListModel;
 
 import client.Client;
-import vehicule.ListeVehicules;
 import vehicule.Vehicule;
 
 /**
@@ -39,7 +38,7 @@ public class GestionLocation
 	public void ajouterLocation()
 	{
 		ListeLocations liste = lireLocations("locations");
-		if (liste.contains(location))
+		if (!liste.contains(location))
 		{
 			liste.add(location);
 			enregistrerLocation(liste, "locations");

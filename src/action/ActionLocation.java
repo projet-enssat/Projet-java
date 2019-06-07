@@ -49,7 +49,6 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					menu.enregistrement();
 				} else {
-					menu.verifDate();
 				}
 			} else
 			{
@@ -86,6 +85,9 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 			{ menu.autoCompletionClient(); }
 			else if (e.getDocument().equals(menu.getImmatTF().getDocument()))
 			{ menu.autoCompletionVehicule(); }
+			else if (e.getDocument().equals(menu.getDebutTF().getDocument())
+				  || e.getDocument().equals(menu.getFinTF().getDocument()))
+			{ menu.verifDate(); }
 		}
 	}
 
