@@ -663,13 +663,13 @@ public class MenuLocation extends Menu {
 				dateFin = new GregorianCalendar(Integer.parseInt(annee),Integer.parseInt(mois),Integer.parseInt(jour));
 			}
 		}
+		System.out.println("test");
 		if(debutCorrect && finCorrect) {
 			long difference = dateFin.getTimeInMillis() - dateDebut.getTimeInMillis();
 			Calendar diff = new GregorianCalendar();
-			if(diff.get(Calendar.DAY_OF_MONTH)>6 || diff.get(Calendar.MONTH)>0 || diff.get(Calendar.YEAR)>0) {
+			if(diff.get(Calendar.DAY_OF_MONTH)>7 || diff.get(Calendar.MONTH)>1) {
 				diff.setTimeInMillis(difference);
-				validation3.setEnabled(true);
-				if (diff.get(Calendar.DAY_OF_MONTH)>6 || diff.get(Calendar.MONTH)>0 || diff.get(Calendar.YEAR)>0) {
+				if (diff.get(Calendar.DAY_OF_MONTH)>7 || diff.get(Calendar.MONTH)>1) {
 					reduction.setEnabled(true);
 				} else {
 					reduction.setEnabled(false);

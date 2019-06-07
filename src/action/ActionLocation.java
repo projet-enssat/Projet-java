@@ -49,6 +49,7 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					menu.enregistrement();
 				} else {
+					menu.verifDate();
 				}
 			} else
 			{
