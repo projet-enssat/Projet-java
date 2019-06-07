@@ -23,6 +23,8 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	 * Menu a ecouter.
 	 */
 	MenuLocation menu;
+	/** (Des)active la reaction aux evenements. */
+	boolean enabled = true;
 
 	/**
 	 * Constructeur.
@@ -36,14 +38,17 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource().equals(menu.getValidation1())) {
-			menu.validerClient();
-		} else if(e.getSource().equals(menu.getValidation2())) {
-			menu.validerVehicule();
-		} else if(e.getSource().equals(menu.getValidation3())) {
-			menu.enregistrement();
-		} else {
-			menu.verifDate();
+		if (enabled)
+		{
+			if (e.getSource().equals(menu.getValidation1())) {
+				menu.validerClient();
+			} else if(e.getSource().equals(menu.getValidation2())) {
+				menu.validerVehicule();
+			} else if(e.getSource().equals(menu.getValidation3())) {
+				menu.enregistrement();
+			} else {
+				menu.verifDate();
+			}
 		}
 	}
 
@@ -53,45 +58,45 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		if(e.getDocument().equals(menu.getAdresseTFDocument())) {
-			menu.refreshAdresse();
-		}else if(e.getDocument().equals(menu.getNomTFDocument())) {
-			menu.refreshNom();
-		}else if(e.getDocument().equals(menu.getPrenomTFDocument())) {
-			menu.refreshPrenom();
-		}else if(e.getDocument().equals(menu.getImmatTFDocument())) {
-			menu.refreshImmat();
-		}
+		if (enabled) { menu.autoCompletion(); }
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
-		if(e.getDocument().equals(menu.getAdresseTFDocument())) {
-			menu.refreshAdresse();
-		}else if(e.getDocument().equals(menu.getNomTFDocument())) {
-			menu.refreshNom();
-		}else if(e.getDocument().equals(menu.getPrenomTFDocument())) {
-			menu.refreshPrenom();
-		}else if(e.getDocument().equals(menu.getImmatTFDocument())) {
-			menu.refreshImmat();
-		}
+		if (enabled) { menu.autoCompletion(); }
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e)
 	{
-		if(!e.getValueIsAdjusting()) {
-			if(e.getSource().equals(menu.getListNom()) || e.getSource().equals(menu.getListPrenom()) || e.getSource().equals(menu.getListAdresse())) {
-				if(((JList<String>) e.getSource()).getSelectedValue()!=null) {
-					menu.autoCompletionClient(((JList<String>) e.getSource()).getSelectedValue());
-				}
-			}else if(e.getSource().equals(menu.getListImmat())) {
-				if(((JList<String>) e.getSource()).getSelectedValue()!=null) {
-					menu.autoCompletionVehicule(((JList<String>) e.getSource()).getSelectedValue());
-				}
+		if (enabled && !e.getValueIsAdjusting())
+		{
+			if (e.getSource().equals(menu.getListNom()))
+			{
+				menu.getNomTF().setText(menu.getListNom().getSelectedValue());
+				menu.autoCompletion();
+			} else if (e.getSource().equals(menu.getListPrenom()))
+			{
+				menu.getPrenomTF().setText(menu.getListPrenom().getSelectedValue());
+				menu.autoCompletion();
+			} else if (e.getSource().equals(menu.getListAdresse()))
+			{
+				menu.getAdresseTF().setText(menu.getListAdresse().getSelectedValue());
+				menu.autoCompletion();
+			} else if (e.getSource().equals(menu.getListImmat()))
+			{
+				menu.getImmatTF().setText(menu.getListImmat().getSelectedValue());
+				menu.autoCompletion();
 			}
 		}
 	}
 
+	/**
+	 * Toggles the action listener. Used for autocompletion.
+	 */
+	public void toggle()
+	{
+		enabled = !enabled;
+	}
 }
