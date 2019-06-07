@@ -305,6 +305,7 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		debutTF.setEnabled(false);
+		
 		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
 		finTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(finTF, "Fin :"));
@@ -517,7 +518,22 @@ public class MenuLocation extends Menu {
 	public JTextField getImmatTF() {
 		return immatTF;
 	}
-	
+
+	/**
+	 * Renvoie kmTF.
+	 * @return JTextField de saisie de kilometres parcourus.
+	 */
+	public JTextField getKmTF() {
+		return kmTF;
+	}
+
+	/**
+	 * Renvoie prixTF.
+	 * @return JTextField d'affichage du prix.
+	 */
+	public JTextField getPrixTF() {
+		return prixTF;
+	}
 
 	/**
 	 * Renvoie fenetre2.
