@@ -82,4 +82,9 @@ public class Location
 		this.rendu = rendu;
 	}
 
+	@Override
+	public String toString()
+	{
+		return client.toString() + "   " + vehicule.toString() + "   " + debut + " " + fin + " " + reduction + " " + reduction;
+	}
 }
