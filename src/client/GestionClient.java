@@ -92,17 +92,19 @@ public class GestionClient
 
 	/**
 	 * Recherche tous les clients dont le prenom commence par les caracteres de test.
+	 * Le champ est reductible en passant une chaine non vide en tant que nom.
 	 * @param test Prenom ou debut du prenom a rechercher.
+	 * @param nom Reduit la recherche au nom specifie (laisser vide pour une recherche exhaustive).
 	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public DefaultListModel<String> rechercherPrenom(String test)
+	public DefaultListModel<String> rechercherPrenom(String nom, String test)
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
 		for(int i=0;i<liste.size();i++) {
 			Client tmp = liste.get(i);
-				if(tmp.getPrenom().length()>(test.length()-1)) {
+			if((nom == null || tmp.getNom().toLowerCase().equals(nom.toLowerCase())) && tmp.getPrenom().length()>(test.length()-1)) {
 				if(test.toLowerCase().equals(tmp.getPrenom().substring(0,test.length()).toLowerCase())) {
 					searchList.addElement(tmp.getPrenom());
 				}
@@ -113,17 +115,20 @@ public class GestionClient
 
 	/**
 	 * Recherche tous les clients dont l'adresse commence par les caracteres de test.
+	 * Le champ est reductible en passant une chaine non vide en tant que nom/prenom.
 	 * @param test Adresse ou debut de l'adresse a rechercher.
+	 * @param nom Reduit la recherche au nom specifie (laisser vide pour une recherche exhaustive).
+	 * @param prenom Reduit la recherche au prenom specifie (laisser vide pour une recherche exhaustive).
 	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public DefaultListModel<String> rechercherAdresse(String test)
+	public DefaultListModel<String> rechercherAdresse(String nom, String prenom, String test)
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
 		for(int i=0;i<liste.size();i++) {
 			Client tmp = liste.get(i);
-			if(tmp.getAdresse().length()>(test.length()-1)) {
+			if((nom == null || tmp.getNom().toLowerCase().equals(nom.toLowerCase())) && (prenom == null || tmp.getPrenom().toLowerCase().equals(prenom.toLowerCase()))&& tmp.getPrenom().length()>(test.length()-1)) {
 				if(test.toLowerCase().equals(tmp.getAdresse().substring(0,test.length()).toLowerCase())) {
 					searchList.addElement(tmp.getAdresse());
 				}

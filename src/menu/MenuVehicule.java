@@ -340,6 +340,24 @@ public class MenuVehicule extends Menu
 		((ActionVehicule) choixMod.getListSelectionListeners()[0]).toggle();
 		((ActionVehicule) choixImm.getListSelectionListeners()[0]).toggle();
 	}
+
+	/**
+	 * Supprime le vehicule dont l'immatriculation a ete entree s'il existe, renvoie une alerte sinon.
+	 * @param classe Classe du vehicule a supprimer.
+	 */
+	public void validerVehicule(String classe)
+	{
+		GestionVehicule tempGV = new GestionVehicule("");
+		tempGV.setVehicule(null);
+		tempGV.rechercheVehicule(texteImm.getText().toLowerCase());
+		if (!(tempGV.getVehicule() == null))
+		{
+			suppression(classe);
+			fenetre3.dispose();
+		} else {
+			Erreur("Erreur de selection Vehicule","Le Vehicule que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencez");
+		}
+	}
 	
 	/**
 	 * Renvoie fenetre.

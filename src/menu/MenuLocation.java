@@ -12,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.Document;
-
-import action.ActionClient;
 import action.ActionLocation;
 import client.GestionClient;
 import location.GestionLocation;
@@ -146,7 +143,7 @@ public class MenuLocation extends Menu {
 		{
 			choixPre = new JList<String>();
 			choixPre.setPreferredSize(new Dimension(200,150));
-			choixPre.setModel(gestionClient.rechercherPrenom(""));
+			choixPre.setModel(gestionClient.rechercherPrenom(null, ""));
 			choixPre.addListSelectionListener(new ActionLocation(this));
 		}
 
@@ -154,7 +151,7 @@ public class MenuLocation extends Menu {
 		{
 			choixAdr = new JList<String>();
 			choixAdr.setPreferredSize(new Dimension(200,150));
-			choixAdr.setModel(gestionClient.rechercherAdresse(""));
+			choixAdr.setModel(gestionClient.rechercherAdresse(null, null,""));
 			choixAdr.addListSelectionListener(new ActionLocation(this));
 		}
 		
@@ -291,11 +288,11 @@ public class MenuLocation extends Menu {
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
-		marqueTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
-		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modele :"));
-		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
+		debutTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
+		finTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Fin :"));
+		fenetre2.add(textFieldLabelAbove(kmTF, "Kilomètres parcourus :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
 		fenetre2.add(vide());
@@ -386,8 +383,8 @@ public class MenuLocation extends Menu {
 		((ActionLocation) choixAdr.getListSelectionListeners()[0]).toggle();
 		
 		choixNom.setModel(gestionClient.rechercherNom(nomTF.getText()));
-		choixPre.setModel(gestionClient.rechercherPrenom(prenomTF.getText()));
-		choixAdr.setModel(gestionClient.rechercherAdresse(adresseTF.getText()));
+		choixPre.setModel(gestionClient.rechercherPrenom(nomTF.getText(), prenomTF.getText()));
+		choixAdr.setModel(gestionClient.rechercherAdresse(nomTF.getText(), prenomTF.getText(), adresseTF.getText()));
 		
 		((ActionLocation) choixNom.getListSelectionListeners()[0]).toggle();
 		((ActionLocation) choixPre.getListSelectionListeners()[0]).toggle();

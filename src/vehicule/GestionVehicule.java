@@ -6,12 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
-import javax.swing.JList;
 
 /**
  * Permet la gestion de l'archive contenant les vehicules.
@@ -21,7 +16,7 @@ import javax.swing.JList;
 public class GestionVehicule
 {
 	/** Vehicule a gerer. */
-	private static Vehicule vehicule;
+	private Vehicule vehicule;
 	/** Type de vehicule (voiture, moto, avion...). */
 	private String classe;
 
@@ -169,7 +164,7 @@ public class GestionVehicule
 		{
 			for (int i=0 ; i<liste.getListeV().size() ; ++i)
 			{
-				if (liste.getListeV().get(i).getImmatriculation().equals(immat))
+				if (liste.getListeV().get(i).getImmatriculation().toLowerCase().equals(immat))
 				{
 					vehicule = liste.getListeV().get(i);
 				}
@@ -179,7 +174,7 @@ public class GestionVehicule
 		{
 			for (int i=0 ; i<liste.getListeM().size() ; ++i)
 			{
-				if (liste.getListeM().get(i).getImmatriculation().equals(immat))
+				if (liste.getListeM().get(i).getImmatriculation().toLowerCase().equals(immat))
 				{
 					vehicule = liste.getListeM().get(i);
 				}
@@ -189,7 +184,7 @@ public class GestionVehicule
 		{
 			for (int i=0 ; i<liste.getListeA().size() ; ++i)
 			{
-				if (liste.getListeA().get(i).getImmatriculation().equals(immat))
+				if (liste.getListeA().get(i).getImmatriculation().toLowerCase().equals(immat))
 				{
 					vehicule = liste.getListeA().get(i);
 				}
@@ -558,5 +553,14 @@ public class GestionVehicule
 	public Vehicule getVehicule()
 	{
 		return vehicule;
+	}
+	
+	/**
+	 * Remplace vehicule.
+	 * @param vehicule Vehicule a remplacer.
+	 */
+	public void setVehicule(Vehicule vehicule)
+	{
+		this.vehicule = vehicule;
 	}
 }
