@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
-public class ActionClient implements ActionListener,ListSelectionListener {
+public class ActionClient implements ActionListener,ListSelectionListener,DocumentListener {
 
 	MenuClient menu;
 	boolean test = false;
@@ -36,13 +38,6 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 					break;
 			}
 		}
-		if (e.getSource().equals(menu.getNomClient())){
-			menu.refreshNom();
-		}else if(e.getSource().equals(menu.getPrenom())){
-			menu.refreshPrenom();
-		}else if(e.getSource().equals(menu.getAdresse())){
-			menu.refreshAdresse();
-		}
 	}
 
 	@Override
@@ -53,5 +48,29 @@ public class ActionClient implements ActionListener,ListSelectionListener {
 				menu.autoComp(((JList<String>) e.getSource()).getSelectedValue());
 			}
 		}
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		menu.refreshNom();
+		menu.refreshPrenom();
+		menu.refreshAdresse();
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		menu.refreshNom();
+		menu.refreshPrenom();
+		menu.refreshAdresse();
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		menu.refreshNom();
+		menu.refreshPrenom();
+		menu.refreshAdresse();
 	}
 }

@@ -14,19 +14,19 @@ import client.GestionClient;
 
 public class MenuClient extends Menu {
 	
-	private static JTextField adresse = new JTextField();
-	private static JTextField prenom = new JTextField();
-	private static JTextField nomClient = new JTextField();
+	private static JTextField adresse;
+	private static JTextField prenom;
+	private static JTextField nomClient;
 	private static JTextField datePermis = new JTextField();
 	private static JTextField dateApprentissage = new JTextField();
-	private static JButton validation = new JButton();
-	private static JButton affichage = new JButton("Tous");
+	private static JButton validation;
+	private static JButton affichage;
 	private static GestionClient gestion = new GestionClient();
 	
 	private static JFrame fenetre;
-	private static JList<String> listNom = new JList<String>();
-	private static JList<String> listPrenom = new JList<String>();
-	private static JList<String> listAdresse = new JList<String>();
+	private static JList<String> listNom;
+	private static JList<String> listPrenom;
+	private static JList<String> listAdresse;
 	
 	private static JScrollPane scrollListNom = new JScrollPane();
 	private static JScrollPane scrollListPrenom = new JScrollPane();
@@ -34,14 +34,38 @@ public class MenuClient extends Menu {
 
 	public MenuClient()
 	{
-		listNom.addListSelectionListener(new ActionClient(this));
-		listPrenom.addListSelectionListener(new ActionClient(this));
-		listAdresse.addListSelectionListener(new ActionClient(this));
-		nomClient.addActionListener(new ActionClient(this));
-		prenom.addActionListener(new ActionClient(this));
-		adresse.addActionListener(new ActionClient(this));
-		affichage.addActionListener(new ActionClient(this));
-		validation.addActionListener(new ActionClient(this));
+		if(listNom == null) {
+			listNom = new JList<String>();
+			listNom.addListSelectionListener(new ActionClient(this));
+		}
+		if(listPrenom == null) {
+			listPrenom = new JList<String>();
+			listPrenom.addListSelectionListener(new ActionClient(this));
+		}
+		if(listAdresse == null) {
+			listAdresse = new JList<String>();
+			listAdresse.addListSelectionListener(new ActionClient(this));
+		}
+		if(nomClient == null) {
+			nomClient = new JTextField();
+			nomClient.getDocument().addDocumentListener(new ActionClient(this));
+		}
+		if(prenom == null) {
+			prenom = new JTextField();
+			prenom.getDocument().addDocumentListener(new ActionClient(this));
+		}
+		if(adresse == null) {
+			adresse = new JTextField();
+			adresse.getDocument().addDocumentListener(new ActionClient(this));
+		}
+		if(affichage == null) {
+			affichage = new JButton("Tous");
+			affichage.addActionListener(new ActionClient(this));
+		}
+		if(validation == null) {
+			validation = new JButton();
+			validation.addActionListener(new ActionClient(this));
+		}
 	}
 	
 	public void autoComp(Object test) {
@@ -119,7 +143,6 @@ public class MenuClient extends Menu {
 
 	public void affMenu(String nom)
 	{
-		
 		fenetre = new JFrame(nom);
 		fenetre.setBounds(600, 200, 700, 500);
 		GridLayout grillePrincipale = new GridLayout(5, 1);
@@ -127,10 +150,13 @@ public class MenuClient extends Menu {
 		JPanel nomPrenom = new JPanel();
 		GridLayout posNomPrenom = new GridLayout(1, 2);
 		nomPrenom.setLayout(posNomPrenom);
+		nomClient.setText("");
 		JPanel champNom = textFieldLabelLeft("Nom :", nomClient);
 		nomPrenom.add(champNom);
+		prenom.setText("");
 		nomPrenom.add(textFieldLabelLeft("Prenom :", prenom));
 		fenetre.add(nomPrenom);
+		adresse.setText("");
 		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
 		fenetre.add(textFieldLabelLeft("Date du permis :", datePermis));
 		fenetre.add(textFieldLabelLeft("Date de fin d'apprentissage :", dateApprentissage));
