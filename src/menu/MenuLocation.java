@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.Document;
 
+import action.ActionClient;
 import action.ActionLocation;
 import client.GestionClient;
 import location.GestionLocation;
@@ -92,13 +93,11 @@ public class MenuLocation extends Menu {
 		if (debutTF == null)
 		{
 			debutTF = new JTextField();
-			debutTF.addActionListener(new ActionLocation(this));
 		}
 		
 		if (finTF == null)
 		{
 			finTF = new JTextField();
-			finTF.addActionListener(new ActionLocation(this));
 		}
 		
 		if (nomTF == null)
@@ -122,13 +121,11 @@ public class MenuLocation extends Menu {
 		if (marqueTF == null)
 		{
 			marqueTF = new JTextField();
-			marqueTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (modeleTF == null)
 		{
 			modeleTF = new JTextField();
-			modeleTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (immatTF == null)
@@ -176,6 +173,8 @@ public class MenuLocation extends Menu {
 	 */
 	public void nouvLocation(String nom)
 	{
+		nouveau = true;
+		
 		if (fenetre != null) { fenetre.removeAll(); }
 		fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
@@ -243,7 +242,7 @@ public class MenuLocation extends Menu {
 		fenetre.setVisible(true);
 	}
 	
-	public void finLocation()
+	public void finLocation1()
 	{
 		nouveau = false;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
@@ -252,6 +251,34 @@ public class MenuLocation extends Menu {
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
+		fenetre2.add(textFieldLabelAbove(nomTF, "Nom :"));
+		fenetre2.add(textFieldLabelAbove(prenomTF, "Prénom :"));
+		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
+		fenetre2.add(bouton(validation1));
+		fenetre2.add(listV(choixNom));
+		fenetre2.add(listV(choixPre));
+		fenetre2.add(listV(choixAdr));
+		fenetre2.setVisible(true);
+	}
+	
+	public void finLocation2()
+	{
+		nouveau = false;
+		if (fenetre2 != null) { fenetre2.removeAll(); }
+		fenetre2 = new JFrame("Supprimer une location");
+		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetre2.setLayout(new GridLayout(2, 4));
+
+		marqueTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
+		modeleTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
+		fenetre2.add(bouton(validation2));
+		fenetre2.add(vide());
+		fenetre2.add(vide());
+		fenetre2.add(listV(choixImm));
 		fenetre2.setVisible(true);
 	}
 	
@@ -294,27 +321,11 @@ public class MenuLocation extends Menu {
 	}
 	
 	/**
-	 * Actualise la liste des adresses, en n'affichant que les clients trouves par rechercheAdresse.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshAdresse() {
-		choixAdr.setModel(gestionClient.rechercherAdresse(adresseTF.getText()));
-	}
-	
-	/**
 	 * Renvoie choixAdr.
 	 * @return JList contenant les adresses.
 	 */
 	public JList<String> getListAdresse() {
 		return choixAdr;
-	}
-
-	/**
-	 * Actualise la liste des noms, en n'affichant que les clients trouves par rechercheNom.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshNom() {
-		choixNom.setModel(gestionClient.rechercherNom(nomTF.getText()));
 	}
 	
 	/**
@@ -323,14 +334,6 @@ public class MenuLocation extends Menu {
 	 */
 	public JList<String> getListNom() {
 		return choixNom;
-	}
-	
-	/**
-	 * Actualise la liste des prenoms, en n'affichant que les clients trouves par rehcerchePrenom.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshPrenom() {
-		choixPre.setModel(gestionClient.rechercherPrenom(prenomTF.getText()));
 	}
 	
 	/**
@@ -345,25 +348,34 @@ public class MenuLocation extends Menu {
 	 * Remplit les champs nomTF, prenomTF et adresseTF avec les attributs du client (sous forme de chaine de caracteres) passe en parametre.
 	 * @param client Client a inserer.
 	 */
-	public void autoCompletionClient(String client) {
-		if(client.contains("#")) {
-			gestionClient.select(client);
-		}
-		nomTF.setText(gestionClient.getClient().getNom());
-		prenomTF.setText(gestionClient.getClient().getPrenom());
-		adresseTF.setText(gestionClient.getClient().getAdresse());
+	public void autoCompletionClient()
+	{
+		((ActionLocation) choixNom.getListSelectionListeners()[0]).toggle();
+		((ActionLocation) choixPre.getListSelectionListeners()[0]).toggle();
+		((ActionLocation) choixAdr.getListSelectionListeners()[0]).toggle();
+		
+		choixNom.setModel(gestionClient.rechercherNom(nomTF.getText()));
+		choixPre.setModel(gestionClient.rechercherPrenom(prenomTF.getText()));
+		choixAdr.setModel(gestionClient.rechercherAdresse(adresseTF.getText()));
+		
+		((ActionLocation) choixNom.getListSelectionListeners()[0]).toggle();
+		((ActionLocation) choixPre.getListSelectionListeners()[0]).toggle();
+		((ActionLocation) choixAdr.getListSelectionListeners()[0]).toggle();
 	}
 
 	/**
 	 * Remplit les champs marqueTF, modeleTF et immatTF avec les attributs du vehicule (sous forme de chaine de caracteres) passe en parametre.
 	 * @param vehicule Vehicule a inserer.
 	 */
-	public void autoCompletionVehicule(String vehicule) {
-		gestionVehicule.rechercheVehicule(vehicule);
-		immatTF.setText(gestionVehicule.getVehicule().getImmatriculation());
-		modeleTF.setText(gestionVehicule.getVehicule().getModele());
+	public void autoCompletionVehicule()
+	{
+		((ActionLocation) choixImm.getListSelectionListeners()[0]).toggle();
+		gestionVehicule.rechercheVehicule(immatTF.getText());
+		choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, immatTF.getText()));
 		marqueTF.setText(gestionVehicule.getVehicule().getMarque());
+		modeleTF.setText(gestionVehicule.getVehicule().getModele());
 		validation2.setEnabled(true);
+		((ActionLocation) choixImm.getListSelectionListeners()[0]).toggle();
 	}
 	
 	/**
@@ -391,83 +403,85 @@ public class MenuLocation extends Menu {
 	}
 	
 	/**
-	 * Actualise la liste des immatriculations, en n'affichant que les vehicules trouves par toutesLesImmats.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshImmat() {
-		choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, immatTF.getText()));
-	}
-	
-	/**
 	 * Renvoie choixImm.
 	 * @return JList des immatriculations.
 	 */
 	public JList<String> getListImmat() {
 		return choixImm;
 	}
+
+	/**
+	 * Renvoie debutTF.
+	 * @return JTextField de saisie de date de debut.
+	 */
+	public JTextField getDebutTF() {
+		return debutTF;
+	}
+
+	/**
+	 * Renvoie finTF.
+	 * @return JTextField de saisie de date de fin.
+	 */
+	public JTextField getFinTF() {
+		return finTF;
+	}
+
+	/**
+	 * Renvoie nomTF.
+	 * @return JTextField de saisie de nom.
+	 */
+	public JTextField getNomTF() {
+		return nomTF;
+	}
+
+	/**
+	 * Renvoie prenomTF.
+	 * @return JTextField de saisie de prenom.
+	 */
+	public JTextField getPrenomTF() {
+		return prenomTF;
+	}
+
+	/**
+	 * Renvoie adresseTF.
+	 * @return JTextField de saisie d'adresse.
+	 */
+	public JTextField getAdresseTF() {
+		return adresseTF;
+	}
+
+	/**
+	 * Renvoie marqueTF.
+	 * @return JTextField de saisie de marque.
+	 */
+	public JTextField getMarqueTF() {
+		return marqueTF;
+	}
+
+	/**
+	 * Renvoie modeleTF.
+	 * @return JTextField de saisie de modele.
+	 */
+	public JTextField getModeleTF() {
+		return modeleTF;
+	}
+
+	/**
+	 * Renvoie immatTF.
+	 * @return JTextField de saisie d'immatriculation.
+	 */
+	public JTextField getImmatTF() {
+		return immatTF;
+	}
 	
-	/**
-	 * Renvoie la zone d'ecriture du JTextField debutTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getDebutTFDocument() {
-		return debutTF.getDocument();
-	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField finTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie fenetre2.
+	 * @return JFrame de suppression de location.
 	 */
-	public Document getFinTFDocument() {
-		return finTF.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField nomTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getNomTFDocument() {
-		return nomTF.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField prenomTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getPrenomTFDocument() {
-		return prenomTF.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField adresseTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getAdresseTFDocument() {
-		return adresseTF.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField marqueTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getMarqueTFDocument() {
-		return marqueTF.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField modeleTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getModeleTFDocument() {
-		return modeleTF.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField immatTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getImmatTFDocument() {
-		return immatTF.getDocument();
+	public JFrame getFenetre2()
+	{
+		return fenetre2;
 	}
 	
 	/**
@@ -535,4 +549,13 @@ public class MenuLocation extends Menu {
 		}
 	}
 	
+	/**
+	 * Renvoie nouveau.
+	 * @return boolean indiquant si la fenetre ouverte est celle d'enregistrement ou non.
+	 */
+	public boolean isNouveau()
+	{
+		return nouveau;
+	}
+
 }
