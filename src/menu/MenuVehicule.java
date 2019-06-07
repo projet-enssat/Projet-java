@@ -30,9 +30,9 @@ public class MenuVehicule extends Menu
 	private static JButton validation;
 	private static JButton ok;
 	private static JComboBox<String> choixV;
-	private static JTextField texteMar = new JTextField();
-	private static JTextField texteMod = new JTextField();
-	private static JTextField texteImm = new JTextField();
+	private static JTextField texteMar;
+	private static JTextField texteMod;
+	private static JTextField texteImm;
 	private static JList<String> choixMar;
 	private static JList<String> choixMod;
 	private static JList<String> choixImm;
@@ -88,6 +88,24 @@ public class MenuVehicule extends Menu
 			choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
 			choixImm.setPreferredSize(new Dimension(200, 100));
 			choixImm.addListSelectionListener(new ActionVehicule(this));
+		}
+		
+		if (texteMar == null)
+		{
+			texteMar = new JTextField();
+			texteMar.getDocument().addDocumentListener(new ActionVehicule(this));
+		}
+		
+		if (texteMod == null)
+		{
+			texteMod = new JTextField();
+			texteMod.getDocument().addDocumentListener(new ActionVehicule(this));
+		}
+		
+		if (texteImm == null)
+		{
+			texteImm = new JTextField();
+			texteImm.getDocument().addDocumentListener(new ActionVehicule(this));
 		}
 	}
 
