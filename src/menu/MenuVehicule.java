@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,7 +28,8 @@ public class MenuVehicule extends Menu
 	private static JTextField km = new JTextField();
 	private static JTextField puissance = new JTextField();
 	private static JTextField nbPlaces = new JTextField();
-	private static JButton validation;
+	private static JButton validation1;
+	private static JButton validation2;
 	private static JButton ok;
 	private static JComboBox<String> choixV;
 	private static JTextField texteMar;
@@ -44,10 +46,16 @@ public class MenuVehicule extends Menu
 
 	public MenuVehicule()
 	{
-		if (validation == null)
+		if (validation1 == null)
 		{
-			validation = new JButton("Enregistrer");
-			validation.addActionListener(new ActionVehicule(this));
+			validation1 = new JButton("Enregistrer");
+			validation1.addActionListener(new ActionVehicule(this));
+		}
+		
+		if (validation2 == null)
+		{
+			validation2 = new JButton("Supprimer");
+			validation2.addActionListener(new ActionVehicule(this));
 		}
 		
 		if (ok == null)
@@ -65,11 +73,12 @@ public class MenuVehicule extends Menu
 			choixV.addItem("Avion");
 			choixV.addActionListener(new ActionVehicule(this));
 		}
+		choixV.setSelectedIndex(0);
 
 		if (choixMod == null)
 		{
 			choixMod = new JList<String>();
-			choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
+			choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
 			choixMod.setPreferredSize(new Dimension(150, 100));
 			choixMod.addListSelectionListener(new ActionVehicule(this));
 		}
@@ -85,7 +94,7 @@ public class MenuVehicule extends Menu
 		if (choixImm == null)
 		{
 			choixImm = new JList<String>();
-			choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
+			choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
 			choixImm.setPreferredSize(new Dimension(200, 100));
 			choixImm.addListSelectionListener(new ActionVehicule(this));
 		}
@@ -95,18 +104,21 @@ public class MenuVehicule extends Menu
 			texteMar = new JTextField();
 			texteMar.getDocument().addDocumentListener(new ActionVehicule(this));
 		}
+		texteMar.setText("");
 		
 		if (texteMod == null)
 		{
 			texteMod = new JTextField();
 			texteMod.getDocument().addDocumentListener(new ActionVehicule(this));
 		}
+		texteMod.setText("");
 		
 		if (texteImm == null)
 		{
 			texteImm = new JTextField();
 			texteImm.getDocument().addDocumentListener(new ActionVehicule(this));
 		}
+		texteImm.setText("");
 	}
 
 	public void enregistrement(String classe)
@@ -135,6 +147,13 @@ public class MenuVehicule extends Menu
 						vit, nbheu, nbmot).ajouterVehicule();
 				break;
 		}
+	}
+	
+	public void suppression(String classe)
+	{
+		GestionVehicule tempGV = new GestionVehicule(classe);
+		tempGV.rechercheVehicule(texteImm.getText());
+		tempGV.supprimerVehicule();
 	}
 
 	public void affMenu(String nom)
@@ -183,7 +202,7 @@ public class MenuVehicule extends Menu
 		fenetre3.add(textFieldLabelAbove(texteMar, "Marque :"));
 		fenetre3.add(textFieldLabelAbove(texteMod, "Modèle :"));
 		fenetre3.add(textFieldLabelAbove(texteImm, "Immatriculation :"));
-		fenetre3.add(vide());
+		fenetre3.add(bouton(validation2));
 		fenetre3.add(listV(choixMar));
 		fenetre3.add(listV(choixMod));
 		fenetre3.add(listV(choixImm));
@@ -198,14 +217,7 @@ public class MenuVehicule extends Menu
 		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
 		infoVehicule.add(textFieldLabelLeft("Places", nbPlaces));
 		fenetre.add(infoVehicule);
-		if (fenetre.getTitle() == "Nouvelle Voiture")
-		{
-			validation.setText("Enregistrer");
-		} else
-		{
-			validation.setText("Rechercher");
-		}
-		fenetre.add(bouton(validation));
+		fenetre.add(bouton(validation1));
 		fenetre.setVisible(true);
 	}
 
@@ -217,14 +229,7 @@ public class MenuVehicule extends Menu
 		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
 		infoVehicule.add(vide());
 		fenetre.add(infoVehicule);
-		if (fenetre.getTitle() == "Nouvelle Moto")
-		{
-			validation.setText("enregistrer");
-		} else
-		{
-			validation.setText("rechercher");
-		}
-		fenetre.add(bouton(validation));
+		fenetre.add(bouton(validation1));
 		fenetre.setVisible(true);
 	}
 
@@ -236,14 +241,7 @@ public class MenuVehicule extends Menu
 		infoVehicule.add(textFieldLabelLeft("Nombre de moteurs", nbMoteurs));
 		infoVehicule.add(vide());
 		fenetre.add(infoVehicule);
-		if (fenetre.getTitle() == "Nouvel Avion")
-		{
-			validation.setText("enregistrer");
-		} else
-		{
-			validation.setText("rechercher");
-		}
-		fenetre.add(bouton(validation));
+		fenetre.add(bouton(validation1));
 		fenetre.setVisible(true);
 	}
 
@@ -265,22 +263,27 @@ public class MenuVehicule extends Menu
 		
 		GestionVehicule tempGV = new GestionVehicule((String) choixV.getSelectedItem());
 		setChoixMar(tempGV.toutesLesMarques(texteMar.getText()));
-		setChoixMod(tempGV.tousLesModeles(choixMar.getSelectedValue(), texteMod.getText()));
-		setChoixImm(tempGV.toutesLesImmats(choixMar.getSelectedValue(), choixMod.getSelectedValue(), texteImm.getText()));
+		setChoixMod(tempGV.tousLesModeles(texteMar.getText(), texteMod.getText()));
+		setChoixImm(tempGV.toutesLesImmats(texteMar.getText(), texteMod.getText(), texteImm.getText()));
 
 		((ActionVehicule) choixMar.getListSelectionListeners()[0]).toggle();
 		((ActionVehicule) choixMod.getListSelectionListeners()[0]).toggle();
 		((ActionVehicule) choixImm.getListSelectionListeners()[0]).toggle();
 	}
-
+	
 	public JFrame getFenetre()
 	{
 		return fenetre;
 	}
 
-	public JFrame getFenetreChoix()
+	public JFrame getFenetre2()
 	{
 		return fenetre2;
+	}
+	
+	public JFrame getFenetre3()
+	{
+		return fenetre3;
 	}
 
 	public JComboBox<String> getChoixV()
@@ -295,7 +298,12 @@ public class MenuVehicule extends Menu
 
 	public JButton getEnregistrer()
 	{
-		return validation;
+		return validation1;
+	}
+	
+	public JButton getSupprimer()
+	{
+		return validation2;
 	}
 
 	public JButton getOK()

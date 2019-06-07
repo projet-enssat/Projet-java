@@ -174,24 +174,30 @@ public class MenuLocation extends Menu {
 		JPanel panelVehi = new JPanel(new GridLayout(4,1));
 		
 		JPanel panelMarque = new JPanel(new GridLayout(2,1));
+		marqueTF.setEnabled(false);
 		panelMarque.add(textFieldLabelAbove(marqueTF, "Marque :"));
+		choixMar.setEnabled(false);
 		panelMarque.add(listV(choixMar));
 		panelVehi.add(panelMarque);
 
 		JPanel panelModele = new JPanel(new GridLayout(2,1));
+		modeleTF.setEnabled(false);
 		panelModele.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		choixMod.setEnabled(false);
 		panelModele.add(listV(choixMod));
 		panelVehi.add(panelModele);
 
 		JPanel panelImmat = new JPanel(new GridLayout(2,1));
+		immatTF.setEnabled(false);
 		panelImmat.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
+		choixImm.setEnabled(false);
 		panelImmat.add(listV(choixImm));
 		panelVehi.add(panelImmat);
 		
 		panelVehi.add(bouton(validation2));
 		fenetre.add(panelVehi);
-		
-		JPanel panelLoc = new JPanel(new GridLayout(3,1));
+
+		JPanel panelLoc = new JPanel(new GridLayout(4,1));
 		
 		JPanel panelDebut = new JPanel();
 		panelDebut.add(textFieldLabelAbove(finTF, "Date de Début :"));
@@ -202,8 +208,12 @@ public class MenuLocation extends Menu {
 		panelLoc.add(panelFin);
 		
 		JPanel panelReduction = new JPanel();
+		reduction.setEnabled(false);
 		panelReduction.add(reduction);
 		panelLoc.add(panelReduction);
+		
+		validation3.setEnabled(false);
+		panelLoc.add(bouton(validation3));
 		
 		fenetre.add(panelLoc);
 		
