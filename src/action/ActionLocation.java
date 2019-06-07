@@ -3,8 +3,6 @@ package action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JList;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -46,6 +44,7 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 					menu.verifClient();
 					menu.validerClient();
 				} else if(e.getSource().equals(menu.getValidation2())) {
+					menu.verifVehicule();
 					menu.validerVehicule();
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					menu.enregistrement();
@@ -55,11 +54,11 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 			} else
 			{
 				if (e.getSource().equals(menu.getValidation1())) {
-					menu.getFenetre2().dispose();
-					menu.finLocation2();
+					menu.verifClient();
+					menu.validerClientSuppr();
 				} else if(e.getSource().equals(menu.getValidation2())) {
-					menu.getFenetre2().dispose();
-					//menu.finLocation3();
+					menu.verifVehicule();
+					menu.validerLocation();
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					//menu.archivage();
 				}
@@ -81,11 +80,11 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	{
 		if (enabled)
 		{
-			if (e.getDocument().getDefaultRootElement().equals(menu.getNomTF())
-			 || e.getDocument().getDefaultRootElement().equals(menu.getPrenomTF())
-			 || e.getDocument().getDefaultRootElement().equals(menu.getAdresseTF()))
+			if (e.getDocument().equals(menu.getNomTF().getDocument())
+			 || e.getDocument().equals(menu.getPrenomTF().getDocument())
+			 || e.getDocument().equals(menu.getAdresseTF().getDocument()))
 			{ menu.autoCompletionClient(); }
-			else if (e.getDocument().getDefaultRootElement().equals(menu.getImmatTF()))
+			else if (e.getDocument().equals(menu.getImmatTF().getDocument()))
 			{ menu.autoCompletionVehicule(); }
 		}
 	}
