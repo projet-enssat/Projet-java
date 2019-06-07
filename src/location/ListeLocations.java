@@ -3,11 +3,9 @@ package location;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import client.Client;
-
 /**
- * Intermédiaire pour sérialiser et enregistrer des clients.
- * 
+ * Intermediaire pour serialiser et enregistrer des clients.
+ * @author Celia Ellmann
  * @author Dejan Paris
  */
 public class ListeLocations extends ArrayList<Location> implements Serializable

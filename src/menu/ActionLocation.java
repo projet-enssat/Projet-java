@@ -10,10 +10,22 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class ActionLocation implements ActionListener,ListSelectionListener,DocumentListener
+/**
+ * Permet la gestion d'evenements declenches par le menu location.
+ * @author Celia Ellmann
+ * @author Dejan Paris
+ */
+public class ActionLocation implements ActionListener, ListSelectionListener, DocumentListener
 {
+	/**
+	 * Menu a ecouter.
+	 */
 	MenuLocation menu;
-	
+
+	/**
+	 * Constructeur.
+	 * @param menu Menu a ecouter.
+	 */
 	public ActionLocation(MenuLocation menu)
 	{
 		this.menu = menu;
@@ -28,7 +40,7 @@ public class ActionLocation implements ActionListener,ListSelectionListener,Docu
 			}else if(((JButton) e.getSource()).equals(menu.getValidation2())) {
 				menu.validerVehicule();
 			}else if(((JButton) e.getSource()).equals(menu.getValidation3())) {
-				menu.setEnregistrement();
+				menu.enregistrement();
 			}
 		}else {
 			menu.verifDate();
@@ -36,14 +48,11 @@ public class ActionLocation implements ActionListener,ListSelectionListener,Docu
 	}
 
 	@Override
-	public void changedUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void changedUpdate(DocumentEvent e) {}
 
 	@Override
-	public void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	public void insertUpdate(DocumentEvent e)
+	{
 		if(e.getDocument().equals(menu.getAdresseTFDocument())) {
 			menu.refreshAdresse();
 		}else if(e.getDocument().equals(menu.getNomTFDocument())) {
@@ -56,8 +65,8 @@ public class ActionLocation implements ActionListener,ListSelectionListener,Docu
 	}
 
 	@Override
-	public void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	public void removeUpdate(DocumentEvent e)
+	{
 		if(e.getDocument().equals(menu.getAdresseTFDocument())) {
 			menu.refreshAdresse();
 		}else if(e.getDocument().equals(menu.getNomTFDocument())) {
@@ -70,16 +79,16 @@ public class ActionLocation implements ActionListener,ListSelectionListener,Docu
 	}
 
 	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
+	public void valueChanged(ListSelectionEvent e)
+	{
 		if(!e.getValueIsAdjusting()) {
-			if(((JList<String>) e.getSource()).equals(menu.getListNom()) || ((JList<String>) e.getSource()).equals(menu.getListPrenom()) || ((JList<String>) e.getSource()).equals(menu.getListAdresse())) {
+			if(e.getSource().equals(menu.getListNom()) || e.getSource().equals(menu.getListPrenom()) || e.getSource().equals(menu.getListAdresse())) {
 				if(((JList<String>) e.getSource()).getSelectedValue()!=null) {
-					menu.autoCompClient(((JList<String>) e.getSource()).getSelectedValue());
+					menu.autoCompletionClient(((JList<String>) e.getSource()).getSelectedValue());
 				}
-			}else if(((JList<String>) e.getSource()).equals(menu.getListImmat())) {
+			}else if(e.getSource().equals(menu.getListImmat())) {
 				if(((JList<String>) e.getSource()).getSelectedValue()!=null) {
-					menu.autoCompVehicule(((JList<String>) e.getSource()).getSelectedValue());
+					menu.autoCompletionVehicule(((JList<String>) e.getSource()).getSelectedValue());
 				}
 			}
 		}

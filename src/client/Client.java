@@ -23,11 +23,10 @@ public class Client implements Serializable
 
 	/**
 	 * Constructeur.
-	 * @deprecated Utiliser de preference Client(String, String, String, String, String).
 	 */
 	public Client()
 	{
-		this("inconnu", "inconnu", "inconnue", "00/00/0000", "00/00/0000");
+		this("", "", "", "", "");
 	}
 
 	/**

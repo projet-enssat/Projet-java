@@ -2,28 +2,36 @@ package menu;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 import javax.swing.*;
 
+/**
+ * Classe d'affichage de la fenetre d'accueil.
+ * @author Celia Ellmann
+ * @author Dejan Paris
+ */
 public class MenuPrincipal extends Menu
 {
-
+	/** Element graphique */
 	private static JButton nouvClient = new JButton("Nouveau Client");
+	/** Element graphique */
 	private static JButton nouvLoc = new JButton("Début Location");
+	/** Element graphique */
 	private static JButton nouvVehi = new JButton("Nouveau Véhicule");
+	/** Element graphique */
 	private static JButton suppClient = new JButton("Supprimer Client");
+	/** Element graphique */
 	private static JButton suppLoc = new JButton("Fin Location");
+	/** Element graphique */
 	private static JButton suppVehi = new JButton("Supprimer Véhicule");
+	/** Element graphique */
 	private static JButton options = new JButton("Options");
 
+	/**
+	 * Constructeur et afficheur de la fenetre principale.
+	 */
 	public MenuPrincipal()
 	{
-		// pour creer des espaces sans rien
-
-		// mise en place des options de modification et de verification des locations
 		JPanel optionVerif = new JPanel();
 		GridLayout grilleoption = new GridLayout(1, 2);
 		optionVerif.setLayout(grilleoption);
@@ -39,29 +47,11 @@ public class MenuPrincipal extends Menu
 		optionVerif.add(option1);
 		optionVerif.add(vide());
 
-		JPanel client = new JPanel();
-		FlowLayout posClient = new FlowLayout();
-		client.setLayout(posClient);
-		JLabel labelClient = new JLabel("Client");
-		client.add(labelClient);
-
-		JPanel location = new JPanel();
-		FlowLayout posLocation = new FlowLayout();
-		location.setLayout(posLocation);
-		JLabel labelLocation = new JLabel("Location");
-		location.add(labelLocation);
-
-		JPanel vehicule = new JPanel();
-		FlowLayout posVehicule = new FlowLayout();
-		vehicule.setLayout(posVehicule);
-		JLabel labelVehicule = new JLabel("Véhicule");
-		vehicule.add(labelVehicule);
-
-		// mise en place des choix d'actions (location, client, véhicule : nouvelle ou
-		// fin)
-		JPanel action = new JPanel();
-		GridLayout grilleAction = new GridLayout(3, 3);
-		action.setLayout(grilleAction);
+		JPanel client = label(new JLabel("Client"));
+		JPanel location = label(new JLabel("Location"));
+		JPanel vehicule = label(new JLabel("Véhicule"));
+		
+		JPanel action = new JPanel(new GridLayout(3,3));
 		action.add(client);
 		action.add(location);
 		action.add(vehicule);
@@ -78,14 +68,11 @@ public class MenuPrincipal extends Menu
 		suppVehi.addActionListener(new Action(this));
 		action.add(bouton(suppVehi));
 
-		JPanel test2 = new JPanel();
-		FlowLayout test = new FlowLayout();
-		test2.setLayout(test);
+		JPanel test2 = new JPanel(new FlowLayout());
 
 		JFrame principal = new JFrame("Accueil");
 		principal.setBounds(600, 200, 700, 500);
-		GridLayout grillePrincipal = new GridLayout(4, 1);
-		principal.setLayout(grillePrincipal);
+		principal.setLayout(new GridLayout(4,1));
 		principal.add(optionVerif);
 		principal.add(test2);
 		principal.add(action);
@@ -93,10 +80,11 @@ public class MenuPrincipal extends Menu
 		principal.setVisible(true);
 	}
 
+	/**
+	 * Lancement du programme.
+	 */
 	public static void main(String[] args)
 	{
-
-		// Creation des archives clients, locations, vehicules
 		File fichierClients = new File("clients");
 		File fichierLocations = new File("locations");
 		File fichierVehicules = new File("vehicules");
@@ -109,18 +97,6 @@ public class MenuPrincipal extends Menu
 		{
 			e.printStackTrace();
 		}
-
-		/*
-		 * try // DEBUGGING PURPOSES ONLY { FileOutputStream fosa = new
-		 * FileOutputStream(fichierClients); FileOutputStream fosb = new
-		 * FileOutputStream(fichierClients); FileOutputStream fosc = new
-		 * FileOutputStream(fichierClients); ObjectOutputStream oosa = new
-		 * ObjectOutputStream(fosa); ObjectOutputStream oosb = new
-		 * ObjectOutputStream(fosb); ObjectOutputStream oosc = new
-		 * ObjectOutputStream(fosc); oosa.write(100); oosa.flush(); oosb.write(100);
-		 * oosb.flush(); oosc.write(100); oosc.flush(); fosa.close(); fosb.close();
-		 * fosc.close(); } catch (IOException e) { e.printStackTrace(); }
-		 */
 
 		MenuPrincipal con = new MenuPrincipal();
 	}

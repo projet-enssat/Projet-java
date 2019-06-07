@@ -1,6 +1,7 @@
 package menu;
 
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -18,27 +19,52 @@ import vehicule.GestionVehicule;
 
 public class MenuLocation extends Menu {
 
+	/** Element graphique */
 	private static JTextField debutTF;
+	/** Element graphique */
 	private static JTextField finTF;
+	/** Element graphique */
 	private static JTextField nomTF;
+	/** Element graphique */
 	private static JTextField prenomTF;
+	/** Element graphique */
 	private static JTextField adresseTF;
+	/** Element graphique */
 	private static JTextField marqueTF;
+	/** Element graphique */
 	private static JTextField modeleTF;
+	/** Element graphique */
 	private static JTextField immatTF;
+	/** Element graphique */
 	private static JList<String> choixNom;
+	/** Element graphique */
 	private static JList<String> choixPre;
+	/** Element graphique */
 	private static JList<String> choixAdr;
+	/** Element graphique */
 	private static JList<String> choixImm;
+	/** Element graphique */
 	private static JButton validation1;
+	/** Element graphique */
 	private static JButton validation2;
+	/** Element graphique */
 	private static JButton validation3;
-	private static GestionClient gestionClient = new GestionClient();
-	private static GestionVehicule gestionVehicule = new GestionVehicule();
+	/** Element graphique */
 	private static JFrame fenetre;
+	/** Element graphique */
 	private static JCheckBox reduction = new JCheckBox("Réduction");
+
+	/** Acces a l'archive "clients". */
+	private static GestionClient gestionClient = new GestionClient();
+	/** Acces a l'archive "vehicules". */
+	private static GestionVehicule gestionVehicule = new GestionVehicule();
+	
+	/** Indique quelle fenetre est ouverte. */
 	private static boolean nouveau = true;
 	
+	/**
+	 * Constructeur et initialisateur des elements Swing.
+	 */
 	public MenuLocation()
 	{
 		if (validation1 == null)
@@ -132,6 +158,10 @@ public class MenuLocation extends Menu {
 		}
 	}
 	
+	/**
+	 * Affiche la fenetre d'enregistrement de location.
+	 * @param nom Titre de la fenetre.
+	 */
 	public void nouvLocation(String nom)
 	{
 		if (fenetre != null) { fenetre.removeAll(); }
@@ -199,13 +229,19 @@ public class MenuLocation extends Menu {
 		fenetre.setVisible(true);
 	}
 	
+	/**
+	 * Change le statut des boutons de validation. Utilise lors d'une validation.
+	 */
 	public void validerClient() {
 		validation1.setEnabled(false);
 		if(!validation2.isEnabled()) {
 			validation3.setEnabled(true);
 		}
 	}
-	
+
+	/**
+	 * Change le statut des boutons de validation. Utilise lors d'une validation.
+	 */
 	public void validerVehicule() {
 		validation2.setEnabled(false);
 		if(!validation1.isEnabled()) {
@@ -213,50 +249,73 @@ public class MenuLocation extends Menu {
 		}
 	}
 	
-	public void setEnregistrement()
+	/**
+	 * Enregistre une location dans l'archive "locations".
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
+	 */
+	public void enregistrement()
 	{
 		boolean red=false;
 		if(reduction.isEnabled() && reduction.isSelected()) {
 			red=true;
 		}
-		enregistrement(red);
-	}
-	
-	public void enregistrement(boolean reduction)
-	{
-		new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction).ajouterLocation();
+		new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), red).ajouterLocation();
 		fenetre.dispose();
 	}
 	
-	public void setValidation(String nomBouton) {
-		
-	}
-	
+	/**
+	 * Actualise la liste des adresses, en n'affichant que les clients trouves par rechercheAdresse.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public void refreshAdresse() {
 		choixAdr.setModel(gestionClient.rechercherAdresse(adresseTF.getText()));
 	}
 	
+	/**
+	 * Renvoie choixAdr.
+	 * @return JList contenant les adresses.
+	 */
 	public JList<String> getListAdresse() {
 		return choixAdr;
 	}
-	
+
+	/**
+	 * Actualise la liste des noms, en n'affichant que les clients trouves par rechercheNom.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public void refreshNom() {
 		choixNom.setModel(gestionClient.rechercherNom(nomTF.getText()));
 	}
 	
+	/**
+	 * Renvoie choixNom.
+	 * @return JList contenant les noms.
+	 */
 	public JList<String> getListNom() {
 		return choixNom;
 	}
 	
+	/**
+	 * Actualise la liste des prenoms, en n'affichant que les clients trouves par rehcerchePrenom.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public void refreshPrenom() {
 		choixPre.setModel(gestionClient.rechercherPrenom(prenomTF.getText()));
 	}
 	
+	/**
+	 * Renvoie choixPre.
+	 * @return JList contenant les prenoms.
+	 */
 	public JList<String> getListPrenom() {
 		return choixPre;
 	}
 	
-	public void autoCompClient(String client) {
+	/**
+	 * Remplit les champs nomTF, prenomTF et adresseTF avec les attributs du client (sous forme de chaine de caracteres) passe en parametre.
+	 * @param client Client a inserer.
+	 */
+	public void autoCompletionClient(String client) {
 		if(client.contains("#")) {
 			gestionClient.select(client);
 		}
@@ -264,8 +323,12 @@ public class MenuLocation extends Menu {
 		prenomTF.setText(gestionClient.getClient().getPrenom());
 		adresseTF.setText(gestionClient.getClient().getAdresse());
 	}
-	
-	public void autoCompVehicule(String vehicule) {
+
+	/**
+	 * Remplit les champs marqueTF, modeleTF et immatTF avec les attributs du vehicule (sous forme de chaine de caracteres) passe en parametre.
+	 * @param vehicule Vehicule a inserer.
+	 */
+	public void autoCompletionVehicule(String vehicule) {
 		gestionVehicule.rechercheVehicule(vehicule);
 		immatTF.setText(gestionVehicule.getVehicule().getImmatriculation());
 		modeleTF.setText(gestionVehicule.getVehicule().getModele());
@@ -273,59 +336,113 @@ public class MenuLocation extends Menu {
 		validation2.setEnabled(true);
 	}
 	
+	/**
+	 * Renvoie validation1.
+	 * @return JButton de validation client.
+	 */
 	public JButton getValidation1() {
 		return validation1;
 	}
 	
+	/**
+	 * Renvoie validation2.
+	 * @return JButton de validation vehicule.
+	 */
 	public JButton getValidation2() {
 		return validation2;
 	}
 	
+	/**
+	 * Renvoie validation3.
+	 * @return JButton de validaiton location.
+	 */
 	public JButton getValidation3() {
 		return validation3;
 	}
 	
-	
+	/**
+	 * Actualise la liste des immatriculations, en n'affichant que les vehicules trouves par toutesLesImmats.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public void refreshImmat() {
 		choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, immatTF.getText()));
 	}
 	
+	/**
+	 * Renvoie choixImm.
+	 * @return JList des immatriculations.
+	 */
 	public JList<String> getListImmat() {
 		return choixImm;
 	}
 	
+	/**
+	 * Renvoie la zone d'ecriture du JTextField debutTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getDebutTFDocument() {
 		return debutTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField finTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getFinTFDocument() {
 		return finTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField nomTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getNomTFDocument() {
 		return nomTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField prenomTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getPrenomTFDocument() {
 		return prenomTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField adresseTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getAdresseTFDocument() {
 		return adresseTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField marqueTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getMarqueTFDocument() {
 		return marqueTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField modeleTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getModeleTFDocument() {
 		return modeleTF.getDocument();
 	}
 
+	/**
+	 * Renvoie la zone d'ecriture du JTextField immatTF.
+	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 */
 	public Document getImmatTFDocument() {
 		return immatTF.getDocument();
 	}
 	
+	/**
+	 * Verifie que les dates entrees sont au bon format (XX/XX/XXXX).
+	 */
 	public void verifDate() {
 		Calendar dateDebut = null;
 		Calendar dateFin = null;

@@ -9,11 +9,23 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
-public class ActionClient implements ActionListener,ListSelectionListener,DocumentListener {
-
+/**
+ * Permet la gestion d'evenements declenches par le menu client.
+ * @author Celia Ellmann
+ * @author Dejan Paris
+ */
+public class ActionClient implements ActionListener, ListSelectionListener, DocumentListener
+{
+	/**
+	 * Menu a ecouter.
+	 */
 	MenuClient menu;
-	boolean test = false;
+	boolean test = false; // DEBUGGING PURPOSE
+	
+	/**
+	 * Constructeur.
+	 * @param menu Menu a ecouter.
+	 */
 	public ActionClient(Menu menu)
 	{
 		this.menu = (MenuClient) menu;
@@ -41,23 +53,21 @@ public class ActionClient implements ActionListener,ListSelectionListener,Docume
 	}
 
 	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
+	public void valueChanged(ListSelectionEvent e)
+	{
 		if(!e.getValueIsAdjusting()) {
 			if((String) ((JList<String>) e.getSource()).getSelectedValue()!=null) {
-				menu.autoComp(((JList<String>) e.getSource()).getSelectedValue());
+				menu.autoCompletion(((JList<String>) e.getSource()).getSelectedValue());
 			}
 		}
 	}
 
 	@Override
-	public void changedUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void changedUpdate(DocumentEvent e) {}
 
 	@Override
-	public void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	public void insertUpdate(DocumentEvent e)
+	{
 		if(e.getDocument().equals(menu.getNomDocument())) {
 			menu.refreshNom();
 		}else if(e.getDocument().equals(menu.getPrenomDocument())) {
@@ -68,8 +78,8 @@ public class ActionClient implements ActionListener,ListSelectionListener,Docume
 	}
 
 	@Override
-	public void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	public void removeUpdate(DocumentEvent e)
+	{
 		if(e.getDocument().equals(menu.getNomDocument())) {
 			menu.refreshNom();
 		}else if(e.getDocument().equals(menu.getPrenomDocument())) {

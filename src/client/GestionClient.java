@@ -23,7 +23,6 @@ public class GestionClient
 
 	/**
 	 * Constructeur.
-	 * @deprecated Utiliser de preference GestionClient(String, String, String, String, String).
 	 */
 	public GestionClient()
 	{
@@ -33,6 +32,7 @@ public class GestionClient
 	/**
 	 * Parse une chaine de caracteres representant un client, pour recuperer ses nom, prenom, adresse.
 	 * @param client Client a parser.
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public void select(String client) {
 		this.client.setDateApprentissage("");
@@ -48,6 +48,7 @@ public class GestionClient
 
 	/**
 	 * Recupere les dates de permis et de fin d'apprentissage du client dans l'archive "clients".
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public void rechercherClient(){
 		ListeClients liste = lireClients();
@@ -58,7 +59,8 @@ public class GestionClient
 	/**
 	 * Recherche tous les clients dont le nom commence par les caracteres de test.
 	 * @param test Nom ou debut du nom a rechercher.
-	 * @return Un modele de JList contenant tous les clients correspondant au critere test.
+	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public DefaultListModel<String> rechercherNom(String test){
 		
@@ -80,7 +82,8 @@ public class GestionClient
 	/**
 	 * Recherche tous les clients dont le prenom commence par les caracteres de test.
 	 * @param test Prenom ou debut du prenom a rechercher.
-	 * @return Un modele de JList contenant tous les clients correspondant au critere test.
+	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public DefaultListModel<String> rechercherPrenom(String test){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -101,7 +104,8 @@ public class GestionClient
 	/**
 	 * Recherche tous les clients dont l'adresse commence par les caracteres de test.
 	 * @param test Adresse ou debut de l'adresse a rechercher.
-	 * @return Un modele de JList contenant tous les clients correspondant au critere test.
+	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public DefaultListModel<String> rechercherAdresse(String test){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -121,7 +125,8 @@ public class GestionClient
 
 	/**
 	 * Extrait tous les clients de l'archive "clients".
-	 * @return Un modele de JList contenant tous les clients enregistres.
+	 * @return Un modele de JList qui contient tous les clients enregistres.
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public DefaultListModel<String> tous(){
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -163,6 +168,7 @@ public class GestionClient
 	 * Ajoute un nouveau client a l'archive, s'il n'est pas encore enregistre.
 	 * 
 	 * @param client Client a enregistrer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterClient()
 	{
@@ -198,7 +204,7 @@ public class GestionClient
 	 * Retire un client de l'archive, s'il y est enregistre.
 	 * 
 	 * @param client Client a supprimer.
-	 * @throws IOException, FileNotFoundException
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void supprimerClient()
 	{
@@ -211,7 +217,7 @@ public class GestionClient
 	 * Deserialise la liste des clients a partir de l'archive "clients".
 	 * 
 	 * @return Liste des clients enregistres.
-	 * @throws IOException, FileNotFoundException, EOFException
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public ListeClients lireClients()
 	{

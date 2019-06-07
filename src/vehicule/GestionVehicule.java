@@ -14,25 +14,47 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 
 /**
- * Permet la gestion de l'archive contenant les véhicules.
- * 
+ * Permet la gestion de l'archive contenant les vehicules.
+ * @author Celia Ellmann
  * @author Dejan Paris
  */
 public class GestionVehicule
 {
+	/** Vehicule a gerer. */
 	private static Vehicule vehicule;
+	/** Type de vehicule (voiture, moto, avion...). */
 	private String classe;
 
+	/**
+	 * Constructeur vide, utile pour certains appels de fonctions.
+	 */
 	public GestionVehicule()
 	{
 		setClasse("");
 	}
 
+	/**
+	 * Constructeur n'initialisant que classe, utile pour certains appels de fonctions.
+	 * @param classe Classe du vehicule a gerer.
+	 */
 	public GestionVehicule(String classe)
 	{
 		setClasse(classe);
 	}
 
+	/**
+	 * Constructeur pour les voitures.
+	 * @param classe Classe du vehicule.
+	 * @param modele Modele du vehicule.
+	 * @param etat Etat du vehicule.
+	 * @param prixJour Prix par jour de location du vehicule.
+	 * @param marque Marque du vehicule.
+	 * @param immatriculation Immatriculation du vehicule.
+	 * @param vitesse Vitesse maximum du vehicule.
+	 * @param km Compteur kilometrique du vehicule.
+	 * @param puissance Puissance du vehicule.
+	 * @param nbPlaces Nombre de places du vehicule.
+	 */
 	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
 			String immatriculation, int vitesse, Float km, int puissance, int nbPlaces)
 	{
@@ -40,6 +62,18 @@ public class GestionVehicule
 		setVehicule(modele, etat, prixJour, marque, immatriculation, vitesse, km, puissance, nbPlaces, new Float(0), 0);
 	}
 
+	/**
+	 * Constructeur pour les avions.
+	 * @param classe Classe du vehicule.
+	 * @param modele Modele du vehicule.
+	 * @param etat Etat du vehicule.
+	 * @param prixJour Prix par jour de location du vehicule.
+	 * @param marque Marque du vehicule.
+	 * @param immatriculation Immatriculation du vehicule.
+	 * @param vitesse Vitesse maximum du vehicule.
+	 * @param nbHeureVol Nombres d'heures de vol du vehicule.
+	 * @param nbMoteurs Nombre de moteurs du vehicule.
+	 */
 	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
 			String immatriculation, int vitesse, Float nbHeuresVol, int nbMoteurs)
 	{
@@ -48,6 +82,18 @@ public class GestionVehicule
 				nbMoteurs);
 	}
 
+	/**
+	 * Constructeur pour les motos.
+	 * @param classe Classe du vehicule.
+	 * @param modele Modele du vehicule.
+	 * @param etat Etat du vehicule.
+	 * @param prixJour Prix par jour de location du vehicule.
+	 * @param marque Marque du vehicule.
+	 * @param immatriculation Immatriculation du vehicule.
+	 * @param vitesse Vitesse maximum du vehicule.
+	 * @param puissance Puissance du vehicule.
+	 * @param km Compteur kilometrique du vehicule.
+	 */
 	public GestionVehicule(String classe, String modele, String etat, Float prixJour, String marque,
 			String immatriculation, int vitesse, int puissance, Float km)
 	{
@@ -55,6 +101,20 @@ public class GestionVehicule
 		setVehicule(modele, etat, prixJour, marque, immatriculation, vitesse, km, puissance, 0, new Float(0), 0);
 	}
 
+	/**
+	 * Initialise le vehicule en fonction de sa classe.
+	 * @param modele Modele du vehicule.
+	 * @param etat Etat du vehicule.
+	 * @param prixJour Prix par jour de location du vehicule.
+	 * @param marque Marque du vehicule.
+	 * @param immatriculation Immatriculation du vehicule.
+	 * @param vitesse Vitesse maximum du vehicule.
+	 * @param km Compteur kilometrique du vehicule.
+	 * @param puissance Puissance du vehicule.
+	 * @param nbPlaces Nombre de places du vehicule.
+	 * @param nbHeureVol Nombres d'heures de vol du vehicule.
+	 * @param nbMoteurs Nombre de moteurs du vehicule.
+	 */
 	public void setVehicule(String modele, String etat, Float prixJour, String marque, String immatriculation,
 			int vitesse, Float km, int puissance, int nbPlaces, Float nbHeuresVol, int nbMoteurs)
 	{
@@ -75,6 +135,10 @@ public class GestionVehicule
 		}
 	}
 
+	/**
+	 * Ajoute un vehicule au fichier d'archive "vehicules".
+	 * @throws IOException, FileNotFoundException, ClassNotFoundException, EOFException
+	 */
 	public void ajouterVehicule()
 	{
 		switch (classe)
@@ -93,6 +157,11 @@ public class GestionVehicule
 		}
 	}
 	
+	/**
+	 * Recherche le vehicule dont l'immatriculation est immat dans l'archive "vehicules". Cette methode remplace les donnees de la variable vehicule.
+	 * @param immat Immatriculation a rechercher.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public void rechercheVehicule(String immat)
 	{
 		ListeVehicules liste = lireVehicules();
@@ -128,6 +197,11 @@ public class GestionVehicule
 		}
 	}
 	
+	/**
+	 * Supprime vehicule dans l'archive "vehicules", s'il s'y trouve.
+	 * 
+	 * @throws IOException, FileNotFoundException, ClassNotFoundException, EOFException
+	 */
 	public void supprimerVehicule()
 	{
 		switch (classe)
@@ -147,9 +221,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Ajoute une nouvelle voiture à l'archive.
+	 * Ajoute une nouvelle voiture a l'archive.
 	 * 
-	 * @param voiture Voiture à enregistrer.
+	 * @param voiture Voiture a enregistrer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterVoiture()
 	{
@@ -159,9 +234,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Ajoute une nouvelle moto à l'archive.
+	 * Ajoute une nouvelle moto a l'archive.
 	 * 
-	 * @param moto Moto à enregistrer.
+	 * @param moto Moto a enregistrer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterMoto()
 	{
@@ -171,9 +247,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Ajoute un nouvel avion à l'archive.
+	 * Ajoute un nouvel avion a l'archive.
 	 * 
-	 * @param avion Avion à enregistrer.
+	 * @param avion Avion a enregistrer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterAvion()
 	{
@@ -183,9 +260,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Sérialise la liste des véhicules pour mettre à jour l'archive "vehicules".
+	 * Serialise la liste des vehicules pour mettre a jour l'archive "vehicules".
 	 * 
-	 * @param liste Liste à sérialiser.
+	 * @param liste Liste a serialiser.
+	 * @throws IOException, FileNotFoundException
 	 */
 	public void enregistrerVehicules(ListeVehicules liste)
 	{
@@ -204,9 +282,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Retire une voiture de l'archive, si elle y est enregistrée.
+	 * Retire une voiture de l'archive, si elle y est enregistree.
 	 * 
-	 * @param voiture Voiture à supprimer.
+	 * @param voiture Voiture a supprimer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void supprimerVoiture()
 	{
@@ -216,9 +295,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Retire une moto de l'archive, si elle y est enregistrée.
+	 * Retire une moto de l'archive, si elle y est enregistree.
 	 * 
-	 * @param moto Moto à supprimer.
+	 * @param moto Moto a supprimer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void supprimerMoto()
 	{
@@ -228,9 +308,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Retire un avion de l'archive, s'il y est enregistré.
+	 * Retire un avion de l'archive, s'il y est enregistre.
 	 * 
-	 * @param avion Avion à supprimer.
+	 * @param avion Avion a supprimer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void supprimerAvion()
 	{
@@ -239,6 +320,13 @@ public class GestionVehicule
 		enregistrerVehicules(liste);
 	}
 
+	/**
+	 * Recherche toutes les marques de vehicule dont les premiers caracteres sont ceux de dejaEcrit.
+	 * Le champ est reductible en changeant classe pour "Voiture", "Moto" ou "Avion".
+	 * @param dejaEcrit Chaine de caractere a rechercher.
+	 * @return Un modele de JList qui contient toutes les marques correspondant au critere dejaEcrit.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public DefaultListModel<String> toutesLesMarques(String dejaEcrit)
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -288,6 +376,14 @@ public class GestionVehicule
 		return searchList;
 	}
 
+	/**
+	 * Recherche tous les modeles de vehicule dont les premiers caracteres sont ceux de dejaEcrit.
+	 * Le champ est reductible en changeant classe pour "Voiture", "Moto" ou "Avion" / en passant une chaine non vide en tant que marque.
+	 * @param dejaEcrit Chaine de caractere a rechercher.
+	 * @param marque Reduit la recherche a la marque specifiee (laisser vide pour une recherche exhaustive).
+	 * @return Un modele de JList qui contient tous les modeles correspondant aux criteres dejaEcrit et marque.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public DefaultListModel<String> tousLesModeles(String marque, String dejaEcrit)
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -346,6 +442,15 @@ public class GestionVehicule
 		return searchList;
 	}
 
+	/**
+	 * Recherche toutes les immatriculations de vehicule dont les premiers caracteres sont ceux de dejaEcrit.
+	 * Le champ est reductible en changeant classe pour "Voiture", "Moto" ou "Avion" / en passant une chaine non vide en tant que marque/modele.
+	 * @param dejaEcrit Chaine de caractere a rechercher.
+	 * @param marque Reduit la recherche a la marque specifiee (laisser vide pour une recherche exhaustive).
+	 * @param modele Reduit la recherche au modele specifie (laisser vide pour une recherche exhaustive).
+	 * @return Un modele de JList qui contient toutes les immatriculations correspondant aux criteres dejaEcrit, marque et modele.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public DefaultListModel<String> toutesLesImmats(String marque, String modele, String dejaEcrit)
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
@@ -414,9 +519,10 @@ public class GestionVehicule
 	}
 
 	/**
-	 * Désérialise la liste des véhicules à partir de l'archive "vehicules".
+	 * Deserialise la liste des vehicules a partir de l'archive "vehicules".
 	 * 
-	 * @return Liste des véhicules enregistrés.
+	 * @return Liste des vehicules enregistres.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException
 	 */
 	private static ListeVehicules lireVehicules()
 	{
@@ -438,11 +544,19 @@ public class GestionVehicule
 		return liste;
 	}
 
+	/**
+	 * Remplace classe.
+	 * @param classe Classe du vehicule.
+	 */
 	public void setClasse(String classe)
 	{
 		this.classe = classe;
 	}
 	
+	/**
+	 * Renvoie vehicule.
+	 * @return Le vehicule a gerer.
+	 */
 	public Vehicule getVehicule()
 	{
 		return vehicule;

@@ -6,10 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Calendar;
-
-import javax.swing.JList;
-
 import client.Client;
 import vehicule.Vehicule;
 
@@ -38,6 +34,7 @@ public class GestionLocation
 	 * Ajoute une nouvelle location à l'archive.
 	 * 
 	 * @param location Location à enregistrer.
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterLocation()
 	{
@@ -50,9 +47,10 @@ public class GestionLocation
 	}
 
 	/**
-	 * Sérialise la liste des locations pour mettre à jour l'archive "locations".
+	 * Serialise la liste des locations pour mettre a jour l'archive "locations".
 	 * 
-	 * @param liste Liste à sérialiser.
+	 * @param liste Liste a serialiser.
+	 * @throws IOException, FileNotFoundException
 	 */
 	public void enregistrerLocation(ListeLocations liste)
 	{
@@ -69,9 +67,10 @@ public class GestionLocation
 	}
 
 	/**
-	 * Désérialise la liste des locations à partir de l'archive "locations".
+	 * Deserialise la liste des locations a partir de l'archive "locations".
 	 * 
-	 * @return Liste des locations enregistrées.
+	 * @return Liste des locations enregistrees.
+	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	private static ListeLocations lireLocations()
 	{

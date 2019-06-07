@@ -27,9 +27,20 @@ public abstract class Menu
 	 */
 	public JPanel bouton(JButton bouton)
 	{
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
+		JPanel panel = new JPanel(new FlowLayout());
 		panel.add(bouton);
+		return panel;
+	}
+	
+	/**
+	 * Incruste un JLabel dans un JPanel.
+	 * @param label JLabel a incruster
+	 * @return JPanel contenant le JLabel.
+	 */
+	public JPanel label(JLabel label)
+	{
+		JPanel panel = new JPanel(new FlowLayout());
+		panel.add(label);
 		return panel;
 	}
 
@@ -39,8 +50,7 @@ public abstract class Menu
 	 */
 	public JPanel vide()
 	{
-		JPanel vide = new JPanel();
-		vide.setLayout(new FlowLayout());
+		JPanel vide = new JPanel(new FlowLayout());
 		return vide;
 	}
 
@@ -51,8 +61,7 @@ public abstract class Menu
 	 */
 	public JPanel comboBoxV(JComboBox<String> comboBox)
 	{
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
+		JPanel panel = new JPanel(new FlowLayout());
 		panel.add(comboBox);
 		return panel;
 	}
@@ -63,8 +72,7 @@ public abstract class Menu
 	 */
 	public JPanel comboBoxV2(JComboBox<String> comboBox)
 	{
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(3,3));
+		JPanel panel = new JPanel(new GridLayout(3,3));
 		panel.add(vide());
 		panel.add(vide());
 		panel.add(vide());
@@ -85,8 +93,7 @@ public abstract class Menu
 	 */
 	public JPanel listV(JList<String> list)
 	{
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
+		JPanel panel = new JPanel(new FlowLayout());
 		panel.add(list);
 		return panel;
 	}
@@ -99,14 +106,12 @@ public abstract class Menu
 	 */
 	public JPanel textFieldLabelAbove(JTextField tf, String nom)
 	{
-		JPanel insidePanel = new JPanel();
-		insidePanel.setLayout(new BorderLayout());
+		JPanel insidePanel = new JPanel(new BorderLayout());
 		insidePanel.add(vide(), BorderLayout.EAST);
 		insidePanel.add(vide(), BorderLayout.WEST);
 		insidePanel.add(tf, BorderLayout.CENTER);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(3,1));
+		JPanel panel = new JPanel(new GridLayout(3,1));
 		panel.add(new JLabel(nom, 0));
 		panel.add(insidePanel);
 		return panel;
@@ -124,19 +129,16 @@ public abstract class Menu
 		panelQuad.add(vide(), BorderLayout.EAST);
 		panelQuad.add(tf, BorderLayout.CENTER);
 		
-		JPanel panelSec = new JPanel();
-		panelSec.setLayout(new GridLayout(3, 1));
+		JPanel panelSec = new JPanel(new GridLayout(3, 1));
 		panelSec.add(vide());
 		panelSec.add(panelQuad);
 
-		JPanel panelTer = new JPanel();
-		panelTer.setLayout(new GridLayout(1, 3));
+		JPanel panelTer = new JPanel(new GridLayout(1, 3));
 		panelTer.add(vide());
 		JLabel label = new JLabel(nom);
 		panelTer.add(label);
 
-		JPanel panelPrinc = new JPanel();
-		panelPrinc.setLayout(new GridLayout(1, 2));
+		JPanel panelPrinc = new JPanel(new GridLayout(1, 2));
 		panelPrinc.add(panelTer);
 		panelPrinc.add(panelSec);
 		return panelPrinc;
