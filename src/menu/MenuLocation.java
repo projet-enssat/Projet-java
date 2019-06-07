@@ -282,6 +282,27 @@ public class MenuLocation extends Menu {
 		fenetre2.setVisible(true);
 	}
 	
+	public void finLocation3()
+	{
+		nouveau = false;
+		if (fenetre2 != null) { fenetre2.removeAll(); }
+		fenetre2 = new JFrame("Supprimer une location");
+		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetre2.setLayout(new GridLayout(2, 4));
+
+		marqueTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
+		modeleTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
+		fenetre2.add(bouton(validation2));
+		fenetre2.add(vide());
+		fenetre2.add(vide());
+		fenetre2.add(listV(choixImm));
+		fenetre2.setVisible(true);
+	}
+	
 	/**
 	 * Change le statut des boutons de validation. Utilise lors d'une validation.
 	 */
