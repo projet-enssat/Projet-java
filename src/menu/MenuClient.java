@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.text.Document;
 
 import client.Client;
 import client.GestionClient;
@@ -76,6 +77,18 @@ public class MenuClient extends Menu {
 		nomClient.setText(gestion.getClient().getNom());
 		prenom.setText(gestion.getClient().getPrenom());
 		adresse.setText(gestion.getClient().getAdresse());
+	}
+	
+	public Document getNomDocument() {
+		return nomClient.getDocument();
+	}
+	
+	public Document getPrenomDocument() {
+		return prenom.getDocument();
+	}
+	
+	public Document getAdresseDocument() {
+		return adresse.getDocument();
 	}
 	
 	public void refreshTous() {

@@ -1,19 +1,18 @@
 package menu;
 
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.util.Calendar;
-
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.Document;
 
 import client.Client;
 import client.GestionClient;
 import location.GestionLocation;
-import vehicule.Vehicule;
+import vehicule.GestionVehicule;
 
 public class MenuLocation extends Menu {
 
@@ -34,9 +33,10 @@ public class MenuLocation extends Menu {
 	private static JButton validation1;
 	private static JButton validation2;
 	private static JButton validation3;
-	private static Client client;
-	private static Vehicule vehicule;
+	private static GestionClient gestionClient = new GestionClient();
+	private static GestionVehicule gestionVehicule = new GestionVehicule();
 	private static JFrame fenetre;
+	private static JCheckBox reduction = new JCheckBox("Réduction");
 	private static boolean nouveau = true;
 	
 	public MenuLocation()
@@ -62,75 +62,87 @@ public class MenuLocation extends Menu {
 		if (debutTF == null)
 		{
 			debutTF = new JTextField();
+			debutTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (finTF == null)
 		{
 			finTF = new JTextField();
+			finTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (nomTF == null)
 		{
 			nomTF = new JTextField();
+			nomTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (prenomTF == null)
 		{
 			prenomTF = new JTextField();
+			prenomTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (adresseTF == null)
 		{
 			adresseTF = new JTextField();
+			adresseTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (marqueTF == null)
 		{
 			marqueTF = new JTextField();
+			marqueTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (modeleTF == null)
 		{
 			modeleTF = new JTextField();
+			modeleTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (immatTF == null)
 		{
 			immatTF = new JTextField();
+			immatTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
 		
 		if (choixNom == null)
 		{
 			choixNom = new JList<String>();
+			choixNom.addListSelectionListener(new ActionLocation(this));
 		}
 		
 		if (choixPre == null)
 		{
 			choixPre = new JList<String>();
+			choixPre.addListSelectionListener(new ActionLocation(this));
 		}
 
 		if (choixAdr == null)
 		{
 			choixAdr = new JList<String>();
+			choixAdr.addListSelectionListener(new ActionLocation(this));
 		}
 		
 		if (choixMar == null)
 		{
 			choixMar = new JList<String>();
+			choixMar.addListSelectionListener(new ActionLocation(this));
 		}
 		
 		if (choixMod == null)
 		{
 			choixMod = new JList<String>();
+			choixMod.addListSelectionListener(new ActionLocation(this));
 		}
 		
 		if (choixImm == null)
 		{
 			choixImm = new JList<String>();
+			choixImm.addListSelectionListener(new ActionLocation(this));
 		}
-	}
-	
-	public void nouvLocation(String nom)
+	}public void nouvLocation(String nom)
 	{
 		if (fenetre != null) { fenetre.removeAll(); }
 		fenetre = new JFrame(nom);
@@ -139,10 +151,7 @@ public class MenuLocation extends Menu {
 		GridLayout grillePrincipale = new GridLayout(1,3);
 		fenetre.setLayout(grillePrincipale);
 		
-		
 		JPanel panelClient = new JPanel(new GridLayout(4,1));
-		JPanel panelVehi = new JPanel(new GridLayout(4,1));
-		JPanel panelLoc = new JPanel();
 		
 		JPanel panelNom = new JPanel(new GridLayout(2,1));
 		panelNom.add(textFieldLabelAbove(nomTF, "Nom :"));
@@ -161,7 +170,8 @@ public class MenuLocation extends Menu {
 		
 		panelClient.add(bouton(validation1));
 		fenetre.add(panelClient);
-		
+
+		JPanel panelVehi = new JPanel(new GridLayout(4,1));
 		
 		JPanel panelMarque = new JPanel(new GridLayout(2,1));
 		panelMarque.add(textFieldLabelAbove(marqueTF, "Marque :"));
@@ -181,22 +191,89 @@ public class MenuLocation extends Menu {
 		panelVehi.add(bouton(validation2));
 		fenetre.add(panelVehi);
 		
+		JPanel panelLoc = new JPanel(new GridLayout(3,1));
+		
+		JPanel panelDebut = new JPanel();
+		panelDebut.add(textFieldLabelAbove(finTF, "Date de Début :"));
+		panelLoc.add(panelDebut);
+		
+		JPanel panelFin = new JPanel();
+		panelFin.add(textFieldLabelAbove(debutTF, "Date de Fin : "));
+		panelLoc.add(panelFin);
+		
+		JPanel panelReduction = new JPanel();
+		panelReduction.add(reduction);
+		panelLoc.add(panelReduction);
+		
+		fenetre.add(panelLoc);
 		
 		fenetre.setVisible(true);
 	}
 	
 	public void enregistrement(boolean reduction)
 	{
-		new GestionLocation(client, vehicule, debutTF.getText(), finTF.getText(), reduction).ajouterLocation();
+		new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction).ajouterLocation();
 		fenetre.dispose();
-	}
-	
-	public void insererLocation(Client client) {
-		
 	}
 	
 	public void setValidation(String nomBouton) {
 		
+	}
+	
+	public void refreshAdresse() {
+		choixAdr.setModel(gestionClient.rechercherAdresse(adresseTF.getText()));
+	}
+	
+	public void refreshNom() {
+		choixNom.setModel(gestionClient.rechercherNom(nomTF.getText()));
+	}
+	
+	public void refreshPrenom() {
+		choixPre.setModel(gestionClient.rechercherPrenom(prenomTF.getText()));
+	}
+	
+	public void refreshImmat() {
+		choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, immatTF.getText()));
+	}
+	
+	public void refreshModele() {
+		choixMod.setModel(gestionVehicule.tousLesModeles(null, modeleTF.getText()));
+	}
+	
+	public void refreshMarque() {
+		choixMar.setModel(gestionVehicule.toutesLesMarques(marqueTF.getText()));
+	}
+	
+	public Document getDebutTFDocument() {
+		return debutTF.getDocument();
+	}
+
+	public Document getFinTFDocument() {
+		return finTF.getDocument();
+	}
+
+	public Document getNomTFDocument() {
+		return nomTF.getDocument();
+	}
+
+	public Document getPrenomTFDocument() {
+		return prenomTF.getDocument();
+	}
+
+	public Document getAdresseTFDocument() {
+		return adresseTF.getDocument();
+	}
+
+	public Document getMarqueTFDocument() {
+		return marqueTF.getDocument();
+	}
+
+	public Document getModeleTFDocument() {
+		return modeleTF.getDocument();
+	}
+
+	public Document getImmatTFDocument() {
+		return immatTF.getDocument();
 	}
 	
 }

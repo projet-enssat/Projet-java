@@ -53,24 +53,29 @@ public class ActionClient implements ActionListener,ListSelectionListener,Docume
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		menu.refreshNom();
-		menu.refreshPrenom();
-		menu.refreshAdresse();
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		menu.refreshNom();
-		menu.refreshPrenom();
-		menu.refreshAdresse();
+		if(e.getDocument().equals(menu.getNomDocument())) {
+			menu.refreshNom();
+		}else if(e.getDocument().equals(menu.getPrenomDocument())) {
+			menu.refreshPrenom();
+		}else {
+			menu.refreshAdresse();
+		}
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		menu.refreshNom();
-		menu.refreshPrenom();
-		menu.refreshAdresse();
+		if(e.getDocument().equals(menu.getNomDocument())) {
+			menu.refreshNom();
+		}else if(e.getDocument().equals(menu.getPrenomDocument())) {
+			menu.refreshPrenom();
+		}else if(e.getDocument().equals(menu.getAdresseDocument())) {
+			menu.refreshAdresse();
+		}
 	}
 }
