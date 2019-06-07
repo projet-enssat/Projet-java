@@ -48,16 +48,16 @@ public class Action implements ActionListener
 				suppclient.setValidation("Rechercher");
 				suppclient.recherche();
 				break;
-			case "Début Location":
+			case "Debut Location":
 				new MenuLocation().nouvLocation("Nouvelle location");
 				break;
 			case "Fin Location":
 				new MenuLocation().finLocation1();
 				break;
-			case "Nouveau Véhicule":
+			case "Nouveau Vehicule":
 				new MenuVehicule().nouveauVehicule();
 				break;
-			case "Supprimer Véhicule":
+			case "Supprimer Vehicule":
 				new MenuVehicule().supprimerVehicule();
 				break;
 			case "Options":

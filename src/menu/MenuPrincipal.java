@@ -17,7 +17,7 @@ public class MenuPrincipal extends Menu
 	/** Element graphique */
 	private static JButton nouvClient = new JButton("Nouveau Client");
 	/** Element graphique */
-	private static JButton nouvLoc = new JButton("Début Location");
+	private static JButton nouvLoc = new JButton("Debut Location");
 	/** Element graphique */
 	private static JButton nouvVehi = new JButton("Nouveau Vehicule");
 	/** Element graphique */
@@ -51,7 +51,7 @@ public class MenuPrincipal extends Menu
 
 		JPanel client = label(new JLabel("Client"));
 		JPanel location = label(new JLabel("Location"));
-		JPanel vehicule = label(new JLabel("Véhicule"));
+		JPanel vehicule = label(new JLabel("Vehicule"));
 		
 		JPanel action = new JPanel(new GridLayout(3,3));
 		action.add(client);
