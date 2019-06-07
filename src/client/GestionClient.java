@@ -178,6 +178,7 @@ public class GestionClient
 	 * Serialise la liste des clients pour mettre a jour l'archive "clients".
 	 * 
 	 * @param liste Liste a serialiser.
+	 * @throws IOException, FileNotFoundException
 	 */
 	public void enregistrerClients(ListeClients liste)
 	{
@@ -197,6 +198,7 @@ public class GestionClient
 	 * Retire un client de l'archive, s'il y est enregistre.
 	 * 
 	 * @param client Client a supprimer.
+	 * @throws IOException, FileNotFoundException
 	 */
 	public void supprimerClient()
 	{
@@ -209,6 +211,7 @@ public class GestionClient
 	 * Deserialise la liste des clients a partir de l'archive "clients".
 	 * 
 	 * @return Liste des clients enregistres.
+	 * @throws IOException, FileNotFoundException, EOFException
 	 */
 	public ListeClients lireClients()
 	{
