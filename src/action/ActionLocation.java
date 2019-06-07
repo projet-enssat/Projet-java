@@ -79,11 +79,11 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	{
 		if (enabled)
 		{
-			if (e.getDocument().getDefaultRootElement().equals(menu.getNomTF())
-			 || e.getDocument().getDefaultRootElement().equals(menu.getPrenomTF())
-			 || e.getDocument().getDefaultRootElement().equals(menu.getAdresseTF()))
+			if (e.getDocument().equals(menu.getNomTF().getDocument())
+			 || e.getDocument().equals(menu.getPrenomTF().getDocument())
+			 || e.getDocument().equals(menu.getAdresseTF().getDocument()))
 			{ menu.autoCompletionClient(); }
-			else if (e.getDocument().getDefaultRootElement().equals(menu.getImmatTF()))
+			else if (e.getDocument().equals(menu.getImmatTF().getDocument()))
 			{ menu.autoCompletionVehicule(); }
 		}
 	}
