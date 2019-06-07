@@ -225,7 +225,7 @@ public class MenuVehicule extends Menu
 	{
 		nouveau = true;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
-		fenetre2 = new JFrame("Nouveau véhicule");
+		fenetre2 = new JFrame("Nouveau vehicule");
 		fenetre2.setBounds(800, 400, 400, 100);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new FlowLayout());
@@ -244,7 +244,7 @@ public class MenuVehicule extends Menu
 	{
 		nouveau = false;
 		if (fenetre3 != null) { fenetre3.removeAll(); }
-		fenetre3 = new JFrame("Supprimer véhicule");
+		fenetre3 = new JFrame("Supprimer vehicule");
 		fenetre3.setBounds(400, 400, 1100, 200);
 		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre3.setLayout(new GridLayout(2, 4));
