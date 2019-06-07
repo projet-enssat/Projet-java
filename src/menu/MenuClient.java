@@ -102,46 +102,25 @@ public class MenuClient extends Menu
 	
 	/**
 	 * Complete les champs nom, prenom et adresse du client lors de la selection.
-	 * @param test Chaine de caractere representant un client.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public void autoCompletion(String test) {
-		if(test.contains("#")) {
-			gestionClient.select(test);
-		}
-		nomClient.setText("WUT");//gestionClient.getClient().getNom());
-		prenom.setText(gestionClient.getClient().getPrenom());
-		adresse.setText(gestionClient.getClient().getAdresse());
+	public void autoCompletion()
+	{
+		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
+		
+		listNom.setModel(gestionClient.rechercherNom(nomClient.getText()));
+		listPrenom.setModel(gestionClient.rechercherPrenom(prenom.getText()));
+		listAdresse.setModel(gestionClient.rechercherAdresse(adresse.getText()));
+		
+		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 	}
 	
-	/**
-	 * Renvoie la zone d'ecriture du JTextField nomClient.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getNomDocument() {
-		return nomClient.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField prenom.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getPrenomDocument() {
-		return prenom.getDocument();
-	}
-
-	/**
-	 * Renvoie la zone d'ecriture du JTextField adresse.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
-	 */
-	public Document getAdresseDocument() {
-		return adresse.getDocument();
-	}
-
-	/**
-	 * Remplace les modeles des listes de noms, prenoms et adresses, pour qu'elles affichent tous les clients enregistres.
-	 */
-	public void refreshTous() {
+	public void refreshTous()
+	{
 		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
 		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
 		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
@@ -152,36 +131,6 @@ public class MenuClient extends Menu
 		
 		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
 		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
-		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
-	}
-	
-	/**
-	 * Actualise la liste des noms, en n'affichant que les clients trouves par rechercheNom.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshNom() {
-		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
-		listNom.setModel(gestionClient.rechercherNom(nomClient.getText()));
-		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
-	}
-	
-	/**
-	 * Actualise la liste des prenoms, en n'affichant que les clients trouves par rehcerchePrenom.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshPrenom() {
-		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
-		listPrenom.setModel(gestionClient.rechercherPrenom(prenom.getText()));
-		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
-	}
-	
-	/**
-	 * Actualise la liste des adresses, en n'affichant que les clients trouves par rechercheAdresse.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void refreshAdresse() {
-		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
-		listAdresse.setModel(gestionClient.rechercherAdresse(adresse.getText()));
 		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 	}
 
@@ -259,7 +208,6 @@ public class MenuClient extends Menu
 		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
 		fenetre.add(textFieldLabelLeft("Date du permis :", datePermis));
 		fenetre.add(textFieldLabelLeft("Date de fin d'apprentissage :", dateApprentissage));
-		validation.addActionListener(new ActionClient(this));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}
@@ -310,4 +258,30 @@ public class MenuClient extends Menu
 		return nomClient;
 	}
 
+	/**
+	 * Renvoie listNom.
+	 * @return La JList de selection de nom.
+	 */
+	public JList<String> getListNom()
+	{
+		return listNom;
+	}
+
+	/**
+	 * Renvoie listPrenom.
+	 * @return La JList de selection de prenom.
+	 */
+	public JList<String> getListPrenom()
+	{
+		return listPrenom;
+	}
+
+	/**
+	 * Renvoie listAdresse.
+	 * @return La JList de selection d'adresse.
+	 */
+	public JList<String> getListAdresse()
+	{
+		return listAdresse;
+	}
 }

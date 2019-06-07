@@ -137,13 +137,11 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 			{
 				menu.setTexteMar((menu.getChoixMar().getSelectedValue()));
 				menu.autoCompletion();
-			}
-			if (e.getSource().equals(menu.getChoixMod()))
+			} else if (e.getSource().equals(menu.getChoixMod()))
 			{
 				menu.setTexteMod((menu.getChoixMod().getSelectedValue()));
 				menu.autoCompletion();
-			}
-			if (e.getSource().equals(menu.getChoixImm()))
+			} else if (e.getSource().equals(menu.getChoixImm()))
 			{
 				menu.setTexteImm((menu.getChoixImm().getSelectedValue()));
 				menu.autoCompletion();

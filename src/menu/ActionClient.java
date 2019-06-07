@@ -60,9 +60,20 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	@Override
 	public void valueChanged(ListSelectionEvent e)
 	{
-		if(enabled && !e.getValueIsAdjusting()) {
-			if((String) ((JList<String>) e.getSource()).getSelectedValue()!=null) {
-				menu.autoCompletion(((JList<String>) e.getSource()).getSelectedValue());
+		if (enabled && !e.getValueIsAdjusting())
+		{
+			if (e.getSource().equals(menu.getListNom()))
+			{
+				menu.getNomClient().setText(menu.getListNom().getSelectedValue());
+				menu.autoCompletion();
+			} else if (e.getSource().equals(menu.getListPrenom()))
+			{
+				menu.getPrenom().setText(menu.getListPrenom().getSelectedValue());
+				menu.autoCompletion();
+			} else if (e.getSource().equals(menu.getListAdresse()))
+			{
+				menu.getAdresse().setText(menu.getListAdresse().getSelectedValue());
+				menu.autoCompletion();
 			}
 		}
 	}
@@ -73,28 +84,13 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		if (enabled)
-		{
-			if(e.getDocument().equals(menu.getNomDocument())) {
-				menu.refreshNom();
-			}else if(e.getDocument().equals(menu.getPrenomDocument())) {
-				menu.refreshPrenom();
-			}else {
-				menu.refreshAdresse();
-			}
-		}
+		if (enabled) { menu.autoCompletion(); }
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
-		if(e.getDocument().equals(menu.getNomDocument())) {
-			menu.refreshNom();
-		}else if(e.getDocument().equals(menu.getPrenomDocument())) {
-			menu.refreshPrenom();
-		}else if(e.getDocument().equals(menu.getAdresseDocument())) {
-			menu.refreshAdresse();
-		}
+		if (enabled) { menu.autoCompletion(); }
 	}
 
 	/**
