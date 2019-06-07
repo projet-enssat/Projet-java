@@ -150,10 +150,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 	}
 
 	@Override
-	public void changedUpdate(DocumentEvent e)
-	{
-		menu.autoCompletion();
-	}
+	public void changedUpdate(DocumentEvent e) {}
 
 	@Override
 	public void insertUpdate(DocumentEvent e)

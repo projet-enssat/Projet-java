@@ -250,7 +250,7 @@ public class GestionVehicule
 				Voiture temp = liste.getListeV().get(i);
 				if (dejaEcrit.length() <= temp.getMarque().length())
 				{
-					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())) && !searchList.contains(temp.getMarque()))
 					{
 						searchList.addElement(temp.getMarque());
 					}
@@ -264,7 +264,7 @@ public class GestionVehicule
 				Moto temp = liste.getListeM().get(i);
 				if (dejaEcrit.length() <= temp.getMarque().length())
 				{
-					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())) && !searchList.contains(temp.getMarque()))
 					{
 						searchList.addElement(temp.getMarque());
 					}
@@ -278,7 +278,7 @@ public class GestionVehicule
 				Avion temp = liste.getListeA().get(i);
 				if (dejaEcrit.length() <= temp.getMarque().length())
 				{
-					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
+					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())) && !searchList.contains(temp.getMarque()))
 					{
 						searchList.addElement(temp.getMarque());
 					}
@@ -301,7 +301,7 @@ public class GestionVehicule
 				{
 					if (dejaEcrit.length() <= temp.getModele().length())
 					{
-						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())) && !searchList.contains(temp.getModele()))
 						{
 							searchList.addElement(temp.getModele());
 						}
@@ -318,7 +318,7 @@ public class GestionVehicule
 				{
 					if (dejaEcrit.length() <= temp.getModele().length())
 					{
-						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())) && !searchList.contains(temp.getModele()))
 						{
 							searchList.addElement(temp.getModele());
 						}
@@ -335,7 +335,7 @@ public class GestionVehicule
 				{
 					if (dejaEcrit.length() <= temp.getModele().length())
 					{
-						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
+						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())) && !searchList.contains(temp.getModele()))
 						{
 							searchList.addElement(temp.getModele());
 						}
@@ -412,46 +412,6 @@ public class GestionVehicule
 		}
 		return searchList;
 	}
-	
-	public String marquePourModele(String modele)
-	{
-		ListeVehicules liste = lireVehicules();
-		String result = "";
-		if (classe.equals("") || classe.equals("Voiture"))
-		{
-			for (int i = 0; i < liste.getListeV().size(); ++i)
-			{
-				Voiture temp = liste.getListeV().get(i);
-				if (temp.getModele().equals(modele))
-				{
-					result = temp.getMarque();
-				}
-			}
-		}
-		if (classe.equals("") || classe.equals("Moto"))
-		{
-			for (int i = 0; i < liste.getListeM().size(); ++i)
-			{
-				Moto temp = liste.getListeM().get(i);
-				if (temp.getModele().equals(modele))
-				{
-					result = temp.getMarque();
-				}
-			}
-		}
-		if (classe.equals("") || classe.equals("Avion"))
-		{
-			for (int i = 0; i < liste.getListeA().size(); ++i)
-			{
-				Avion temp = liste.getListeA().get(i);
-				if (temp.getModele().equals(modele))
-				{
-					result = temp.getMarque();
-				}
-			}
-		}
-		return result;
-	}
 
 	/**
 	 * Désérialise la liste des véhicules à partir de l'archive "vehicules".
@@ -481,5 +441,10 @@ public class GestionVehicule
 	public void setClasse(String classe)
 	{
 		this.classe = classe;
+	}
+	
+	public Vehicule getVehicule()
+	{
+		return vehicule;
 	}
 }

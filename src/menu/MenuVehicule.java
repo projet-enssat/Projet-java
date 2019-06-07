@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -77,7 +78,7 @@ public class MenuVehicule extends Menu
 		if (choixMod == null)
 		{
 			choixMod = new JList<String>();
-			choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
+			choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
 			choixMod.setPreferredSize(new Dimension(150, 100));
 			choixMod.addListSelectionListener(new ActionVehicule(this));
 		}
@@ -93,7 +94,7 @@ public class MenuVehicule extends Menu
 		if (choixImm == null)
 		{
 			choixImm = new JList<String>();
-			choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
+			choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
 			choixImm.setPreferredSize(new Dimension(200, 100));
 			choixImm.addListSelectionListener(new ActionVehicule(this));
 		}
@@ -262,14 +263,14 @@ public class MenuVehicule extends Menu
 		
 		GestionVehicule tempGV = new GestionVehicule((String) choixV.getSelectedItem());
 		setChoixMar(tempGV.toutesLesMarques(texteMar.getText()));
-		setChoixMod(tempGV.tousLesModeles(choixMar.getSelectedValue(), texteMod.getText()));
-		setChoixImm(tempGV.toutesLesImmats(choixMar.getSelectedValue(), choixMod.getSelectedValue(), texteImm.getText()));
+		setChoixMod(tempGV.tousLesModeles(texteMar.getText(), texteMod.getText()));
+		setChoixImm(tempGV.toutesLesImmats(texteMar.getText(), texteMod.getText(), texteImm.getText()));
 
 		((ActionVehicule) choixMar.getListSelectionListeners()[0]).toggle();
 		((ActionVehicule) choixMod.getListSelectionListeners()[0]).toggle();
 		((ActionVehicule) choixImm.getListSelectionListeners()[0]).toggle();
 	}
-
+	
 	public JFrame getFenetre()
 	{
 		return fenetre;
