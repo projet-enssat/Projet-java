@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -91,12 +92,9 @@ public class ActionVehicule implements ActionListener, ListSelectionListener
 				}
 				menu.enregistrement(classe);
 				menu.getFenetre().dispose();
-			} else if (e.getSource().equals(menu.getChoixV()))
+			} else if ((e.getSource().equals(menu.getChoixV()) || e.getSource().getClass().equals(new JTextField().getClass())) && !menu.isNouveau())
 			{
-				GestionVehicule tempGV = new GestionVehicule((String) menu.getChoixV().getSelectedItem());
-				menu.setChoixMar(tempGV.toutesLesMarques(menu.getTexteMar().getText()));
-				menu.setChoixMod(tempGV.tousLesModeles(null, menu.getTexteMod().getText()));
-				menu.setChoixImm(tempGV.toutesLesImmats(null, null, menu.getTexteImm().getText()));
+				menu.autoCompletion();
 			}
 		}
 	}

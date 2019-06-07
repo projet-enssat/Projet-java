@@ -27,47 +27,68 @@ public class MenuVehicule extends Menu
 	private static JTextField km = new JTextField();
 	private static JTextField puissance = new JTextField();
 	private static JTextField nbPlaces = new JTextField();
-	private static JButton validation = new JButton("Enregistrer");
-	private static JButton ok = new JButton("OK");
-	private static JComboBox<String> choixV = new JComboBox<String>();
+	private static JButton validation;
+	private static JButton ok;
+	private static JComboBox<String> choixV;
 	private static JTextField texteMar = new JTextField();
 	private static JTextField texteMod = new JTextField();
 	private static JTextField texteImm = new JTextField();
-	private static JList<String> choixMar = new JList<String>();
-	private static JList<String> choixMod = new JList<String>();
-	private static JList<String> choixImm = new JList<String>();
+	private static JList<String> choixMar;
+	private static JList<String> choixMod;
+	private static JList<String> choixImm;
 	private static JFrame fenetre;
 	private static JFrame fenetre2;
+	private static JFrame fenetre3;
 	private static JPanel infoVehicule = new JPanel();
 	private static boolean nouveau = true;
 
 	public MenuVehicule()
 	{
-
-
-		validation.addActionListener(new ActionVehicule(this));
-
-		ok.addActionListener(new ActionVehicule(this));
-
-		choixV.removeAllItems();
-		choixV.addItem("");
-		choixV.addItem("Voiture");
-		choixV.addItem("Moto");
-		choixV.addItem("Avion");
-		choixV.addActionListener(new ActionVehicule(this));
-
-		choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
-		choixMod.setPreferredSize(new Dimension(150, 100));
-
-		choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
-		choixMar.setPreferredSize(new Dimension(150, 100));
-
-		choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
-		choixImm.setPreferredSize(new Dimension(200, 100));
+		if (validation == null)
+		{
+			validation = new JButton("Enregistrer");
+			validation.addActionListener(new ActionVehicule(this));
+		}
 		
-		choixMar.addListSelectionListener(new ActionVehicule(this));
-		choixMod.addListSelectionListener(new ActionVehicule(this));
-		choixImm.addListSelectionListener(new ActionVehicule(this));
+		if (ok == null)
+		{
+			ok = new JButton("OK");
+			ok.addActionListener(new ActionVehicule(this));
+		}
+		
+		if (choixV == null)
+		{
+			choixV = new JComboBox<String>();
+			choixV.addItem("");
+			choixV.addItem("Voiture");
+			choixV.addItem("Moto");
+			choixV.addItem("Avion");
+			choixV.addActionListener(new ActionVehicule(this));
+		}
+
+		if (choixMod == null)
+		{
+			choixMod = new JList<String>();
+			choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
+			choixMod.setPreferredSize(new Dimension(150, 100));
+			choixMod.addListSelectionListener(new ActionVehicule(this));
+		}
+
+		if (choixMar == null)
+		{
+			choixMar = new JList<String>();
+			choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
+			choixMar.setPreferredSize(new Dimension(150, 100));
+			choixMar.addListSelectionListener(new ActionVehicule(this));
+		}
+		
+		if (choixImm == null)
+		{
+			choixImm = new JList<String>();
+			choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
+			choixImm.setPreferredSize(new Dimension(200, 100));
+			choixImm.addListSelectionListener(new ActionVehicule(this));
+		}
 	}
 
 	public void enregistrement(String classe)
@@ -100,18 +121,12 @@ public class MenuVehicule extends Menu
 
 	public void affMenu(String nom)
 	{
-		if(fenetre!=null) {
-			fenetre.removeAll();
-			fenetre.setName(nom);
-		}else {
-			fenetre = new JFrame(nom);
-			fenetre.setBounds(400,200,1100,500);
-		}
-		if(infoVehicule!=null) {
-			infoVehicule.removeAll();
-		}else {
-			infoVehicule = new JPanel();
-		}
+		if (fenetre != null) { fenetre.removeAll(); }
+		fenetre = new JFrame(nom);
+		fenetre.setBounds(400,200,1100,500);
+		fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		infoVehicule.removeAll();
+		infoVehicule = new JPanel();
 		GridLayout grillePrincipale = new GridLayout(2, 1);
 		fenetre.setLayout(grillePrincipale);
 		GridLayout grilleInfo = new GridLayout(3, 3);
@@ -121,9 +136,11 @@ public class MenuVehicule extends Menu
 
 	public void nouveauVehicule()
 	{
-		fenetre2 = null;
+		nouveau = true;
+		if (fenetre2 != null) { fenetre2.removeAll(); }
 		fenetre2 = new JFrame("Nouveau véhicule");
 		fenetre2.setBounds(800, 400, 400, 100);
+		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		FlowLayout layout = new FlowLayout();
 		fenetre2.setLayout(layout);
 
@@ -132,27 +149,28 @@ public class MenuVehicule extends Menu
 		ok.setText("OK");
 		fenetre2.add(bouton(ok));
 		fenetre2.setVisible(true);
-		nouveau = true;
 	}
 
 	public void supprimerVehicule()
 	{
-		fenetre2 = new JFrame("Supprimer véhicule");
-		fenetre2.setBounds(400, 400, 1100, 200);
+		nouveau = false;
+		if (fenetre3 != null) { fenetre3.removeAll(); }
+		fenetre3 = new JFrame("Supprimer véhicule");
+		fenetre3.setBounds(400, 400, 1100, 200);
+		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		GridLayout layout = new GridLayout(2, 4);
-		fenetre2.setLayout(layout);
+		fenetre3.setLayout(layout);
 
 		
-		fenetre2.add(comboBoxV(choixV));
-		fenetre2.add(textFieldNoLabel(texteMar));
-		fenetre2.add(textFieldNoLabel(texteMod));
-		fenetre2.add(textFieldNoLabel(texteImm));
-		fenetre2.add(vide());
-		fenetre2.add(listV(choixMar));
-		fenetre2.add(listV(choixMod));
-		fenetre2.add(listV(choixImm));
-		fenetre2.setVisible(true);
-		nouveau = false;
+		fenetre3.add(comboBoxV(choixV));
+		fenetre3.add(textFieldNoLabel(texteMar));
+		fenetre3.add(textFieldNoLabel(texteMod));
+		fenetre3.add(textFieldNoLabel(texteImm));
+		fenetre3.add(vide());
+		fenetre3.add(listV(choixMar));
+		fenetre3.add(listV(choixMod));
+		fenetre3.add(listV(choixImm));
+		fenetre3.setVisible(true);
 	}
 
 	public void Voiture(String nom)

@@ -190,47 +190,44 @@ public class GestionVehicule
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
-		if (!dejaEcrit.equals(""))
+		if (classe.equals("") || classe.equals("Voiture"))
 		{
-			if (classe.equals("") || classe.equals("Voiture"))
+			for (int i = 0; i < liste.getListeV().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeV().size(); ++i)
+				Voiture temp = liste.getListeV().get(i);
+				if (dejaEcrit.length() <= temp.getMarque().length())
 				{
-					Voiture temp = liste.getListeV().get(i);
-					if (dejaEcrit.length() <= temp.getMarque().length())
+					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
 					{
-						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
-						{
-							searchList.addElement(temp.getMarque());
-						}
+						searchList.addElement(temp.getMarque());
 					}
 				}
 			}
-			if (classe.equals("") || classe.equals("Moto"))
+		}
+		if (classe.equals("") || classe.equals("Moto"))
+		{
+			for (int i = 0; i < liste.getListeM().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeM().size(); ++i)
+				Moto temp = liste.getListeM().get(i);
+				if (dejaEcrit.length() <= temp.getMarque().length())
 				{
-					Moto temp = liste.getListeM().get(i);
-					if (dejaEcrit.length() <= temp.getMarque().length())
+					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
 					{
-						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
-						{
-							searchList.addElement(temp.getMarque());
-						}
+						searchList.addElement(temp.getMarque());
 					}
 				}
 			}
-			if (classe.equals("") || classe.equals("Avion"))
+		}
+		if (classe.equals("") || classe.equals("Avion"))
+		{
+			for (int i = 0; i < liste.getListeA().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeA().size(); ++i)
+				Avion temp = liste.getListeA().get(i);
+				if (dejaEcrit.length() <= temp.getMarque().length())
 				{
-					Avion temp = liste.getListeA().get(i);
-					if (dejaEcrit.length() <= temp.getMarque().length())
+					if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
 					{
-						if (dejaEcrit.equals(temp.getMarque().substring(0, dejaEcrit.length())))
-						{
-							searchList.addElement(temp.getMarque());
-						}
+						searchList.addElement(temp.getMarque());
 					}
 				}
 			}
@@ -242,55 +239,52 @@ public class GestionVehicule
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
-		if (!dejaEcrit.equals(""))
+		if (classe.equals("") || classe.equals("Voiture"))
 		{
-			if (classe.equals("") || classe.equals("Voiture"))
+			for (int i = 0; i < liste.getListeV().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeV().size(); ++i)
+				Voiture temp = liste.getListeV().get(i);
+				if (marque == null || temp.getMarque().equals(marque))
 				{
-					Voiture temp = liste.getListeV().get(i);
-					if (marque == null || temp.getMarque().equals(marque))
+					if (dejaEcrit.length() <= temp.getModele().length())
 					{
-						if (dejaEcrit.length() <= temp.getModele().length())
+						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
 						{
-							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
-							{
-								searchList.addElement(temp.getModele());
-							}
+							searchList.addElement(temp.getModele());
 						}
 					}
 				}
 			}
-			if (classe.equals("") || classe.equals("Moto"))
+		}
+		if (classe.equals("") || classe.equals("Moto"))
+		{
+			for (int i = 0; i < liste.getListeM().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeM().size(); ++i)
+				Moto temp = liste.getListeM().get(i);
+				if (marque == null || temp.getMarque().equals(marque))
 				{
-					Moto temp = liste.getListeM().get(i);
-					if (marque == null || temp.getMarque().equals(marque))
+					if (dejaEcrit.length() <= temp.getModele().length())
 					{
-						if (dejaEcrit.length() <= temp.getModele().length())
+						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
 						{
-							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
-							{
-								searchList.addElement(temp.getModele());
-							}
+							searchList.addElement(temp.getModele());
 						}
 					}
 				}
 			}
-			if (classe.equals("") | classe.equals("Avion"))
+		}
+		if (classe.equals("") | classe.equals("Avion"))
+		{
+			for (int i = 0; i < liste.getListeA().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeA().size(); ++i)
+				Avion temp = liste.getListeA().get(i);
+				if (marque == null || temp.getMarque().equals(marque))
 				{
-					Avion temp = liste.getListeA().get(i);
-					if (marque == null || temp.getMarque().equals(marque))
+					if (dejaEcrit.length() <= temp.getModele().length())
 					{
-						if (dejaEcrit.length() <= temp.getModele().length())
+						if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
 						{
-							if (dejaEcrit.equals(temp.getModele().substring(0, dejaEcrit.length())))
-							{
-								searchList.addElement(temp.getModele());
-							}
+							searchList.addElement(temp.getModele());
 						}
 					}
 				}
@@ -303,63 +297,60 @@ public class GestionVehicule
 	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeVehicules liste = lireVehicules();
-		if (!dejaEcrit.equals(""))
+		if (classe.equals("") || classe.equals("Voiture"))
 		{
-			if (classe.equals("") || classe.equals("Voiture"))
+			for (int i = 0; i < liste.getListeV().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeV().size(); ++i)
+				Voiture temp = liste.getListeV().get(i);
+				if (marque == null || temp.getMarque().equals(marque))
 				{
-					Voiture temp = liste.getListeV().get(i);
-					if (marque == null || temp.getMarque().equals(marque))
+					if (modele == null || temp.getModele().equals(modele))
 					{
-						if (modele == null || temp.getModele().equals(modele))
+						if (dejaEcrit.length() <= temp.getImmatriculation().length())
 						{
-							if (dejaEcrit.length() <= temp.getImmatriculation().length())
+							if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
 							{
-								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
-								{
-									searchList.addElement(temp.getImmatriculation());
-								}
+								searchList.addElement(temp.getImmatriculation());
 							}
 						}
 					}
 				}
 			}
-			if (classe.equals("") | classe.equals("Moto"))
+		}
+		if (classe.equals("") | classe.equals("Moto"))
+		{
+			for (int i = 0; i < liste.getListeM().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeM().size(); ++i)
+				Moto temp = liste.getListeM().get(i);
+				if (marque == null || temp.getMarque().equals(marque))
 				{
-					Moto temp = liste.getListeM().get(i);
-					if (marque == null || temp.getMarque().equals(marque))
+					if (modele == null || temp.getModele().equals(modele))
 					{
-						if (modele == null || temp.getModele().equals(modele))
+						if (dejaEcrit.length() <= temp.getImmatriculation().length())
 						{
-							if (dejaEcrit.length() <= temp.getImmatriculation().length())
+							if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
 							{
-								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
-								{
-									searchList.addElement(temp.getImmatriculation());
-								}
+								searchList.addElement(temp.getImmatriculation());
 							}
 						}
 					}
 				}
 			}
-			if (classe.equals("") | classe.equals("Avion"))
+		}
+		if (classe.equals("") | classe.equals("Avion"))
+		{
+			for (int i = 0; i < liste.getListeA().size(); ++i)
 			{
-				for (int i = 0; i < liste.getListeA().size(); ++i)
+				Avion temp = liste.getListeA().get(i);
+				if (marque == null || temp.getMarque().equals(marque))
 				{
-					Avion temp = liste.getListeA().get(i);
-					if (marque == null || temp.getMarque().equals(marque))
+					if (modele == null || temp.getModele().equals(modele))
 					{
-						if (modele == null || temp.getModele().equals(modele))
+						if (dejaEcrit.length() <= temp.getImmatriculation().length())
 						{
-							if (dejaEcrit.length() <= temp.getImmatriculation().length())
+							if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
 							{
-								if (dejaEcrit.equals(temp.getImmatriculation().substring(0, dejaEcrit.length())))
-								{
-									searchList.addElement(temp.getImmatriculation());
-								}
+								searchList.addElement(temp.getImmatriculation());
 							}
 						}
 					}
@@ -367,6 +358,46 @@ public class GestionVehicule
 			}
 		}
 		return searchList;
+	}
+	
+	public String marquePourModele(String modele)
+	{
+		ListeVehicules liste = lireVehicules();
+		String result = "";
+		if (classe.equals("") || classe.equals("Voiture"))
+		{
+			for (int i = 0; i < liste.getListeV().size(); ++i)
+			{
+				Voiture temp = liste.getListeV().get(i);
+				if (temp.getModele().equals(modele))
+				{
+					result = temp.getMarque();
+				}
+			}
+		}
+		if (classe.equals("") || classe.equals("Moto"))
+		{
+			for (int i = 0; i < liste.getListeM().size(); ++i)
+			{
+				Moto temp = liste.getListeM().get(i);
+				if (temp.getModele().equals(modele))
+				{
+					result = temp.getMarque();
+				}
+			}
+		}
+		if (classe.equals("") || classe.equals("Avion"))
+		{
+			for (int i = 0; i < liste.getListeA().size(); ++i)
+			{
+				Avion temp = liste.getListeA().get(i);
+				if (temp.getModele().equals(modele))
+				{
+					result = temp.getMarque();
+				}
+			}
+		}
+		return result;
 	}
 
 	/**
