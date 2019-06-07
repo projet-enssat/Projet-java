@@ -7,11 +7,22 @@ import javax.swing.JButton;
 
 import client.GestionClient;
 
+/**
+ * Permet la gestion d'evenements declenches par le menu principal.
+ * @author Celia Ellmann
+ * @author Dejan Paris
+ */
 public class Action implements ActionListener
 {
-
+	/**
+	 * Menu a ecouter.
+	 */
 	MenuPrincipal menu;
 
+	/**
+	 * Constructeur
+	 * @param menu Menu a ecouter.
+	 */
 	public Action(Menu menu)
 	{
 		this.menu = (MenuPrincipal) menu;

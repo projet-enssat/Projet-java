@@ -22,7 +22,7 @@ public class Client implements Serializable
 	private String datePermis;
 
 	/**
-	 * Cree un client avec des attributs par defaut.
+	 * Constructeur.
 	 * @deprecated Utiliser de preference Client(String, String, String, String, String).
 	 */
 	public Client()
@@ -31,7 +31,7 @@ public class Client implements Serializable
 	}
 
 	/**
-	 * Cree un client avec les attributs passes en parametre.
+	 * Constructeur.
 	 * @param nom Nom du client.
 	 * @param prenom Prenom du client.
 	 * @param adresse Adresse du client.
