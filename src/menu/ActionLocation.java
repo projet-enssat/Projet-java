@@ -34,15 +34,13 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource().getClass()==(new JButton().getClass())){
-			if(((JButton) e.getSource()).equals(menu.getValidation1())) {
-				menu.validerClient();
-			}else if(((JButton) e.getSource()).equals(menu.getValidation2())) {
-				menu.validerVehicule();
-			}else if(((JButton) e.getSource()).equals(menu.getValidation3())) {
-				menu.enregistrement();
-			}
-		}else {
+		if (e.getSource().equals(menu.getValidation1())) {
+			menu.validerClient();
+		} else if(e.getSource().equals(menu.getValidation2())) {
+			menu.validerVehicule();
+		} else if(e.getSource().equals(menu.getValidation3())) {
+			menu.enregistrement();
+		} else {
 			menu.verifDate();
 		}
 	}

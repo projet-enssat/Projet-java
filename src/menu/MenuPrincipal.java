@@ -87,11 +87,13 @@ public class MenuPrincipal extends Menu
 	{
 		File fichierClients = new File("clients");
 		File fichierLocations = new File("locations");
+		File fichierLocationsFinies = new File("locations_finies");
 		File fichierVehicules = new File("vehicules");
 		try
 		{
 			fichierClients.createNewFile();
 			fichierLocations.createNewFile();
+			fichierLocationsFinies.createNewFile();
 			fichierVehicules.createNewFile();
 		} catch (IOException e)
 		{

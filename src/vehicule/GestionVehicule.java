@@ -265,12 +265,10 @@ public class GestionVehicule
 	 * @param liste Liste a serialiser.
 	 * @throws IOException, FileNotFoundException
 	 */
-	public void enregistrerVehicules(ListeVehicules liste)
+	private static void enregistrerVehicules(ListeVehicules liste)
 	{
 		try
 		{
-			System.out.println(liste);
-			System.out.println("merde.....\n");
 			FileOutputStream fos = new FileOutputStream("vehicules");
 			ObjectOutputStream out = new ObjectOutputStream(fos);
 			out.writeObject(liste);

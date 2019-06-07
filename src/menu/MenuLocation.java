@@ -1,5 +1,6 @@
 package menu;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.Calendar;
@@ -51,6 +52,8 @@ public class MenuLocation extends Menu {
 	private static JButton validation3;
 	/** Element graphique */
 	private static JFrame fenetre;
+	/** Element graphique */
+	private static JFrame fenetre2;
 	/** Element graphique */
 	private static JCheckBox reduction = new JCheckBox("Réduction");
 
@@ -136,24 +139,32 @@ public class MenuLocation extends Menu {
 		if (choixNom == null)
 		{
 			choixNom = new JList<String>();
+			choixNom.setPreferredSize(new Dimension(200,150));
+			choixNom.setModel(gestionClient.rechercherNom(""));
 			choixNom.addListSelectionListener(new ActionLocation(this));
 		}
 		
 		if (choixPre == null)
 		{
 			choixPre = new JList<String>();
+			choixPre.setPreferredSize(new Dimension(200,150));
+			choixPre.setModel(gestionClient.rechercherPrenom(""));
 			choixPre.addListSelectionListener(new ActionLocation(this));
 		}
 
 		if (choixAdr == null)
 		{
 			choixAdr = new JList<String>();
+			choixAdr.setPreferredSize(new Dimension(200,150));
+			choixAdr.setModel(gestionClient.rechercherAdresse(""));
 			choixAdr.addListSelectionListener(new ActionLocation(this));
 		}
 		
 		if (choixImm == null)
 		{
 			choixImm = new JList<String>();
+			choixImm.setPreferredSize(new Dimension(200,150));
+			choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, ""));
 			choixImm.addListSelectionListener(new ActionLocation(this));
 		}
 	}
@@ -187,7 +198,8 @@ public class MenuLocation extends Menu {
 		panelAdresse.add(textFieldLabelAbove(adresseTF, "Adresse :"));
 		panelAdresse.add(listV(choixAdr));
 		panelClient.add(panelAdresse);
-		
+
+		validation1.setEnabled(true);
 		panelClient.add(bouton(validation1));
 		fenetre.add(panelClient);
 
@@ -208,6 +220,7 @@ public class MenuLocation extends Menu {
 		panelImmat.add(listV(choixImm));
 		panelVehi.add(panelImmat);
 		
+		validation2.setEnabled(true);
 		panelVehi.add(bouton(validation2));
 		fenetre.add(panelVehi);
 
@@ -227,6 +240,18 @@ public class MenuLocation extends Menu {
 		fenetre.add(panelLoc);
 		
 		fenetre.setVisible(true);
+	}
+	
+	public void finLocation()
+	{
+		nouveau = false;
+		if (fenetre2 != null) { fenetre2.removeAll(); }
+		fenetre2 = new JFrame("Supprimer une location");
+		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetre2.setLayout(new GridLayout(2, 4));
+
+		fenetre2.setVisible(true);
 	}
 	
 	/**
@@ -461,7 +486,10 @@ public class MenuLocation extends Menu {
 				mois=debut.substring(tJour+1,tMois);
 				annee=debut.substring(tMois+1);
 				debutCorrect=true;
-				dateDebut = new GregorianCalendar(new Integer(annee).parseInt(annee),new Integer(mois).parseInt(mois),new Integer(jour).parseInt(jour));
+				new Integer(annee);
+				new Integer(mois);
+				new Integer(jour);
+				dateDebut = new GregorianCalendar(Integer.parseInt(annee),Integer.parseInt(mois),Integer.parseInt(jour));
 			}
 		}
 		if(fin.contains("/")) {
@@ -472,7 +500,10 @@ public class MenuLocation extends Menu {
 				mois=fin.substring(tJour+1,tMois);
 				annee=fin.substring(tMois+1);
 				finCorrect=true;
-				dateFin = new GregorianCalendar(new Integer(annee).parseInt(annee),new Integer(mois).parseInt(mois),new Integer(jour).parseInt(jour));
+				new Integer(annee);
+				new Integer(mois);
+				new Integer(jour);
+				dateFin = new GregorianCalendar(Integer.parseInt(annee),Integer.parseInt(mois),Integer.parseInt(jour));
 			}
 		}
 		if(debutCorrect && finCorrect) {
@@ -481,7 +512,7 @@ public class MenuLocation extends Menu {
 			Calendar diff = new GregorianCalendar();
 			diff.setTimeInMillis(difference);
 			System.out.println(diff.get(Calendar.MONTH));
-			if(diff.get(Calendar.DAY_OF_MONTH)>7 || diff.get(Calendar.MONTH)>1) {
+			if(diff.get(Calendar.DAY_OF_MONTH)>6 || diff.get(Calendar.MONTH)>0 || diff.get(Calendar.YEAR)>0) {
 				reduction.setEnabled(true);
 			}else {
 				reduction.setEnabled(false);

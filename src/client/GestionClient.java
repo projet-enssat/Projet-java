@@ -42,7 +42,6 @@ public class GestionClient
 		int espace2 = client.indexOf("#", espace1+1);
 		this.client.setPrenom(client.substring(espace1+1, espace2));
 		this.client.setAdresse(client.substring(espace2+1));
-		System.out.println(this.client+"~");
 		rechercherClient();
 	}
 
@@ -62,17 +61,15 @@ public class GestionClient
 	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public DefaultListModel<String> rechercherNom(String test){
-		
+	public DefaultListModel<String> rechercherNom(String test)
+	{	
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
-		if(!test.isEmpty()) {
-			for(int i=0;i<liste.size();i++) {
-				Client tmp = liste.get(i);
-				if(tmp.getNom().length()>(test.length()-1)) {
-					if(test.toLowerCase().equals(tmp.getNom().substring(0,test.length()).toLowerCase())) {
-						searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
-					}
+		for(int i=0;i<liste.size();i++) {
+			Client tmp = liste.get(i);
+			if(tmp.getNom().length()>(test.length()-1)) {
+				if(test.toLowerCase().equals(tmp.getNom().substring(0,test.length()).toLowerCase())) {
+					searchList.addElement(tmp.getNom());
 				}
 			}
 		}
@@ -85,16 +82,15 @@ public class GestionClient
 	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public DefaultListModel<String> rechercherPrenom(String test){
+	public DefaultListModel<String> rechercherPrenom(String test)
+	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
-		if(!test.isEmpty()) {
-			for(int i=0;i<liste.size();i++) {
-				Client tmp = liste.get(i);
+		for(int i=0;i<liste.size();i++) {
+			Client tmp = liste.get(i);
 				if(tmp.getPrenom().length()>(test.length()-1)) {
-					if(test.equals(tmp.getPrenom().substring(0,test.length()))) {
-						searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
-					}
+				if(test.toLowerCase().equals(tmp.getPrenom().substring(0,test.length()).toLowerCase())) {
+					searchList.addElement(tmp.getPrenom());
 				}
 			}
 		}
@@ -107,33 +103,17 @@ public class GestionClient
 	 * @return Un modele de JList qui contient tous les clients correspondant au critere test.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public DefaultListModel<String> rechercherAdresse(String test){
-		DefaultListModel<String> searchList = new DefaultListModel<String>();
-		ListeClients liste = lireClients();
-		if(!test.isEmpty()) {
-			for(int i=0;i<liste.size();i++) {
-				Client tmp = liste.get(i);
-				if(tmp.getAdresse().length()>(test.length()-1)) {
-					if(test.equals(tmp.getAdresse().substring(0,test.length()))) {
-						searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
-					}
-				}
-			}
-		}
-		return searchList;
-	}
-
-	/**
-	 * Extrait tous les clients de l'archive "clients".
-	 * @return Un modele de JList qui contient tous les clients enregistres.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public DefaultListModel<String> tous(){
+	public DefaultListModel<String> rechercherAdresse(String test)
+	{
 		DefaultListModel<String> searchList = new DefaultListModel<String>();
 		ListeClients liste = lireClients();
 		for(int i=0;i<liste.size();i++) {
 			Client tmp = liste.get(i);
-			searchList.addElement(tmp.getNom()+"#"+tmp.getPrenom()+"#"+tmp.getAdresse());
+			if(tmp.getAdresse().length()>(test.length()-1)) {
+				if(test.toLowerCase().equals(tmp.getAdresse().substring(0,test.length()).toLowerCase())) {
+					searchList.addElement(tmp.getAdresse());
+				}
+			}
 		}
 		return searchList;
 	}
@@ -186,7 +166,7 @@ public class GestionClient
 	 * @param liste Liste a serialiser.
 	 * @throws IOException, FileNotFoundException
 	 */
-	public void enregistrerClients(ListeClients liste)
+	private static void enregistrerClients(ListeClients liste)
 	{
 		try
 		{
@@ -219,7 +199,7 @@ public class GestionClient
 	 * @return Liste des clients enregistres.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	public ListeClients lireClients()
+	private static ListeClients lireClients()
 	{
 		ListeClients liste = new ListeClients();
 

@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import client.Client;
+import vehicule.ListeVehicules;
 import vehicule.Vehicule;
+import vehicule.Voiture;
 
 /**
  * Permet la gestion de l'archive contenant les locations.
@@ -16,6 +18,7 @@ import vehicule.Vehicule;
  */
 public class GestionLocation
 {
+	/** Location a gerer. */
 	private Location location;
 
 	/**
@@ -25,38 +28,50 @@ public class GestionLocation
 	{
 		location = new Location(client, vehicule, debut, fin, reduction);
 	}
-
-	public GestionLocation()
-	{
-	}
 	
 	/**
-	 * Ajoute une nouvelle location à l'archive.
+	 * Ajoute une nouvelle location a l'archive.
 	 * 
-	 * @param location Location à enregistrer.
 	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterLocation()
 	{
-		ListeLocations liste = lireLocations();
+		ListeLocations liste = lireLocations("locations");
 		if (liste.contains(location))
 		{
 			liste.add(location);
-			enregistrerLocation(liste);
+			enregistrerLocation(liste, "locations");
 		}
+	}
+	
+	/**
+	 * Supprime la location du fichier "locations" et l'archive dans le fichier "locations_finies".
+	 * 
+	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
+	 */
+	public void archiverLocation()
+	{
+		ListeLocations liste1 = lireLocations("locations");
+		ListeLocations liste2 = lireLocations("locations_finies");
+		liste1.remove(location);
+		location.setRendu(true);
+		enregistrerLocation(liste1, "locations");
+		liste2.add(location);
+		enregistrerLocation(liste2, "locations_finies");
 	}
 
 	/**
-	 * Serialise la liste des locations pour mettre a jour l'archive "locations".
+	 * Serialise la liste des locations (finies) pour mettre a jour fichier.
 	 * 
 	 * @param liste Liste a serialiser.
+	 * @param fichier Fichier a mettre a jour (doit etre "locations" ou "locations_finies").
 	 * @throws IOException, FileNotFoundException
 	 */
-	public void enregistrerLocation(ListeLocations liste)
+	private static void enregistrerLocation(ListeLocations liste, String fichier)
 	{
 		try
 		{
-			FileOutputStream fos = new FileOutputStream("locations");
+			FileOutputStream fos = new FileOutputStream(fichier);
 			ObjectOutputStream out = new ObjectOutputStream(fos);
 			out.writeObject(liste);
 			fos.close();
@@ -67,18 +82,19 @@ public class GestionLocation
 	}
 
 	/**
-	 * Deserialise la liste des locations a partir de l'archive "locations".
+	 * Deserialise la liste des locations (finies) a partir du parametre fichier.
 	 * 
+	 * @param fichier Fichier a lire (doit etre "locations" ou "locations_finies").
 	 * @return Liste des locations enregistrees.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	private static ListeLocations lireLocations()
+	private static ListeLocations lireLocations(String fichier)
 	{
 		ListeLocations liste = new ListeLocations();
 
 		try
 		{
-			FileInputStream fis = new FileInputStream("locations");
+			FileInputStream fis = new FileInputStream(fichier);
 			ObjectInputStream in = new ObjectInputStream(fis);
 			liste = (ListeLocations) in.readObject();
 			fis.close();

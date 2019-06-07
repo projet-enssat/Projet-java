@@ -20,6 +20,8 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	 * Menu a ecouter.
 	 */
 	MenuClient menu;
+	/** (Des)active la reaction aux evenements. */
+	boolean enabled = true;
 	boolean test = false; // DEBUGGING PURPOSE
 	
 	/**
@@ -34,20 +36,23 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource().getClass()==(new JButton().getClass())){
-			switch (((JButton) e.getSource()).getText())
-			{
-				case "Enregistrer":
-					menu.enregistrement();
-					break;
-				case "Tous":
-					menu.refreshTous();
-					break;
-				case "Valider":
-					menu.suppression();
-					break;
-				default:
-					break;
+		if (enabled)
+		{
+			if(e.getSource().getClass()==(new JButton().getClass())){
+				switch (((JButton) e.getSource()).getText())
+				{
+					case "Enregistrer":
+						menu.enregistrement();
+						break;
+					case "Tous":
+						menu.refreshTous();
+						break;
+					case "Valider":
+						menu.suppression();
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	}
@@ -55,7 +60,7 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	@Override
 	public void valueChanged(ListSelectionEvent e)
 	{
-		if(!e.getValueIsAdjusting()) {
+		if(enabled && !e.getValueIsAdjusting()) {
 			if((String) ((JList<String>) e.getSource()).getSelectedValue()!=null) {
 				menu.autoCompletion(((JList<String>) e.getSource()).getSelectedValue());
 			}
@@ -68,12 +73,15 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		if(e.getDocument().equals(menu.getNomDocument())) {
-			menu.refreshNom();
-		}else if(e.getDocument().equals(menu.getPrenomDocument())) {
-			menu.refreshPrenom();
-		}else {
-			menu.refreshAdresse();
+		if (enabled)
+		{
+			if(e.getDocument().equals(menu.getNomDocument())) {
+				menu.refreshNom();
+			}else if(e.getDocument().equals(menu.getPrenomDocument())) {
+				menu.refreshPrenom();
+			}else {
+				menu.refreshAdresse();
+			}
 		}
 	}
 
@@ -87,5 +95,13 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 		}else if(e.getDocument().equals(menu.getAdresseDocument())) {
 			menu.refreshAdresse();
 		}
+	}
+
+	/**
+	 * Toggles the action listener. Used for autocompletion.
+	 */
+	public void toggle()
+	{
+		enabled = !enabled;
 	}
 }

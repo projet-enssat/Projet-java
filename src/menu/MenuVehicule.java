@@ -112,7 +112,7 @@ public class MenuVehicule extends Menu
 		if (choixMod == null)
 		{
 			choixMod = new JList<String>();
-			choixMod.setModel(new GestionVehicule().tousLesModeles("", ""));
+			choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
 			choixMod.setPreferredSize(new Dimension(150, 100));
 			choixMod.addListSelectionListener(new ActionVehicule(this));
 		}
@@ -128,7 +128,7 @@ public class MenuVehicule extends Menu
 		if (choixImm == null)
 		{
 			choixImm = new JList<String>();
-			choixImm.setModel(new GestionVehicule().toutesLesImmats("", "", ""));
+			choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
 			choixImm.setPreferredSize(new Dimension(200, 100));
 			choixImm.addListSelectionListener(new ActionVehicule(this));
 		}

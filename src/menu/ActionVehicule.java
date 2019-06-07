@@ -19,8 +19,13 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 	 * Menu a ecouter.
 	 */
 	MenuVehicule menu;
-	boolean enabled;
+	/** (Des)active la reaction aux evenements. */
+	boolean enabled = true;
 
+	/**
+	 * Constructeur.
+	 * @param menu Menu a ecouter.
+	 */
 	public ActionVehicule(MenuVehicule menu)
 	{
 		this.menu = menu;
@@ -140,7 +145,6 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 			}
 			if (e.getSource().equals(menu.getChoixImm()))
 			{
-				System.out.println(menu.getChoixImm().getSelectedValue());
 				menu.setTexteImm((menu.getChoixImm().getSelectedValue()));
 				menu.autoCompletion();
 			}
@@ -161,12 +165,12 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		menu.autoCompletion();
+		if (enabled) { menu.autoCompletion(); }
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
-		menu.autoCompletion();
+		if (enabled) { menu.autoCompletion(); }
 	}
 }

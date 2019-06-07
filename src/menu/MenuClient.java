@@ -75,14 +75,17 @@ public class MenuClient extends Menu
 		}
 		if(nomClient == null) {
 			nomClient = new JTextField();
+			nomClient.setText("");
 			nomClient.getDocument().addDocumentListener(new ActionClient(this));
 		}
 		if(prenom == null) {
 			prenom = new JTextField();
+			prenom.setText("");
 			prenom.getDocument().addDocumentListener(new ActionClient(this));
 		}
 		if(adresse == null) {
 			adresse = new JTextField();
+			adresse.setText("");
 			adresse.getDocument().addDocumentListener(new ActionClient(this));
 		}
 		if(affichage == null) {
@@ -106,7 +109,7 @@ public class MenuClient extends Menu
 		if(test.contains("#")) {
 			gestionClient.select(test);
 		}
-		nomClient.setText(gestionClient.getClient().getNom());
+		nomClient.setText("WUT");//gestionClient.getClient().getNom());
 		prenom.setText(gestionClient.getClient().getPrenom());
 		adresse.setText(gestionClient.getClient().getAdresse());
 	}
@@ -139,9 +142,17 @@ public class MenuClient extends Menu
 	 * Remplace les modeles des listes de noms, prenoms et adresses, pour qu'elles affichent tous les clients enregistres.
 	 */
 	public void refreshTous() {
-		listNom.setModel(gestionClient.tous());
-		listPrenom.setModel(gestionClient.tous());
-		listAdresse.setModel(gestionClient.tous());
+		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
+		
+		listNom.setModel(gestionClient.rechercherNom(""));
+		listPrenom.setModel(gestionClient.rechercherPrenom(""));
+		listAdresse.setModel(gestionClient.rechercherAdresse(""));
+		
+		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
+		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 	}
 	
 	/**
@@ -149,7 +160,9 @@ public class MenuClient extends Menu
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public void refreshNom() {
+		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
 		listNom.setModel(gestionClient.rechercherNom(nomClient.getText()));
+		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
 	}
 	
 	/**
@@ -157,7 +170,9 @@ public class MenuClient extends Menu
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public void refreshPrenom() {
+		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
 		listPrenom.setModel(gestionClient.rechercherPrenom(prenom.getText()));
+		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
 	}
 	
 	/**
@@ -165,7 +180,9 @@ public class MenuClient extends Menu
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public void refreshAdresse() {
+		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 		listAdresse.setModel(gestionClient.rechercherAdresse(adresse.getText()));
+		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 	}
 
 	/**
@@ -177,15 +194,9 @@ public class MenuClient extends Menu
 		fenetre.setBounds(600,200,700,500);
 		GridLayout grillePrincipale = new GridLayout(3,3);
 		fenetre.setLayout(grillePrincipale);
-		fenetre.add(textFieldLabelLeft("Nom :",nomClient));
-		nomClient.addActionListener(new ActionClient(this));
-		nomClient.setText("");
-		fenetre.add(textFieldLabelLeft("Prenom :",prenom));
-		prenom.addActionListener(new ActionClient(this));
-		prenom.setText("");
-		fenetre.add(textFieldLabelLeft("Adresse :",adresse));
-		adresse.addActionListener(new ActionClient(this));
-		adresse.setText("");
+		fenetre.add(textFieldLabelLeft("Nom :", nomClient));
+		fenetre.add(textFieldLabelLeft("Prenom :", prenom));
+		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
 		listNom.setModel(gestionClient.rechercherNom(nomClient.getText()));
 		listPrenom.setModel(gestionClient.rechercherPrenom(prenom.getText()));
 		listAdresse.setModel(gestionClient.rechercherAdresse(adresse.getText()));
