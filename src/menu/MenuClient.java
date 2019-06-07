@@ -35,6 +35,8 @@ public class MenuClient extends Menu {
 	public MenuClient()
 	{
 		listNom.addListSelectionListener(new ActionClient(this));
+		listPrenom.addListSelectionListener(new ActionClient(this));
+		listAdresse.addListSelectionListener(new ActionClient(this));
 		nomClient.addActionListener(new ActionClient(this));
 		prenom.addActionListener(new ActionClient(this));
 		adresse.addActionListener(new ActionClient(this));
