@@ -50,7 +50,13 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 					case "Tous":
 						menu.refreshTous();
 						break;
-					case "Valider":
+					case "Rechercher":
+						menu.modification();
+						break;
+					case "Modifier":
+						menu.validation();
+						break;
+					case "Supprimer":
 						menu.suppression();
 						break;
 					default:

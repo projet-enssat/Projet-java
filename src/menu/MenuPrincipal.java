@@ -21,6 +21,10 @@ public class MenuPrincipal extends Menu
 	/** Element graphique */
 	private static JButton nouvVehi = new JButton("Nouveau Vehicule");
 	/** Element graphique */
+	private static JButton modiClient = new JButton("Modifier Client");
+	/** Element graphique */
+	private static JButton modiVehi = new JButton("Modifier Vehicule");
+	/** Element graphique */
 	private static JButton suppClient = new JButton("Supprimer Client");
 	/** Element graphique */
 	private static JButton suppLoc = new JButton("Fin Location");
@@ -53,7 +57,7 @@ public class MenuPrincipal extends Menu
 		JPanel location = label(new JLabel("Location"));
 		JPanel vehicule = label(new JLabel("Vehicule"));
 		
-		JPanel action = new JPanel(new GridLayout(3,3));
+		JPanel action = new JPanel(new GridLayout(4,3));
 		action.add(client);
 		action.add(location);
 		action.add(vehicule);
@@ -63,6 +67,11 @@ public class MenuPrincipal extends Menu
 		action.add(bouton(nouvLoc));
 		nouvVehi.addActionListener(new Action(this));
 		action.add(bouton(nouvVehi));
+		modiClient.addActionListener(new Action(this));
+		action.add(bouton(modiClient));
+		action.add(vide());
+		modiVehi.addActionListener(new Action(this));
+		action.add(bouton(modiVehi));
 		suppClient.addActionListener(new Action(this));
 		action.add(bouton(suppClient));
 		suppLoc.addActionListener(new Action(this));
@@ -70,13 +79,10 @@ public class MenuPrincipal extends Menu
 		suppVehi.addActionListener(new Action(this));
 		action.add(bouton(suppVehi));
 
-		JPanel test2 = new JPanel(new FlowLayout());
-
 		JFrame principal = new JFrame("Accueil");
-		principal.setBounds(600, 200, 700, 500);
-		principal.setLayout(new GridLayout(4,1));
+		principal.setBounds(600, 200, 800, 700);
+		principal.setLayout(new GridLayout(3,1));
 		principal.add(optionVerif);
-		principal.add(test2);
 		principal.add(action);
 		principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		principal.setVisible(true);

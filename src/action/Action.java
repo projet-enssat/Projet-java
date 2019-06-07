@@ -43,9 +43,14 @@ public class Action implements ActionListener
 				nouvclient.setValidation("Enregistrer");
 				nouvclient.affMenu("Nouveau Client");
 				break;
+			case "Modifier Client":
+				MenuClient modiclient = new MenuClient();
+				modiclient.setValidation("Rechercher");
+				modiclient.recherche();
+				break;
 			case "Supprimer Client":
 				MenuClient suppclient = new MenuClient();
-				suppclient.setValidation("Rechercher");
+				suppclient.setValidation("Supprimer");
 				suppclient.recherche();
 				break;
 			case "Debut Location":
@@ -56,6 +61,8 @@ public class Action implements ActionListener
 				break;
 			case "Nouveau Vehicule":
 				new MenuVehicule().nouveauVehicule();
+				break;
+			case "Modifier Vehicule":
 				break;
 			case "Supprimer Vehicule":
 				new MenuVehicule().supprimerVehicule();

@@ -101,6 +101,54 @@ public class MenuClient extends Menu
 	}
 	
 	/**
+	 * Ouvre une fenêtre permettant de modifier les champ d'un client.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
+	public void modification() {
+		boolean estClient = false;
+		if(gestionClient.EstClient() && gestionClient.getClient().getNom() == nomClient.getText() && gestionClient.getClient().getPrenom() == prenom.getText() && gestionClient.getClient().getAdresse() == adresse.getText()) {
+			estClient = true;
+		}else {
+			Client client = gestionClient.getClient();
+			client.setNom(nomClient.getText());
+			client.setAdresse(adresse.getText());
+			client.setPrenom(prenom.getText());
+			gestionClient.setClient(client);
+			if(gestionClient.EstClient()) {
+				estClient = true;
+			}else {
+				Erreur("Erreur de Modification Client","Ce que vous voulez modifier n'est pas un client", "Fermez la fenêtre puis verifier le client");
+			}
+		}if(estClient) {
+			fenetre.dispose();
+			validation.setText("Modifier");
+			affMenu("Modifier le Client selectionner");
+			nomClient.setText(gestionClient.getClient().getNom());
+			prenom.setText(gestionClient.getClient().getPrenom());
+			adresse.setText(gestionClient.getClient().getAdresse());
+			dateApprentissage.setText(gestionClient.getClient().getDateApprentissage());
+			datePermis.setText(gestionClient.getClient().getDatePermis());
+		}
+	}
+	
+	/**
+	 * Enregistre les modification des champs d'un client
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
+	public void validation() {
+		if(nomClient.getText()!=gestionClient.getClient().getNom()
+				|| prenom.getText()!=gestionClient.getClient().getPrenom()
+				|| adresse.getText()!=gestionClient.getClient().getAdresse()
+				|| dateApprentissage.getText()!=gestionClient.getClient().getDateApprentissage()
+				|| datePermis.getText()!=gestionClient.getClient().getDatePermis()) {
+			gestionClient.supprimerClient();
+			gestionClient.setClient(nomClient.getText(),prenom.getText(),adresse.getText(),dateApprentissage.getText(),datePermis.getText());
+			gestionClient.ajouterClient();
+		}
+		fenetre.dispose();
+	}
+	
+	/**
 	 * Complete les champs nom, prenom et adresse du client lors de la selection.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
@@ -155,7 +203,6 @@ public class MenuClient extends Menu
 		fenetre.add(scrollListNom);
 		fenetre.add(scrollListPrenom);
 		fenetre.add(scrollListAdresse);
-		validation.setText("Valider");
 		fenetre.add(validation);
 		fenetre.add(vide());
 		fenetre.add(affichage);
@@ -218,7 +265,9 @@ public class MenuClient extends Menu
 		fenetre.add(nomPrenom);
 		adresse.setText("");
 		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
+		datePermis.setText("");
 		fenetre.add(textFieldLabelLeft("Date du permis :", datePermis));
+		dateApprentissage.setText("");
 		fenetre.add(textFieldLabelLeft("Date de fin d'apprentissage :", dateApprentissage));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
