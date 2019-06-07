@@ -57,7 +57,7 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JFrame fenetre2;
 	/** Element graphique */
-	private static JCheckBox reduction = new JCheckBox("Réduction");
+	private static JCheckBox reduction = new JCheckBox("Rï¿½duction");
 
 	/** Acces a l'archive "clients". */
 	private static GestionClient gestionClient = new GestionClient();
@@ -190,7 +190,7 @@ public class MenuLocation extends Menu {
 		panelClient.add(panelNom);
 
 		JPanel panelPrenom = new JPanel(new GridLayout(2,1));
-		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prénom :"));
+		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prï¿½nom :"));
 		panelPrenom.add(listV(choixPre));
 		panelClient.add(panelPrenom);
 
@@ -211,7 +211,7 @@ public class MenuLocation extends Menu {
 		panelVehi.add(panelMarque);
 
 		JPanel panelModele = new JPanel(new GridLayout(2,1));
-		panelModele.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		panelModele.add(textFieldLabelAbove(modeleTF, "Modï¿½le :"));
 		modeleTF.setEnabled(false);
 		panelVehi.add(panelModele);
 
@@ -226,7 +226,7 @@ public class MenuLocation extends Menu {
 
 		JPanel panelLoc = new JPanel(new GridLayout(4,1));
 
-		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Début :"));
+		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Dï¿½but :"));
 		panelLoc.add(textFieldLabelAbove(finTF, "Date de Fin : "));
 		
 		JPanel panelReduction = new JPanel();
@@ -252,7 +252,7 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		fenetre2.add(textFieldLabelAbove(nomTF, "Nom :"));
-		fenetre2.add(textFieldLabelAbove(prenomTF, "Prénom :"));
+		fenetre2.add(textFieldLabelAbove(prenomTF, "Prï¿½nom :"));
 		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
 		fenetre2.add(bouton(validation1));
 		fenetre2.add(listV(choixNom));
@@ -273,7 +273,7 @@ public class MenuLocation extends Menu {
 		marqueTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modï¿½le :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
@@ -294,7 +294,7 @@ public class MenuLocation extends Menu {
 		marqueTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modï¿½le :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
@@ -304,7 +304,7 @@ public class MenuLocation extends Menu {
 	}
 	
 	/**
-	 * Change le statut des boutons de validation si un client est corectement selectionner. Utilise lors d'une validation.
+	 * Change le statut des boutons de validation si un client est correctement selectionne. Utilise lors d'une validation.
 	 */
 	public void validerClient() {
 		if(gestionClient.EstClient()) {
@@ -313,8 +313,18 @@ public class MenuLocation extends Menu {
 				validation3.setEnabled(true);
 			}
 		}else {
-			Erreur("Erreur de selection Client","Le Client que vous avez selectionner n'existe pas", "Fermez la fenêtre puis recommencer");
+			Erreur("Erreur de selection Client","Le Client que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencer");
 		}
+	}
+	
+	/**
+	 * Remplit les attributs de gestionClient avec ceux entres.
+	 */
+	public void verifClient()
+	{
+		gestionClient.getClient().setNom(nomTF.getText());
+		gestionClient.getClient().setPrenom(prenomTF.getText());
+		gestionClient.getClient().setAdresse(adresseTF.getText());
 	}
 
 	/**

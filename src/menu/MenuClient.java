@@ -236,18 +236,6 @@ public class MenuClient extends Menu
 		nomClient.setText(client.getNom());
 		dateApprentissage.setText(client.getDateApprentissage());
 	}
-	
-	/**
-	 * Remplit les attributs de gestionClient avec ceux entres.
-	 */
-	public void verifClient()
-	{
-		gestionClient.getClient().setNom(nomClient.getText());
-		gestionClient.getClient().setPrenom(prenom.getText());
-		gestionClient.getClient().setAdresse(adresse.getText());
-		gestionClient.getClient().setDateApprentissage(dateApprentissage.getText());
-		gestionClient.getClient().setDatePermis(datePermis.getText());
-	}
 
 	/**
 	 * Donne un nom au bouton de validation.

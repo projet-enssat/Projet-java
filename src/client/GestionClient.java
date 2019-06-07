@@ -56,7 +56,7 @@ public class GestionClient
 	}
 	
 	/**
-	 * Vérifie si le client existe dans la base de donné et si oui lance la récupération des dates de permis et de fin d'apprentissage
+	 * Verifie si le client existe dans la base de donnees et si oui lance la recuperation des dates de permis et de fin d'apprentissage
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public boolean EstClient() {
@@ -164,9 +164,9 @@ public class GestionClient
 	}
 
 	/**
-	 * Ajoute un nouveau client a l'archive, s'il n'est pas encore enregistre.
+	 * Ajoute un nouveau client aï¿½l'archive, s'il n'est pas encore enregistre.
 	 * 
-	 * @param client Client a enregistrer.
+	 * @param client Client aï¿½enregistrer.
 	 * @throws IOException, ClassNotFoundException, FileNotFoundException, EOFException
 	 */
 	public void ajouterClient()
