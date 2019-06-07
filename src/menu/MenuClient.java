@@ -192,7 +192,7 @@ public class MenuClient extends Menu
 				gestionClient.supprimerClient();
 				fenetre.dispose();
 			}else {
-				Erreur("Erreur de Suppression Client","Ce que vous voulez effacez n'est pas un client", "Fermez la fenï¿½tre puis vï¿½rifier le client");
+				Erreur("Erreur de Suppression Client","Ce que vous voulez effacez n'est pas un client", "Fermez la fenêtre puis vérifier le client");
 			}
 		}
 	}

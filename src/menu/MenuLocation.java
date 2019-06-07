@@ -57,7 +57,7 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JFrame fenetre2;
 	/** Element graphique */
-	private static JCheckBox reduction = new JCheckBox("Rï¿½duction");
+	private static JCheckBox reduction = new JCheckBox("Réduction");
 
 	/** Acces a l'archive "clients". */
 	private static GestionClient gestionClient = new GestionClient();
@@ -190,7 +190,7 @@ public class MenuLocation extends Menu {
 		panelClient.add(panelNom);
 
 		JPanel panelPrenom = new JPanel(new GridLayout(2,1));
-		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prï¿½nom :"));
+		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prénom :"));
 		panelPrenom.add(listV(choixPre));
 		panelClient.add(panelPrenom);
 
@@ -211,7 +211,7 @@ public class MenuLocation extends Menu {
 		panelVehi.add(panelMarque);
 
 		JPanel panelModele = new JPanel(new GridLayout(2,1));
-		panelModele.add(textFieldLabelAbove(modeleTF, "Modï¿½le :"));
+		panelModele.add(textFieldLabelAbove(modeleTF, "Modéle :"));
 		modeleTF.setEnabled(false);
 		panelVehi.add(panelModele);
 
@@ -226,7 +226,7 @@ public class MenuLocation extends Menu {
 
 		JPanel panelLoc = new JPanel(new GridLayout(4,1));
 
-		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Dï¿½but :"));
+		panelLoc.add(textFieldLabelAbove(debutTF, "Date de Début :"));
 		panelLoc.add(textFieldLabelAbove(finTF, "Date de Fin : "));
 		
 		JPanel panelReduction = new JPanel();
@@ -252,7 +252,7 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		fenetre2.add(textFieldLabelAbove(nomTF, "Nom :"));
-		fenetre2.add(textFieldLabelAbove(prenomTF, "Prï¿½nom :"));
+		fenetre2.add(textFieldLabelAbove(prenomTF, "Prénom :"));
 		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
 		fenetre2.add(bouton(validation1));
 		fenetre2.add(listV(choixNom));
@@ -273,7 +273,7 @@ public class MenuLocation extends Menu {
 		marqueTF.setEnabled(false);
 		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modï¿½le :"));
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modéle :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
@@ -292,9 +292,9 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		marqueTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
+		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));s
 		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modï¿½le :"));
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modéle :"));
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
