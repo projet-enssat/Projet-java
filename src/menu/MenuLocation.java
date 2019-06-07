@@ -663,7 +663,6 @@ public class MenuLocation extends Menu {
 				dateFin = new GregorianCalendar(Integer.parseInt(annee),Integer.parseInt(mois),Integer.parseInt(jour));
 			}
 		}
-		System.out.println("test");
 		if(debutCorrect && finCorrect) {
 			long difference = dateFin.getTimeInMillis() - dateDebut.getTimeInMillis();
 			Calendar diff = new GregorianCalendar();
@@ -675,6 +674,16 @@ public class MenuLocation extends Menu {
 					reduction.setEnabled(false);
 				}
 			}
+		}else if(debutCorrect){
+			reduction.setEnabled(false);
+			finTF.setText("Format : jj/mm/aaaa svp");
+		}else if(finCorrect){
+			reduction.setEnabled(false);
+			debutTF.setText("Format : jj/mm/aaaa svp");
+		}else {
+			reduction.setEnabled(false);
+			debutTF.setText("Format : jj/mm/aaaa svp");
+			finTF.setText("Format : jj/mm/aaaa svp");
 		}
 	}
 	
