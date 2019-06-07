@@ -1,6 +1,7 @@
 package menu;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -18,8 +19,7 @@ public abstract class Menu
 	public JPanel bouton(JButton bouton)
 	{
 		JPanel panel = new JPanel();
-		FlowLayout pospanel = new FlowLayout();
-		panel.setLayout(pospanel);
+		panel.setLayout(new FlowLayout());
 		panel.add(bouton);
 		return panel;
 	}
@@ -27,57 +27,73 @@ public abstract class Menu
 	public JPanel vide()
 	{
 		JPanel vide = new JPanel();
-		FlowLayout espaceVide = new FlowLayout();
-		vide.setLayout(espaceVide);
+		vide.setLayout(new FlowLayout());
 		return vide;
 	}
 
 	public JPanel comboBoxV(JComboBox<String> comboBox)
 	{
 		JPanel panel = new JPanel();
-		FlowLayout pospanel = new FlowLayout();
-		panel.setLayout(pospanel);
+		panel.setLayout(new FlowLayout());
 		panel.add(comboBox);
+		return panel;
+	}
+	
+	public JPanel comboBoxV2(JComboBox<String> comboBox)
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(3,3));
+		panel.add(vide());
+		panel.add(vide());
+		panel.add(vide());
+		panel.add(vide());
+		panel.add(comboBox);
+		panel.add(vide());
+		panel.add(vide());
+		panel.add(vide());
+		panel.add(vide());
+		
 		return panel;
 	}
 
 	public JPanel listV(JList<String> list)
 	{
 		JPanel panel = new JPanel();
-		FlowLayout pospanel = new FlowLayout();
-		panel.setLayout(pospanel);
+		panel.setLayout(new FlowLayout());
 		panel.add(list);
 		return panel;
 	}
 
-	public JPanel textFieldNoLabel(JTextField tf)
+	public JPanel textFieldLabelAbove(JTextField tf, String nom)
 	{
-
+		JPanel insidePanel = new JPanel();
+		insidePanel.setLayout(new BorderLayout());
+		insidePanel.add(vide(), BorderLayout.EAST);
+		insidePanel.add(vide(), BorderLayout.WEST);
+		insidePanel.add(tf, BorderLayout.CENTER);
+		
 		JPanel panel = new JPanel();
-		GridLayout pospanel = new GridLayout(1, 1);
-		panel.setLayout(pospanel);
-		panel.add(tf);
+		panel.setLayout(new GridLayout(3,1));
+		panel.add(new JLabel(nom, 0));
+		panel.add(insidePanel);
 		return panel;
 	}
 
-	public JPanel textField(String nom, JTextField text)
+	public JPanel textFieldLabelLeft(String nom, JTextField tf)
 	{
 		JPanel panelSec = new JPanel();
-		GridLayout posPanelS = new GridLayout(3, 1);
-		panelSec.setLayout(posPanelS);
+		panelSec.setLayout(new GridLayout(3, 1));
 		panelSec.add(vide());
-		panelSec.add(text);
+		panelSec.add(tf);
 
 		JPanel panelTer = new JPanel();
-		GridLayout posPanelT = new GridLayout(1, 3);
-		panelTer.setLayout(posPanelT);
+		panelTer.setLayout(new GridLayout(1, 3));
 		panelTer.add(vide());
 		JLabel label = new JLabel(nom);
 		panelTer.add(label);
 
 		JPanel panelPrinc = new JPanel();
-		GridLayout posPanelP = new GridLayout(1, 2);
-		panelPrinc.setLayout(posPanelP);
+		panelPrinc.setLayout(new GridLayout(1, 2));
 		panelPrinc.add(panelTer);
 		panelPrinc.add(panelSec);
 		return panelPrinc;

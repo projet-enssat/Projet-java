@@ -1,5 +1,6 @@
 package location;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -82,7 +83,7 @@ public class GestionLocation
 			ObjectInputStream in = new ObjectInputStream(fis);
 			liste = (ListeLocations) in.readObject();
 			fis.close();
-		} catch (IOException | ClassNotFoundException e)
+		} catch (EOFException eof) {} catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
 		}

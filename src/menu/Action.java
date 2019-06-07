@@ -34,7 +34,7 @@ public class Action implements ActionListener
 				break;
 			case "Début Location":
 				MenuLocation nouvLoc = new MenuLocation();
-				nouvLoc.recherche();
+				nouvLoc.nouvLocation("test");
 				break;
 			case "Fin Location":
 

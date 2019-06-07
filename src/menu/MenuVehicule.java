@@ -179,11 +179,10 @@ public class MenuVehicule extends Menu
 		GridLayout layout = new GridLayout(2, 4);
 		fenetre3.setLayout(layout);
 
-		
-		fenetre3.add(comboBoxV(choixV));
-		fenetre3.add(textFieldNoLabel(texteMar));
-		fenetre3.add(textFieldNoLabel(texteMod));
-		fenetre3.add(textFieldNoLabel(texteImm));
+		fenetre3.add(comboBoxV2(choixV));
+		fenetre3.add(textFieldLabelAbove(texteMar, "Marque :"));
+		fenetre3.add(textFieldLabelAbove(texteMod, "Modèle :"));
+		fenetre3.add(textFieldLabelAbove(texteImm, "Immatriculation :"));
 		fenetre3.add(vide());
 		fenetre3.add(listV(choixMar));
 		fenetre3.add(listV(choixMod));
@@ -195,9 +194,9 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textField("Compteur", km));
-		infoVehicule.add(textField("Puissance", puissance));
-		infoVehicule.add(textField("Places", nbPlaces));
+		infoVehicule.add(textFieldLabelLeft("Compteur", km));
+		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
+		infoVehicule.add(textFieldLabelLeft("Places", nbPlaces));
 		fenetre.add(infoVehicule);
 		if (fenetre.getTitle() == "Nouvelle Voiture")
 		{
@@ -214,8 +213,8 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textField("Compteur", km));
-		infoVehicule.add(textField("Puissance", puissance));
+		infoVehicule.add(textFieldLabelLeft("Compteur", km));
+		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
 		infoVehicule.add(vide());
 		fenetre.add(infoVehicule);
 		if (fenetre.getTitle() == "Nouvelle Moto")
@@ -233,8 +232,8 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textField("Heures de vol", nbHeuresVol));
-		infoVehicule.add(textField("Nombre de moteurs", nbMoteurs));
+		infoVehicule.add(textFieldLabelLeft("Heures de vol", nbHeuresVol));
+		infoVehicule.add(textFieldLabelLeft("Nombre de moteurs", nbMoteurs));
 		infoVehicule.add(vide());
 		fenetre.add(infoVehicule);
 		if (fenetre.getTitle() == "Nouvel Avion")
@@ -250,12 +249,12 @@ public class MenuVehicule extends Menu
 
 	public void addGeneralTextFields()
 	{
-		infoVehicule.add(textField("Modèle", modele));
-		infoVehicule.add(textField("Etat", etat));
-		infoVehicule.add(textField("Prix par jour", prixJour));
-		infoVehicule.add(textField("Marque", marque));
-		infoVehicule.add(textField("Immatriculation", immat));
-		infoVehicule.add(textField("Vitesse", vitesse));
+		infoVehicule.add(textFieldLabelLeft("Modèle", modele));
+		infoVehicule.add(textFieldLabelLeft("Etat", etat));
+		infoVehicule.add(textFieldLabelLeft("Prix par jour", prixJour));
+		infoVehicule.add(textFieldLabelLeft("Marque", marque));
+		infoVehicule.add(textFieldLabelLeft("Immatriculation", immat));
+		infoVehicule.add(textFieldLabelLeft("Vitesse", vitesse));
 	}
 	
 	public void autoCompletion()
