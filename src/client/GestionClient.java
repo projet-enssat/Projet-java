@@ -211,6 +211,11 @@ public class GestionClient
 		liste.remove(client);
 		enregistrerClients(liste);
 	}
+	
+	public void lire() {
+		ListeClients liste = lireClients();
+		System.out.println(liste.toString());
+	}
 
 	/**
 	 * Deserialise la liste des clients a partir de l'archive "clients".

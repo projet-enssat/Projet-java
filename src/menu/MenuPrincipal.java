@@ -81,6 +81,10 @@ public class MenuPrincipal extends Menu
 		principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		principal.setVisible(true);
 	}
+	
+	public void affichage() {
+		
+	}
 
 	/**
 	 * Lancement du programme.

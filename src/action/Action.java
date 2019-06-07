@@ -61,6 +61,7 @@ public class Action implements ActionListener
 				new MenuVehicule().supprimerVehicule();
 				break;
 			case "Options":
+				new GestionClient().lire();
 				break;
 		}
 	}
