@@ -12,6 +12,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 
 /**
  * Classe abstraite dont heritent toutes celles utilisees pour l'affichage Swing (Menu*.java).
@@ -84,6 +85,16 @@ public abstract class Menu
 		panel.add(vide());
 		
 		return panel;
+	}
+	
+	public void Erreur(String nom, String ligne1, String ligne2) {
+		JFrame erreur = new JFrame(nom);
+		erreur.setSize(500,200);
+		erreur.setLocationRelativeTo(null);
+		erreur.setLayout(new GridLayout(2,1));
+		erreur.add(new JLabel(ligne1));
+		erreur.add(new JLabel(ligne2));
+		erreur.setVisible(true);
 	}
 	
 	/**

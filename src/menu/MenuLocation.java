@@ -259,9 +259,13 @@ public class MenuLocation extends Menu {
 	 * Change le statut des boutons de validation. Utilise lors d'une validation.
 	 */
 	public void validerClient() {
-		validation1.setEnabled(false);
-		if(!validation2.isEnabled()) {
-			validation3.setEnabled(true);
+		if(gestionClient.EstClient()) {
+			validation1.setEnabled(false);
+			if(!validation2.isEnabled()) {
+				validation3.setEnabled(true);
+			}
+		}else {
+			Erreur("Erreur de selection Client","Le Client que vous avez selectionner n'existe pas", "Fermez la fenêtre puis recommencer");
 		}
 	}
 

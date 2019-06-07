@@ -192,13 +192,7 @@ public class MenuClient extends Menu
 				gestionClient.supprimerClient();
 				fenetre.dispose();
 			}else {
-				JFrame erreur = new JFrame("Erreur de Suppression Client");
-				erreur.setSize(500,200);
-				erreur.setLocationRelativeTo(null);
-				erreur.setLayout(new GridLayout(2,1));
-				erreur.add(new JLabel("Ce que vous voulez effacez n'est pas un client"));
-				erreur.add(new JLabel("Fermez la fenêtre puis vérifier le client"));
-				erreur.setVisible(true);
+				Erreur("Erreur de Suppression Client","Ce que vous voulez effacez n'est pas un client", "Fermez la fenêtre puis vérifier le client");
 			}
 		}
 	}
