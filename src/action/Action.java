@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import client.GestionClient;
+import location.GestionLocation;
 import menu.Menu;
 import menu.MenuClient;
 import menu.MenuLocation;
@@ -68,7 +69,7 @@ public class Action implements ActionListener
 				new MenuVehicule().supprimerVehicule();
 				break;
 			case "Options":
-				new GestionClient().lire();
+				System.out.println(new GestionLocation(null, null, null, null, false).lireLocations("locations"));
 				break;
 		}
 	}

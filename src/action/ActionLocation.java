@@ -44,6 +44,7 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 					menu.verifClient();
 					menu.validerClient();
 				} else if(e.getSource().equals(menu.getValidation2())) {
+					menu.verifVehicule();
 					menu.validerVehicule();
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					menu.enregistrement();

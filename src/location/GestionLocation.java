@@ -118,7 +118,7 @@ public class GestionLocation
 	 * @return Liste des locations enregistrees.
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
-	private static ListeLocations lireLocations(String fichier)
+	public ListeLocations lireLocations(String fichier)
 	{
 		ListeLocations liste = new ListeLocations();
 
