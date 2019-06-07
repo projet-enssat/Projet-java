@@ -92,6 +92,59 @@ public class GestionVehicule
 				break;
 		}
 	}
+	
+	public void rechercheVehicule(String immat)
+	{
+		ListeVehicules liste = lireVehicules();
+		if (classe.equals("") || classe.equals("Voiture"))
+		{
+			for (int i=0 ; i<liste.getListeV().size() ; ++i)
+			{
+				if (liste.getListeV().get(i).getImmatriculation().equals(immat))
+				{
+					vehicule = liste.getListeV().get(i);
+				}
+			}
+		}
+		if (classe.equals("") || classe.equals("Moto"))
+		{
+			for (int i=0 ; i<liste.getListeM().size() ; ++i)
+			{
+				if (liste.getListeM().get(i).getImmatriculation().equals(immat))
+				{
+					vehicule = liste.getListeM().get(i);
+				}
+			}
+		}
+		if (classe.equals("") || classe.equals("Avion"))
+		{
+			for (int i=0 ; i<liste.getListeA().size() ; ++i)
+			{
+				if (liste.getListeA().get(i).getImmatriculation().equals(immat))
+				{
+					vehicule = liste.getListeA().get(i);
+				}
+			}
+		}
+	}
+	
+	public void supprimerVehicule()
+	{
+		switch (classe)
+		{
+			case "Voiture":
+				supprimerVoiture();
+				break;
+			case "Moto":
+				supprimerMoto();
+				break;
+			case "Avion":
+				supprimerAvion();
+				break;
+			default:
+				break;
+		}
+	}
 
 	/**
 	 * Ajoute une nouvelle voiture à l'archive.

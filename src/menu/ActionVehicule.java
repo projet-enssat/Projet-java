@@ -38,7 +38,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 			}
 			if (e.getSource().equals(menu.getOK()))
 			{
-				menu.getFenetreChoix().dispose();
+				menu.getFenetre2().dispose();
 				String nom = "";
 				switch (menu.getChoixV().getSelectedIndex())
 				{
@@ -94,6 +94,25 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 				}
 				menu.enregistrement(classe);
 				menu.getFenetre().dispose();
+			} else if (e.getSource().equals(menu.getSupprimer()))
+			{
+				String classe = "";
+				switch (menu.getChoixV().getSelectedIndex())
+				{
+					case 1:
+						classe = "Voiture";
+						break;
+					case 2:
+						classe = "Moto";
+						break;
+					case 3:
+						classe = "Avion";
+						break;
+					default:
+						break;
+				}
+				menu.suppression(classe);
+				menu.getFenetre3().dispose();
 			} else if (e.getSource().equals(menu.getChoixV()) && !menu.isNouveau())
 			{
 				menu.autoCompletion();
