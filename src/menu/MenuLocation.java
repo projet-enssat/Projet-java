@@ -12,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.Document;
-
-import action.ActionClient;
 import action.ActionLocation;
 import client.GestionClient;
 import location.GestionLocation;
@@ -39,6 +36,10 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JTextField immatTF;
 	/** Element graphique */
+	private static JTextField kmTF;
+	/** Element graphique */
+	private static JTextField prixTF;
+	/** Element graphique */
 	private static JList<String> choixNom;
 	/** Element graphique */
 	private static JList<String> choixPre;
@@ -57,7 +58,7 @@ public class MenuLocation extends Menu {
 	/** Element graphique */
 	private static JFrame fenetre2;
 	/** Element graphique */
-	private static JCheckBox reduction = new JCheckBox("Reduction");
+	private static JCheckBox reduction = new JCheckBox("Réduction");
 
 	/** Acces a l'archive "clients". */
 	private static GestionClient gestionClient = new GestionClient();
@@ -133,6 +134,18 @@ public class MenuLocation extends Menu {
 			immatTF = new JTextField();
 			immatTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
+
+		if (kmTF == null)
+		{
+			kmTF = new JTextField();
+			kmTF.getDocument().addDocumentListener(new ActionLocation(this));
+		}
+
+		if (prixTF == null)
+		{
+			prixTF = new JTextField();
+			prixTF.setEnabled(false);
+		}
 		
 		if (choixNom == null)
 		{
@@ -146,7 +159,7 @@ public class MenuLocation extends Menu {
 		{
 			choixPre = new JList<String>();
 			choixPre.setPreferredSize(new Dimension(200,150));
-			choixPre.setModel(gestionClient.rechercherPrenom(""));
+			choixPre.setModel(gestionClient.rechercherPrenom(null, ""));
 			choixPre.addListSelectionListener(new ActionLocation(this));
 		}
 
@@ -154,7 +167,7 @@ public class MenuLocation extends Menu {
 		{
 			choixAdr = new JList<String>();
 			choixAdr.setPreferredSize(new Dimension(200,150));
-			choixAdr.setModel(gestionClient.rechercherAdresse(""));
+			choixAdr.setModel(gestionClient.rechercherAdresse(null, null,""));
 			choixAdr.addListSelectionListener(new ActionLocation(this));
 		}
 		
@@ -291,12 +304,13 @@ public class MenuLocation extends Menu {
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
-		marqueTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
-		modeleTF.setEnabled(false);
-		fenetre2.add(textFieldLabelAbove(modeleTF, "Modele :"));
-		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
-		fenetre2.add(bouton(validation2));
+		debutTF.setEnabled(false);
+		
+		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
+		finTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(finTF, "Fin :"));
+		fenetre2.add(textFieldLabelAbove(kmTF, "Kilomètres parcourus :"));
+		fenetre2.add(bouton(validation3));
 		fenetre2.add(vide());
 		fenetre2.add(vide());
 		fenetre2.add(listV(choixImm));
@@ -386,8 +400,8 @@ public class MenuLocation extends Menu {
 		((ActionLocation) choixAdr.getListSelectionListeners()[0]).toggle();
 		
 		choixNom.setModel(gestionClient.rechercherNom(nomTF.getText()));
-		choixPre.setModel(gestionClient.rechercherPrenom(prenomTF.getText()));
-		choixAdr.setModel(gestionClient.rechercherAdresse(adresseTF.getText()));
+		choixPre.setModel(gestionClient.rechercherPrenom(nomTF.getText(), prenomTF.getText()));
+		choixAdr.setModel(gestionClient.rechercherAdresse(nomTF.getText(), prenomTF.getText(), adresseTF.getText()));
 		
 		((ActionLocation) choixNom.getListSelectionListeners()[0]).toggle();
 		((ActionLocation) choixPre.getListSelectionListeners()[0]).toggle();
@@ -504,7 +518,22 @@ public class MenuLocation extends Menu {
 	public JTextField getImmatTF() {
 		return immatTF;
 	}
-	
+
+	/**
+	 * Renvoie kmTF.
+	 * @return JTextField de saisie de kilometres parcourus.
+	 */
+	public JTextField getKmTF() {
+		return kmTF;
+	}
+
+	/**
+	 * Renvoie prixTF.
+	 * @return JTextField d'affichage du prix.
+	 */
+	public JTextField getPrixTF() {
+		return prixTF;
+	}
 
 	/**
 	 * Renvoie fenetre2.

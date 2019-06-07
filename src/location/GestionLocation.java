@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import client.Client;
-import vehicule.ListeVehicules;
 import vehicule.Vehicule;
-import vehicule.Voiture;
 
 /**
  * Permet la gestion de l'archive contenant les locations.
@@ -58,6 +56,20 @@ public class GestionLocation
 		enregistrerLocation(liste1, "locations");
 		liste2.add(location);
 		enregistrerLocation(liste2, "locations_finies");
+	}
+	
+	public Location rechercheLocation(Client client, String immat)
+	{
+		ListeLocations liste = lireLocations("locations");
+		Location result = null;
+		for (int i=0 ; i<liste.size() ; ++i)
+		{
+			if (liste.get(i).getClient().equals(client) && liste.get(i).getVehicule().getImmatriculation().toLowerCase().equals(immat.toLowerCase()))
+			{
+				result = liste.get(i);
+			}
+		}
+		return result;
 	}
 
 	/**

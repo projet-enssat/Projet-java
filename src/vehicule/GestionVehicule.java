@@ -563,4 +563,13 @@ public class GestionVehicule
 	{
 		return vehicule;
 	}
+
+	/**
+	 * Remplace vehicule.
+	 * @param vehicule Vehicule a ecrire.
+	 */
+	public void setVehicule(Vehicule vehicule)
+	{
+		this.vehicule = vehicule;
+	}
 }

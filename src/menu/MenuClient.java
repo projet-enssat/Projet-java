@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -159,8 +158,8 @@ public class MenuClient extends Menu
 		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 		
 		listNom.setModel(gestionClient.rechercherNom(nomClient.getText()));
-		listPrenom.setModel(gestionClient.rechercherPrenom(prenom.getText()));
-		listAdresse.setModel(gestionClient.rechercherAdresse(adresse.getText()));
+		listPrenom.setModel(gestionClient.rechercherPrenom(nomClient.getText(), prenom.getText()));
+		listAdresse.setModel(gestionClient.rechercherAdresse(nomClient.getText(), prenom.getText(), adresse.getText()));
 		
 		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
 		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
@@ -174,8 +173,8 @@ public class MenuClient extends Menu
 		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 		
 		listNom.setModel(gestionClient.rechercherNom(""));
-		listPrenom.setModel(gestionClient.rechercherPrenom(""));
-		listAdresse.setModel(gestionClient.rechercherAdresse(""));
+		listPrenom.setModel(gestionClient.rechercherPrenom(null, ""));
+		listAdresse.setModel(gestionClient.rechercherAdresse(null, null, ""));
 		
 		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
 		((ActionClient) listPrenom.getListSelectionListeners()[0]).toggle();
@@ -194,9 +193,9 @@ public class MenuClient extends Menu
 		fenetre.add(textFieldLabelLeft("Nom :", nomClient));
 		fenetre.add(textFieldLabelLeft("Prenom :", prenom));
 		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
-		listNom.setModel(gestionClient.rechercherNom(nomClient.getText()));
-		listPrenom.setModel(gestionClient.rechercherPrenom(prenom.getText()));
-		listAdresse.setModel(gestionClient.rechercherAdresse(adresse.getText()));
+		listNom.setModel(gestionClient.rechercherNom(""));
+		listPrenom.setModel(gestionClient.rechercherPrenom(null, ""));
+		listAdresse.setModel(gestionClient.rechercherAdresse(null, null, ""));
 		scrollListNom = new JScrollPane(listNom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollListPrenom = new JScrollPane(listPrenom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollListAdresse = new JScrollPane(listAdresse,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);

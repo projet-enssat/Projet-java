@@ -121,8 +121,7 @@ public class ActionVehicule implements ActionListener, ListSelectionListener, Do
 					default:
 						break;
 				}
-				menu.suppression(classe);
-				menu.getFenetre3().dispose();
+				menu.validerVehicule(classe);
 			} else if (e.getSource().equals(menu.getChoixV()) && !menu.isNouveau())
 			{
 				menu.autoCompletion();
