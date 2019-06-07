@@ -58,13 +58,13 @@ public class GestionLocation
 		enregistrerLocation(liste2, "locations_finies");
 	}
 	
-	public Location rechercheLocation(Client client, String immat)
+	public Location rechercheLocation()
 	{
 		ListeLocations liste = lireLocations("locations");
 		Location result = null;
 		for (int i=0 ; i<liste.size() ; ++i)
 		{
-			if (liste.get(i).getClient().equals(client) && liste.get(i).getVehicule().getImmatriculation().toLowerCase().equals(immat.toLowerCase()))
+			if (liste.get(i).getClient().equals(location.getClient()) && liste.get(i).getVehicule().getImmatriculation().toLowerCase().equals(location.getVehicule().getImmatriculation().toLowerCase()))
 			{
 				result = liste.get(i);
 			}
@@ -115,6 +115,15 @@ public class GestionLocation
 			e.printStackTrace();
 		}
 		return liste;
+	}
+	
+	/**
+	 * Renvoie location.
+	 * @return Location.
+	 */
+	public Location getLocation()
+	{
+		return location;
 	}
 
 }

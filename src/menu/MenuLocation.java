@@ -64,6 +64,8 @@ public class MenuLocation extends Menu {
 	private static GestionClient gestionClient = new GestionClient();
 	/** Acces a l'archive "vehicules". */
 	private static GestionVehicule gestionVehicule = new GestionVehicule();
+	/** Acces a l'archive "locations". */
+	private static GestionLocation gestionLocation;
 	
 	/** Indique quelle fenetre est ouverte. */
 	private static boolean nouveau = true;
@@ -95,57 +97,67 @@ public class MenuLocation extends Menu {
 		{
 			debutTF = new JTextField();
 		}
+		debutTF.setText("");
 		
 		if (finTF == null)
 		{
 			finTF = new JTextField();
 		}
+		finTF.setText("");
 		
 		if (nomTF == null)
 		{
 			nomTF = new JTextField();
 			nomTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
+		nomTF.setText("");
 		
 		if (prenomTF == null)
 		{
 			prenomTF = new JTextField();
 			prenomTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
+		prenomTF.setText("");
 		
 		if (adresseTF == null)
 		{
 			adresseTF = new JTextField();
 			adresseTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
+		adresseTF.setText("");
 		
 		if (marqueTF == null)
 		{
 			marqueTF = new JTextField();
 		}
+		marqueTF.setText("");
 		
 		if (modeleTF == null)
 		{
 			modeleTF = new JTextField();
 		}
+		modeleTF.setText("");
 		
 		if (immatTF == null)
 		{
 			immatTF = new JTextField();
 			immatTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
+		immatTF.setText("");
 
 		if (kmTF == null)
 		{
 			kmTF = new JTextField();
 			kmTF.getDocument().addDocumentListener(new ActionLocation(this));
 		}
+		kmTF.setText("");
 
 		if (prixTF == null)
 		{
 			prixTF = new JTextField();
 			prixTF.setEnabled(false);
 		}
+		prixTF.setText("");
 		
 		if (choixNom == null)
 		{
@@ -264,6 +276,9 @@ public class MenuLocation extends Menu {
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
+		nomTF.setText("");
+		prenomTF.setText("");
+		adresseTF.setText("");
 		fenetre2.add(textFieldLabelAbove(nomTF, "Nom :"));
 		fenetre2.add(textFieldLabelAbove(prenomTF, "Prenom :"));
 		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
@@ -284,9 +299,12 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		marqueTF.setEnabled(false);
+		marqueTF.setText("");
 		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
 		modeleTF.setEnabled(false);
+		modeleTF.setText("");
 		fenetre2.add(textFieldLabelAbove(modeleTF, "Modele :"));
+		immatTF.setText("");
 		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
@@ -305,15 +323,13 @@ public class MenuLocation extends Menu {
 		fenetre2.setLayout(new GridLayout(2, 4));
 
 		debutTF.setEnabled(false);
-		
+		debutTF.setText(gestionLocation.getLocation().getDebut());
 		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
 		finTF.setEnabled(false);
+		finTF.setText(gestionLocation.getLocation().getFin());
 		fenetre2.add(textFieldLabelAbove(finTF, "Fin :"));
 		fenetre2.add(textFieldLabelAbove(kmTF, "Kilomètres parcourus :"));
 		fenetre2.add(bouton(validation3));
-		fenetre2.add(vide());
-		fenetre2.add(vide());
-		fenetre2.add(listV(choixImm));
 		fenetre2.setVisible(true);
 	}
 	
@@ -327,7 +343,7 @@ public class MenuLocation extends Menu {
 				validation3.setEnabled(true);
 			}
 		}else {
-			Erreur("Erreur de selection Client","Le Client que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencer");
+			Erreur("Erreur de selection Client","Le Client que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencez");
 		}
 	}
 	
@@ -340,14 +356,29 @@ public class MenuLocation extends Menu {
 		gestionClient.getClient().setPrenom(prenomTF.getText());
 		gestionClient.getClient().setAdresse(adresseTF.getText());
 	}
+	
+	/**
+	 * Remplit les attributs de gestionClient avec ceux entres.
+	 */
+	public void verifVehicule()
+	{
+		gestionVehicule.getVehicule().setImmatriculation(immatTF.getText());
+		gestionVehicule.getVehicule().setMarque(marqueTF.getText());
+		gestionVehicule.getVehicule().setModele(modeleTF.getText());
+	}
 
 	/**
 	 * Change le statut des boutons de validation si un vehicule est corectement selectionner. Utilise lors d'une validation.
 	 */
 	public void validerVehicule() {
-		validation2.setEnabled(false);
-		if(!validation1.isEnabled()) {
-			validation3.setEnabled(true);
+		gestionLocation = new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction.isSelected());
+		if (!(gestionLocation.rechercheLocation() == null))
+		{
+			gestionLocation.archiverLocation();
+			fenetre2.dispose();
+			finLocation3();
+		} else {
+			Erreur("Erreur de selection Location","La Location que vous avez selectionnee n'existe pas", "Fermez la fenetre puis recommencez");
 		}
 	}
 	
