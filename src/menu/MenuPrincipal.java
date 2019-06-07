@@ -19,13 +19,13 @@ public class MenuPrincipal extends Menu
 	/** Element graphique */
 	private static JButton nouvLoc = new JButton("Début Location");
 	/** Element graphique */
-	private static JButton nouvVehi = new JButton("Nouveau Véhicule");
+	private static JButton nouvVehi = new JButton("Nouveau Vehicule");
 	/** Element graphique */
 	private static JButton suppClient = new JButton("Supprimer Client");
 	/** Element graphique */
 	private static JButton suppLoc = new JButton("Fin Location");
 	/** Element graphique */
-	private static JButton suppVehi = new JButton("Supprimer Véhicule");
+	private static JButton suppVehi = new JButton("Supprimer Vehicule");
 	/** Element graphique */
 	private static JButton options = new JButton("Options");
 
