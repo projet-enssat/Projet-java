@@ -53,11 +53,11 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 			} else
 			{
 				if (e.getSource().equals(menu.getValidation1())) {
-					menu.getFenetre2().dispose();
-					menu.finLocation2();
+					menu.verifClient();
+					menu.validerClientSuppr();
 				} else if(e.getSource().equals(menu.getValidation2())) {
 					menu.verifVehicule();
-					menu.validerVehicule();
+					menu.validerLocation();
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					//menu.archivage();
 				}

@@ -6,7 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import javax.swing.DefaultListModel;
+
 import client.Client;
+import vehicule.ListeVehicules;
 import vehicule.Vehicule;
 
 /**
@@ -70,6 +74,20 @@ public class GestionLocation
 			}
 		}
 		return result;
+	}
+	
+	public DefaultListModel<String> rechercheVehicules()
+	{
+		ListeLocations liste = lireLocations("locations");
+		DefaultListModel<String> dlm = new DefaultListModel<String>();
+		for (int i=0 ; i<liste.size() ; ++i)
+		{
+			if (liste.get(i).getClient().equals(location.getClient()))
+			{
+				dlm.addElement(liste.get(i).getVehicule().getImmatriculation());
+			}
+		}
+		return dlm;
 	}
 
 	/**

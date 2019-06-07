@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentListener;
+
 import action.ActionLocation;
 import client.GestionClient;
 import location.GestionLocation;
@@ -67,6 +69,9 @@ public class MenuLocation extends Menu {
 	/** Acces a l'archive "locations". */
 	private static GestionLocation gestionLocation;
 	
+	/** Element graphique */
+	private DocumentListener doc = new ActionLocation(this);
+	
 	/** Indique quelle fenetre est ouverte. */
 	private static boolean nouveau = true;
 	
@@ -80,18 +85,21 @@ public class MenuLocation extends Menu {
 			validation1 = new JButton("Valider");
 			validation1.addActionListener(new ActionLocation(this));
 		}
+		validation1.setEnabled(true);
 		
 		if (validation2 == null)
 		{
 			validation2 = new JButton("Valider");
 			validation2.addActionListener(new ActionLocation(this));
 		}
+		validation2.setEnabled(true);
 		
 		if (validation3 == null)
 		{
 			validation3 = new JButton("Valider");
 			validation3.addActionListener(new ActionLocation(this));
 		}
+		validation3.setEnabled(true);
 		
 		if (debutTF == null)
 		{
@@ -141,7 +149,7 @@ public class MenuLocation extends Menu {
 		if (immatTF == null)
 		{
 			immatTF = new JTextField();
-			immatTF.getDocument().addDocumentListener(new ActionLocation(this));
+			immatTF.getDocument().addDocumentListener(doc);
 		}
 		immatTF.setText("");
 
@@ -309,6 +317,8 @@ public class MenuLocation extends Menu {
 		fenetre2.add(bouton(validation2));
 		fenetre2.add(vide());
 		fenetre2.add(vide());
+		((ActionLocation) doc).toggle();
+		choixImm.setModel(gestionLocation.rechercheVehicules());
 		fenetre2.add(listV(choixImm));
 		fenetre2.setVisible(true);
 	}
@@ -348,6 +358,37 @@ public class MenuLocation extends Menu {
 	}
 	
 	/**
+	 * Change le statut des boutons de validation si un client est correctement selectionne. Utilise lors d'une validation.
+	 */
+	public void validerVehicule() {
+		gestionVehicule.rechercheVehicule(immatTF.getText());
+		if(!(gestionVehicule.getVehicule() == null)) {
+			validation2.setEnabled(false);
+			if(!validation1.isEnabled()) {
+				validation3.setEnabled(true);
+			}
+		}else {
+			Erreur("Erreur de selection Vehicule","Le Vehicule que vous avez selectionne n'existe pas", "Fermez la fenetre puis recommencez");
+		}
+	}
+	
+	
+	/**
+	 * Change le statut des boutons de validation si un client est correctement selectionne. Utilise lors d'une validation.
+	 */
+	public void validerClientSuppr() {
+		gestionLocation = new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction.isSelected());
+		gestionLocation.getLocation().setClient(gestionClient.getClient());
+		if(gestionClient.EstClient() && !(gestionLocation.rechercheVehicules() == null))
+		{
+			fenetre2.dispose();
+			finLocation2();
+		} else {
+			Erreur("Erreur de selection Client","Le Client que vous avez selectionne n'existe pas ou n'a pas de location en cours", "Fermez la fenetre puis recommencez");
+		}
+	}
+	
+	/**
 	 * Remplit les attributs de gestionClient avec ceux entres.
 	 */
 	public void verifClient()
@@ -370,11 +411,10 @@ public class MenuLocation extends Menu {
 	/**
 	 * Change le statut des boutons de validation si un vehicule est corectement selectionner. Utilise lors d'une validation.
 	 */
-	public void validerVehicule() {
+	public void validerLocation() {
 		gestionLocation = new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction.isSelected());
 		if (!(gestionLocation.rechercheLocation() == null))
 		{
-			gestionLocation.archiverLocation();
 			fenetre2.dispose();
 			finLocation3();
 		} else {
