@@ -306,7 +306,6 @@ public class MenuVehicule extends Menu
 			fenetre3.dispose();
 			String classV = gestionVehicule.getVehicule().getClass().toString();
 			String classe = classV.substring(classV.indexOf(".")+1);
-			System.out.println(classe);
 			switch (classe)
 			{
 				case "Voiture":
@@ -348,7 +347,6 @@ public class MenuVehicule extends Menu
 	public void enregistrerMod() {
 		String classV = gestionVehicule.getVehicule().getClass().toString();
 		String classe = classV.substring(classV.indexOf(".")+1);
-		System.out.println(classe);
 		switch (classe)
 		{
 			case "Voiture":

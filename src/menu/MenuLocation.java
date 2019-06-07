@@ -104,12 +104,14 @@ public class MenuLocation extends Menu {
 		if (debutTF == null)
 		{
 			debutTF = new JTextField();
+			debutTF.addActionListener(new ActionLocation(this));
 		}
 		debutTF.setText("");
 		
 		if (finTF == null)
 		{
 			finTF = new JTextField();
+			finTF.addActionListener(new ActionLocation(this));
 		}
 		finTF.setText("");
 		
@@ -628,6 +630,7 @@ public class MenuLocation extends Menu {
 		boolean debutCorrect=false;
 		boolean finCorrect=false;
 		
+		System.out.println("test");
 		if(debut.contains("/")) {
 			tJour=debut.indexOf("/");
 			jour=debut.substring(0,tJour);
@@ -658,10 +661,7 @@ public class MenuLocation extends Menu {
 		}
 		if(debutCorrect && finCorrect) {
 			long difference = dateFin.getTimeInMillis() - dateDebut.getTimeInMillis();
-			System.out.println(difference);
 			Calendar diff = new GregorianCalendar();
-			diff.setTimeInMillis(difference);
-			System.out.println(diff.get(Calendar.MONTH));
 			if(diff.get(Calendar.DAY_OF_MONTH)>6 || diff.get(Calendar.MONTH)>0 || diff.get(Calendar.YEAR)>0) {
 				reduction.setEnabled(true);
 			}else {
