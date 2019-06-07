@@ -49,11 +49,10 @@ public class Action implements ActionListener
 				suppclient.recherche();
 				break;
 			case "Début Location":
-				MenuLocation nouvLoc = new MenuLocation();
-				nouvLoc.nouvLocation("test");
+				new MenuLocation().nouvLocation("Nouvelle location");
 				break;
 			case "Fin Location":
-
+				new MenuLocation().finLocation1();
 				break;
 			case "Nouveau Véhicule":
 				new MenuVehicule().nouveauVehicule();

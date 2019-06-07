@@ -40,14 +40,28 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	{
 		if (enabled)
 		{
-			if (e.getSource().equals(menu.getValidation1())) {
-				menu.validerClient();
-			} else if(e.getSource().equals(menu.getValidation2())) {
-				menu.validerVehicule();
-			} else if(e.getSource().equals(menu.getValidation3())) {
-				menu.enregistrement();
-			} else {
-				menu.verifDate();
+			if (menu.isNouveau())
+			{
+				if (e.getSource().equals(menu.getValidation1())) {
+					menu.validerClient();
+				} else if(e.getSource().equals(menu.getValidation2())) {
+					menu.validerVehicule();
+				} else if(e.getSource().equals(menu.getValidation3())) {
+					menu.enregistrement();
+				} else {
+					menu.verifDate();
+				}
+			} else
+			{
+				if (e.getSource().equals(menu.getValidation1())) {
+					menu.getFenetre2().dispose();
+					menu.finLocation2();
+				} else if(e.getSource().equals(menu.getValidation2())) {
+					menu.getFenetre2().dispose();
+					//menu.finLocation3();
+				} else if(e.getSource().equals(menu.getValidation3())) {
+					//menu.archivage();
+				}
 			}
 		}
 	}
@@ -58,13 +72,21 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		if (enabled) { menu.autoCompletion(); }
+		removeUpdate(e);
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
-		if (enabled) { menu.autoCompletion(); }
+		if (enabled)
+		{
+			if (e.getDocument().getDefaultRootElement().equals(menu.getNomTF())
+			 || e.getDocument().getDefaultRootElement().equals(menu.getPrenomTF())
+			 || e.getDocument().getDefaultRootElement().equals(menu.getAdresseTF()))
+			{ menu.autoCompletionClient(); }
+			else if (e.getDocument().getDefaultRootElement().equals(menu.getImmatTF()))
+			{ menu.autoCompletionVehicule(); }
+		}
 	}
 
 	@Override
@@ -75,19 +97,19 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 			if (e.getSource().equals(menu.getListNom()))
 			{
 				menu.getNomTF().setText(menu.getListNom().getSelectedValue());
-				menu.autoCompletion();
+				menu.autoCompletionClient();
 			} else if (e.getSource().equals(menu.getListPrenom()))
 			{
 				menu.getPrenomTF().setText(menu.getListPrenom().getSelectedValue());
-				menu.autoCompletion();
+				menu.autoCompletionClient();
 			} else if (e.getSource().equals(menu.getListAdresse()))
 			{
 				menu.getAdresseTF().setText(menu.getListAdresse().getSelectedValue());
-				menu.autoCompletion();
+				menu.autoCompletionClient();
 			} else if (e.getSource().equals(menu.getListImmat()))
 			{
 				menu.getImmatTF().setText(menu.getListImmat().getSelectedValue());
-				menu.autoCompletion();
+				menu.autoCompletionVehicule();
 			}
 		}
 	}

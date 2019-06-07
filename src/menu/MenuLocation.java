@@ -173,6 +173,8 @@ public class MenuLocation extends Menu {
 	 */
 	public void nouvLocation(String nom)
 	{
+		nouveau = true;
+		
 		if (fenetre != null) { fenetre.removeAll(); }
 		fenetre = new JFrame(nom);
 		fenetre.setBounds(600,200,700,500);
@@ -240,7 +242,7 @@ public class MenuLocation extends Menu {
 		fenetre.setVisible(true);
 	}
 	
-	public void finLocation()
+	public void finLocation1()
 	{
 		nouveau = false;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
@@ -249,6 +251,34 @@ public class MenuLocation extends Menu {
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
+		fenetre2.add(textFieldLabelAbove(nomTF, "Nom :"));
+		fenetre2.add(textFieldLabelAbove(prenomTF, "Prénom :"));
+		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
+		fenetre2.add(bouton(validation1));
+		fenetre2.add(listV(choixNom));
+		fenetre2.add(listV(choixPre));
+		fenetre2.add(listV(choixAdr));
+		fenetre2.setVisible(true);
+	}
+	
+	public void finLocation2()
+	{
+		nouveau = false;
+		if (fenetre2 != null) { fenetre2.removeAll(); }
+		fenetre2 = new JFrame("Supprimer une location");
+		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		fenetre2.setLayout(new GridLayout(2, 4));
+
+		marqueTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(marqueTF, "Marque :"));
+		modeleTF.setEnabled(false);
+		fenetre2.add(textFieldLabelAbove(modeleTF, "Modèle :"));
+		fenetre2.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
+		fenetre2.add(bouton(validation2));
+		fenetre2.add(vide());
+		fenetre2.add(vide());
+		fenetre2.add(listV(choixImm));
 		fenetre2.setVisible(true);
 	}
 	
@@ -284,16 +314,6 @@ public class MenuLocation extends Menu {
 		}
 		new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), red).ajouterLocation();
 		fenetre.dispose();
-	}
-	
-	/**
-	 * Complete les champs nom, prenom et adresse du client lors de la selection.
-	 * @throws IOException, ClassNotFoundException, EOFException
-	 */
-	public void autoCompletion()
-	{
-		autoCompletionClient();
-		autoCompletionVehicule();
 	}
 	
 	/**
@@ -385,69 +405,79 @@ public class MenuLocation extends Menu {
 	public JList<String> getListImmat() {
 		return choixImm;
 	}
-	
+
 	/**
-	 * Renvoie la zone d'ecriture du JTextField debutTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie debutTF.
+	 * @return JTextField de saisie de date de debut.
 	 */
 	public JTextField getDebutTF() {
 		return debutTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField finTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie finTF.
+	 * @return JTextField de saisie de date de fin.
 	 */
 	public JTextField getFinTF() {
 		return finTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField nomTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie nomTF.
+	 * @return JTextField de saisie de nom.
 	 */
 	public JTextField getNomTF() {
 		return nomTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField prenomTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie prenomTF.
+	 * @return JTextField de saisie de prenom.
 	 */
 	public JTextField getPrenomTF() {
 		return prenomTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField adresseTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie adresseTF.
+	 * @return JTextField de saisie d'adresse.
 	 */
 	public JTextField getAdresseTF() {
 		return adresseTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField marqueTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie marqueTF.
+	 * @return JTextField de saisie de marque.
 	 */
 	public JTextField getMarqueTF() {
 		return marqueTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField modeleTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie modeleTF.
+	 * @return JTextField de saisie de modele.
 	 */
 	public JTextField getModeleTF() {
 		return modeleTF;
 	}
 
 	/**
-	 * Renvoie la zone d'ecriture du JTextField immatTF.
-	 * @return Un Document, declenchant un evenement lors de l'ecriture dans le JTextField.
+	 * Renvoie immatTF.
+	 * @return JTextField de saisie d'immatriculation.
 	 */
 	public JTextField getImmatTF() {
 		return immatTF;
+	}
+	
+
+	/**
+	 * Renvoie fenetre2.
+	 * @return JFrame de suppression de location.
+	 */
+	public JFrame getFenetre2()
+	{
+		return fenetre2;
 	}
 	
 	/**
@@ -515,4 +545,13 @@ public class MenuLocation extends Menu {
 		}
 	}
 	
+	/**
+	 * Renvoie nouveau.
+	 * @return boolean indiquant si la fenetre ouverte est celle d'enregistrement ou non.
+	 */
+	public boolean isNouveau()
+	{
+		return nouveau;
+	}
+
 }
