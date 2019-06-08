@@ -158,7 +158,7 @@ public class MenuLocation extends Menu {
 		if (kmTF == null)
 		{
 			kmTF = new JTextField();
-			kmTF.getDocument().addDocumentListener(new ActionLocation(this));
+			kmTF.addActionListener(new ActionLocation(this));
 		}
 		kmTF.setText("");
 
@@ -200,6 +200,26 @@ public class MenuLocation extends Menu {
 			choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, ""));
 			choixImm.addListSelectionListener(new ActionLocation(this));
 		}
+	}
+
+	/**
+	 * Calcul le prix de la location
+	 */
+	public void calculPrix() {
+		Float prixFinal;
+		Float prixDepart = gestionVehicule.getVehicule().getPrixJour();
+		if(new Float(kmTF.getText())<=50) {
+			prixFinal = prixDepart;
+		}else if(new Float(kmTF.getText())<=100) {
+			prixFinal = prixDepart + new Float(0.5)*(new Float(kmTF.getText())-50);
+		}else if(new Float(kmTF.getText())<=200) {
+			prixFinal = prixDepart + new Float(0.5)*new Float(50)+ new Float(0.3)*(new Float(kmTF.getText())-100);
+		}else if(new Float(kmTF.getText())<=300) {
+			prixFinal = prixDepart + new Float(0.5)*new Float(50)+ new Float(0.3)*new Float(100) + new Float(0.2)*(new Float(kmTF.getText())-200);
+		}else {
+			prixFinal = prixDepart + new Float(0.5)*new Float(50)+ new Float(0.3)*new Float(100)  + new Float(0.2)*new Float(100) + new Float(0.1)*(new Float(kmTF.getText())-300);
+		}
+		prixTF.setText(prixFinal.toString());
 	}
 	
 	/**
@@ -332,7 +352,7 @@ public class MenuLocation extends Menu {
 		fenetre2 = new JFrame("Supprimer une location");
 		fenetre2.setBounds(400, 400, 1100, 200);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		fenetre2.setLayout(new GridLayout(2, 4));
+		fenetre2.setLayout(new GridLayout(3, 4));
 
 		debutTF.setEnabled(false);
 		debutTF.setText(gestionLocation.getLocation().getDebut());
@@ -342,6 +362,8 @@ public class MenuLocation extends Menu {
 		finTF.setText(gestionLocation.getLocation().getFin());
 		fenetre2.add(textFieldLabelAbove(finTF, "Fin :"));
 		fenetre2.add(textFieldLabelAbove(kmTF, "Kilomètres parcourus :"));
+		fenetre2.add(textFieldLabelAbove(prixTF, "Prix :"));
+		prixTF.setEnabled(false);
 		fenetre2.add(bouton(validation3));
 		fenetre2.setVisible(true);
 	}

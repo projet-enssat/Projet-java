@@ -61,13 +61,17 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 					menu.validerLocation();
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					//menu.archivage();
-				}
+				}else {
+					menu.calculPrix();
+				} 
 			}
 		}
 	}
 
 	@Override
-	public void changedUpdate(DocumentEvent e) {}
+	public void changedUpdate(DocumentEvent e) {
+		
+	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e)
