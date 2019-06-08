@@ -61,6 +61,7 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 					menu.validerLocation();
 				} else if(e.getSource().equals(menu.getValidation3())) {
 					menu.archivage();
+					menu.getFenetre2().dispose();
 				}else {
 					menu.calculPrix();
 				} 

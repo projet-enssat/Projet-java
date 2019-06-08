@@ -15,6 +15,41 @@ public class Location implements Serializable
 	/***/
 	private static final long serialVersionUID = 1L;
 	
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((client == null) ? 0 : client.hashCode());
+		result = prime * result + ((vehicule == null) ? 0 : vehicule.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Location other = (Location) obj;
+		if (client == null)
+		{
+			if (other.client != null)
+				return false;
+		} else if (!client.equals(other.client))
+			return false;
+		if (vehicule == null)
+		{
+			if (other.vehicule != null)
+				return false;
+		} else if (!vehicule.equals(other.vehicule))
+			return false;
+		return true;
+	}
+
 	/** Client concerne. */
 	private Client client;
 	/** Vehicule concerne. */
