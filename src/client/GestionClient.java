@@ -56,7 +56,7 @@ public class GestionClient
 	}
 	
 	/**
-	 * Verifie si le client existe dans la base de donnees et si oui lance la recuperation des dates de permis et de fin d'apprentissage
+	 * Verifie si le client existe dans la base de donnees et si oui, lance la recuperation des dates de permis et de fin d'apprentissage
 	 * @throws IOException, ClassNotFoundException, EOFException
 	 */
 	public boolean estClient() {
