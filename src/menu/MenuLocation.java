@@ -418,7 +418,7 @@ public class MenuLocation extends Menu {
 	 * Change le statut des boutons de validation si un client est correctement selectionne. Utilise lors d'une validation.
 	 */
 	public void validerClient() {
-		if(gestionClient.EstClient()) {
+		if(gestionClient.estClient()) {
 			validation1.setEnabled(false);
 			if (!validation2.isEnabled())
 			{
@@ -454,7 +454,7 @@ public class MenuLocation extends Menu {
 	public void validerClientSuppr() {
 		gestionLocation = new GestionLocation(gestionClient.getClient(), gestionVehicule.getVehicule(), debutTF.getText(), finTF.getText(), reduction.isSelected());
 		gestionLocation.getLocation().setClient(gestionClient.getClient());
-		if(gestionClient.EstClient() && !(gestionLocation.rechercheVehicules() == null))
+		if(gestionClient.estClient() && !(gestionLocation.rechercheVehicules() == null))
 		{
 			fenetre2.dispose();
 			finLocation2();

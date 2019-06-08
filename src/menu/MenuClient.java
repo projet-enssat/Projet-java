@@ -106,7 +106,7 @@ public class MenuClient extends Menu
 	 */
 	public void modification() {
 		boolean estClient = false;
-		if(gestionClient.EstClient() && gestionClient.getClient().getNom() == nomClient.getText() && gestionClient.getClient().getPrenom() == prenom.getText() && gestionClient.getClient().getAdresse() == adresse.getText()) {
+		if(gestionClient.estClient() && gestionClient.getClient().getNom() == nomClient.getText() && gestionClient.getClient().getPrenom() == prenom.getText() && gestionClient.getClient().getAdresse() == adresse.getText()) {
 			estClient = true;
 		}else {
 			Client client = gestionClient.getClient();
@@ -114,7 +114,7 @@ public class MenuClient extends Menu
 			client.setAdresse(adresse.getText());
 			client.setPrenom(prenom.getText());
 			gestionClient.setClient(client);
-			if(gestionClient.EstClient()) {
+			if(gestionClient.estClient()) {
 				estClient = true;
 			}else {
 				Erreur("Erreur de Modification Client","Ce que vous voulez modifier n'est pas un client", "Fermez la fenêtre puis verifier le client");
@@ -233,7 +233,7 @@ public class MenuClient extends Menu
 	 */
 	public void suppression()
 	{
-		if(gestionClient.EstClient() && gestionClient.getClient().getNom() == nomClient.getText() && gestionClient.getClient().getPrenom() == prenom.getText() && gestionClient.getClient().getAdresse() == adresse.getText()) {
+		if(gestionClient.estClient() && gestionClient.getClient().getNom() == nomClient.getText() && gestionClient.getClient().getPrenom() == prenom.getText() && gestionClient.getClient().getAdresse() == adresse.getText()) {
 			gestionClient.supprimerClient();
 			fenetre.dispose();
 		}else {
@@ -242,7 +242,7 @@ public class MenuClient extends Menu
 			client.setAdresse(adresse.getText());
 			client.setPrenom(prenom.getText());
 			gestionClient.setClient(client);
-			if(gestionClient.EstClient()) {
+			if(gestionClient.estClient()) {
 				gestionClient.supprimerClient();
 				fenetre.dispose();
 			}else {
