@@ -3,7 +3,6 @@ package action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JList;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -25,7 +24,6 @@ public class ActionClient implements ActionListener, ListSelectionListener, Docu
 	MenuClient menu;
 	/** (Des)active la reaction aux evenements. */
 	boolean enabled = true;
-	boolean test = false; // DEBUGGING PURPOSE
 	
 	/**
 	 * Constructeur.

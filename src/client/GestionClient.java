@@ -163,6 +163,10 @@ public class GestionClient
 		client = new Client(nom, prenom, adresse, date1, date2);
 	}
 	
+	/**
+	 * Remplace client.
+	 * @param client Client a ecrire.
+	 */
 	public void setClient(Client client)
 	{
 		this.client = client;
@@ -216,11 +220,6 @@ public class GestionClient
 		liste.remove(client);
 		enregistrerClients(liste);
 	}
-	
-	public void lire() {
-		ListeClients liste = lireClients();
-		System.out.println(liste.toString());
-	}
 
 	/**
 	 * Deserialise la liste des clients a partir de l'archive "clients".
@@ -250,6 +249,10 @@ public class GestionClient
 		return liste;
 	}
 	
+	/**
+	 * Renvoie client.
+	 * @return Le client a gerer.
+	 */
 	public Client getClient() {
 		return client;
 	}

@@ -12,14 +12,17 @@ import vehicule.Vehicule;
  */
 public class Location implements Serializable
 {
+	/***/
 	private static final long serialVersionUID = 1L;
 	
 	/** Client concerne. */
 	private Client client;
 	/** Vehicule concerne. */
 	private Vehicule vehicule;
-	/** Dates de debut et de fin. */
-	private String debut, fin;
+	/** Date de debut. */
+	private String debut;
+	/** Date de fin. */
+	private String fin;
 	/** Indique si la reduction s'applique a cette location. */
 	private boolean reduction;
 	/** Indique si le vehicule a ete rendu. */

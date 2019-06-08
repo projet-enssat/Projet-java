@@ -7,6 +7,7 @@ package vehicule;
  */
 public abstract class VehiculeTerrestre extends Vehicule
 {
+	/***/
 	private static final long serialVersionUID = 1L;
 	/** Compteur kilometrique en kilometres. */
 	private Float km;

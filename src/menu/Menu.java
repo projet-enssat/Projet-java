@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -112,6 +113,18 @@ public abstract class Menu
 	{
 		JPanel panel = new JPanel(new FlowLayout());
 		panel.add(list);
+		return panel;
+	}
+	
+	/**
+	 * Incruste un JScrollPane dans un JPanel pour en reduire la taille.
+	 * @param jsp JScrollPane a incruster.
+	 * @return JPanel contenant le JScrollPane entouree d'espace vide.
+	 */
+	public JPanel jspV(JScrollPane jsp)
+	{
+		JPanel panel = new JPanel(new FlowLayout());
+		panel.add(jsp);
 		return panel;
 	}
 

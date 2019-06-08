@@ -7,6 +7,7 @@ package vehicule;
  */
 public class Voiture extends VehiculeTerrestre
 {
+	/***/
 	private static final long serialVersionUID = 1L;
 	/** Nombre de places disponibles. */
 	private int nbPlace;

@@ -61,6 +61,10 @@ public class GestionLocation
 		enregistrerLocation(liste2, "locations_finies");
 	}
 	
+	/**
+	 * Renvoie la location de vehicule par client, si elle existe, et null sinon.
+	 * @return Une location provenant de "locations".
+	 */
 	public Location rechercheLocation()
 	{
 		ListeLocations liste = lireLocations("locations");
@@ -75,6 +79,10 @@ public class GestionLocation
 		return result;
 	}
 	
+	/**
+	 * Renvoie la liste des vehicules en cours de location par client.
+	 * @return Un modele de JList contenant tous les vehicules loues par client.
+	 */
 	public DefaultListModel<String> rechercheVehicules()
 	{
 		ListeLocations liste = lireLocations("locations");

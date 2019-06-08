@@ -7,6 +7,7 @@ package vehicule;
  */
 public abstract class VehiculeAerien extends Vehicule
 {
+	/***/
 	private static final long serialVersionUID = 1L;
 	/** Nombre d'heures de vol effectuees. */
 	private Float nbHeureVol;

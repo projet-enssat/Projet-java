@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class ListeClients extends ArrayList<Client> implements Serializable
 {
+	/***/
 	private static final long serialVersionUID = 1L;
 
 }

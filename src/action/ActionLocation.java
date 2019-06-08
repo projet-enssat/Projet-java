@@ -60,7 +60,7 @@ public class ActionLocation implements ActionListener, ListSelectionListener, Do
 					menu.verifVehicule();
 					menu.validerLocation();
 				} else if(e.getSource().equals(menu.getValidation3())) {
-					//menu.archivage();
+					menu.archivage();
 				}else {
 					menu.calculPrix();
 				} 

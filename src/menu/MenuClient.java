@@ -1,5 +1,6 @@
 package menu;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
 
@@ -166,6 +167,10 @@ public class MenuClient extends Menu
 		((ActionClient) listAdresse.getListSelectionListeners()[0]).toggle();
 	}
 	
+	/**
+	 * Affiche tous les clients enregistres.
+	 * @throws IOException, ClassNotFoundException, EOFException
+	 */
 	public void refreshTous()
 	{
 		((ActionClient) listNom.getListSelectionListeners()[0]).toggle();
@@ -187,24 +192,27 @@ public class MenuClient extends Menu
 	 */
 	public void recherche() {
 		fenetre = new JFrame("Choississez le Client");
-		fenetre.setBounds(600,200,700,500);
+		fenetre.setBounds(450,200,800,500);
 		GridLayout grillePrincipale = new GridLayout(3,3);
 		fenetre.setLayout(grillePrincipale);
-		fenetre.add(textFieldLabelLeft("Nom :", nomClient));
-		fenetre.add(textFieldLabelLeft("Prenom :", prenom));
-		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
+		fenetre.add(textFieldLabelAbove(nomClient, "Nom :"));
+		fenetre.add(textFieldLabelAbove(prenom, "Prenom :"));
+		fenetre.add(textFieldLabelAbove(adresse, "Adresse :"));
 		listNom.setModel(gestionClient.rechercherNom(""));
 		listPrenom.setModel(gestionClient.rechercherPrenom(null, ""));
 		listAdresse.setModel(gestionClient.rechercherAdresse(null, null, ""));
-		scrollListNom = new JScrollPane(listNom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollListPrenom = new JScrollPane(listPrenom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollListAdresse = new JScrollPane(listAdresse,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		fenetre.add(scrollListNom);
-		fenetre.add(scrollListPrenom);
-		fenetre.add(scrollListAdresse);
-		fenetre.add(validation);
+		scrollListNom = new JScrollPane(listNom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListPrenom = new JScrollPane(listPrenom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListAdresse = new JScrollPane(listAdresse,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListNom.setPreferredSize(new Dimension(200, 140));
+		scrollListPrenom.setPreferredSize(new Dimension(200, 140));
+		scrollListAdresse.setPreferredSize(new Dimension(200, 140));
+		fenetre.add(jspV(scrollListNom));
+		fenetre.add(jspV(scrollListPrenom));
+		fenetre.add(jspV(scrollListAdresse));
+		fenetre.add(bouton(validation));
 		fenetre.add(vide());
-		fenetre.add(affichage);
+		fenetre.add(bouton(affichage));
 		fenetre.setVisible(true);
 	}
 
@@ -250,24 +258,24 @@ public class MenuClient extends Menu
 	public void affMenu(String nom)
 	{
 		fenetre = new JFrame(nom);
-		fenetre.setBounds(600, 200, 700, 500);
+		fenetre.setBounds(450, 200, 400, 400);
 		GridLayout grillePrincipale = new GridLayout(5, 1);
 		fenetre.setLayout(grillePrincipale);
 		JPanel nomPrenom = new JPanel();
 		GridLayout posNomPrenom = new GridLayout(1, 2);
 		nomPrenom.setLayout(posNomPrenom);
 		nomClient.setText("");
-		JPanel champNom = textFieldLabelLeft("Nom :", nomClient);
+		JPanel champNom = textFieldLabelAbove(nomClient, "Nom :");
 		nomPrenom.add(champNom);
 		prenom.setText("");
-		nomPrenom.add(textFieldLabelLeft("Prenom :", prenom));
+		nomPrenom.add(textFieldLabelAbove(prenom, "Prenom :"));
 		fenetre.add(nomPrenom);
 		adresse.setText("");
-		fenetre.add(textFieldLabelLeft("Adresse :", adresse));
+		fenetre.add(textFieldLabelAbove(adresse, "Adresse :"));
 		datePermis.setText("");
-		fenetre.add(textFieldLabelLeft("Date du permis :", datePermis));
+		fenetre.add(textFieldLabelAbove(datePermis, "Date du permis :"));
 		dateApprentissage.setText("");
-		fenetre.add(textFieldLabelLeft("Date de fin d'apprentissage :", dateApprentissage));
+		fenetre.add(textFieldLabelAbove(dateApprentissage, "Date de fin d'apprentissage :"));
 		fenetre.add(bouton(validation));
 		fenetre.setVisible(true);
 	}

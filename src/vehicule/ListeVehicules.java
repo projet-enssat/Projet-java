@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class ListeVehicules implements Serializable
 {
+	/***/
 	private static final long serialVersionUID = 1L;
 
 	/** Liste des voitures disponibles. */

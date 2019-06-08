@@ -11,7 +11,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.DocumentListener;
 
 import action.ActionLocation;
@@ -19,6 +21,11 @@ import client.GestionClient;
 import location.GestionLocation;
 import vehicule.GestionVehicule;
 
+/**
+ * Classe d'affichage des fenetres concernant les locations.
+ * @author Celia Ellmann
+ * @author Dejan Paris
+ */
 public class MenuLocation extends Menu {
 
 	/** Element graphique */
@@ -61,6 +68,14 @@ public class MenuLocation extends Menu {
 	private static JFrame fenetre2;
 	/** Element graphique */
 	private static JCheckBox reduction = new JCheckBox("Réduction");
+	/** Element graphique */
+	private static JScrollPane scrollListNom = new JScrollPane();
+	/** Element graphique */
+	private static JScrollPane scrollListPrenom = new JScrollPane();
+	/** Element graphique */
+	private static JScrollPane scrollListAdresse = new JScrollPane();
+	/** Element graphique */
+	private static JScrollPane scrollListImmat = new JScrollPane();
 
 	/** Acces a l'archive "clients". */
 	private static GestionClient gestionClient = new GestionClient();
@@ -172,7 +187,7 @@ public class MenuLocation extends Menu {
 		if (choixNom == null)
 		{
 			choixNom = new JList<String>();
-			choixNom.setPreferredSize(new Dimension(200,150));
+			choixNom.setPreferredSize(new Dimension(200,75));
 			choixNom.setModel(gestionClient.rechercherNom(""));
 			choixNom.addListSelectionListener(new ActionLocation(this));
 		}
@@ -180,7 +195,7 @@ public class MenuLocation extends Menu {
 		if (choixPre == null)
 		{
 			choixPre = new JList<String>();
-			choixPre.setPreferredSize(new Dimension(200,150));
+			choixPre.setPreferredSize(new Dimension(200,75));
 			choixPre.setModel(gestionClient.rechercherPrenom(null, ""));
 			choixPre.addListSelectionListener(new ActionLocation(this));
 		}
@@ -188,7 +203,7 @@ public class MenuLocation extends Menu {
 		if (choixAdr == null)
 		{
 			choixAdr = new JList<String>();
-			choixAdr.setPreferredSize(new Dimension(200,150));
+			choixAdr.setPreferredSize(new Dimension(200,75));
 			choixAdr.setModel(gestionClient.rechercherAdresse(null, null,""));
 			choixAdr.addListSelectionListener(new ActionLocation(this));
 		}
@@ -196,7 +211,7 @@ public class MenuLocation extends Menu {
 		if (choixImm == null)
 		{
 			choixImm = new JList<String>();
-			choixImm.setPreferredSize(new Dimension(200,150));
+			choixImm.setPreferredSize(new Dimension(200,75));
 			choixImm.setModel(gestionVehicule.toutesLesImmats(null, null, ""));
 			choixImm.addListSelectionListener(new ActionLocation(this));
 		}
@@ -232,26 +247,35 @@ public class MenuLocation extends Menu {
 		
 		if (fenetre != null) { fenetre.removeAll(); }
 		fenetre = new JFrame(nom);
-		fenetre.setBounds(600,200,700,500);
+		fenetre.setBounds(450,200,700,500);
 		fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		GridLayout grillePrincipale = new GridLayout(1,3);
 		fenetre.setLayout(grillePrincipale);
+		
+		scrollListNom = new JScrollPane(choixNom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListPrenom = new JScrollPane(choixPre,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListAdresse = new JScrollPane(choixAdr,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListNom.setPreferredSize(new Dimension(200, 40));
+		scrollListPrenom.setPreferredSize(new Dimension(200, 40));
+		scrollListAdresse.setPreferredSize(new Dimension(200, 40));
+		scrollListImmat = new JScrollPane(choixImm,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListImmat.setPreferredSize(new Dimension(200, 40));
 		
 		JPanel panelClient = new JPanel(new GridLayout(4,1));
 		
 		JPanel panelNom = new JPanel(new GridLayout(2,1));
 		panelNom.add(textFieldLabelAbove(nomTF, "Nom :"));
-		panelNom.add(listV(choixNom));
+		panelNom.add(jspV(scrollListNom));
 		panelClient.add(panelNom);
 
 		JPanel panelPrenom = new JPanel(new GridLayout(2,1));
 		panelPrenom.add(textFieldLabelAbove(prenomTF, "Prenom :"));
-		panelPrenom.add(listV(choixPre));
+		panelPrenom.add(jspV(scrollListPrenom));
 		panelClient.add(panelPrenom);
 
 		JPanel panelAdresse = new JPanel(new GridLayout(2,1));
 		panelAdresse.add(textFieldLabelAbove(adresseTF, "Adresse :"));
-		panelAdresse.add(listV(choixAdr));
+		panelAdresse.add(jspV(scrollListAdresse));
 		panelClient.add(panelAdresse);
 
 		validation1.setEnabled(true);
@@ -272,7 +296,7 @@ public class MenuLocation extends Menu {
 
 		JPanel panelImmat = new JPanel(new GridLayout(2,1));
 		panelImmat.add(textFieldLabelAbove(immatTF, "Immatriculation :"));
-		panelImmat.add(listV(choixImm));
+		panelImmat.add(jspV(scrollListImmat));
 		panelVehi.add(panelImmat);
 		
 		validation2.setEnabled(true);
@@ -297,12 +321,15 @@ public class MenuLocation extends Menu {
 		fenetre.setVisible(true);
 	}
 	
+	/**
+	 * Affiche la premiere fenetre d'archivage de location.
+	 */
 	public void finLocation1()
 	{
 		nouveau = false;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
 		fenetre2 = new JFrame("Supprimer une location");
-		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setBounds(300, 200, 900, 200);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
@@ -313,18 +340,27 @@ public class MenuLocation extends Menu {
 		fenetre2.add(textFieldLabelAbove(prenomTF, "Prenom :"));
 		fenetre2.add(textFieldLabelAbove(adresseTF, "Adresse :"));
 		fenetre2.add(bouton(validation1));
-		fenetre2.add(listV(choixNom));
-		fenetre2.add(listV(choixPre));
-		fenetre2.add(listV(choixAdr));
+		scrollListNom = new JScrollPane(choixNom,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListPrenom = new JScrollPane(choixPre,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListAdresse = new JScrollPane(choixAdr,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListNom.setPreferredSize(new Dimension(200, 75));
+		scrollListPrenom.setPreferredSize(new Dimension(200, 75));
+		scrollListAdresse.setPreferredSize(new Dimension(200, 75));
+		fenetre2.add(jspV(scrollListNom));
+		fenetre2.add(jspV(scrollListPrenom));
+		fenetre2.add(jspV(scrollListAdresse));
 		fenetre2.setVisible(true);
 	}
 	
+	/**
+	 * Affiche la deuxieme fenetre d'archivage de location.
+	 */
 	public void finLocation2()
 	{
 		nouveau = false;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
 		fenetre2 = new JFrame("Supprimer une location");
-		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setBounds(300, 200, 900, 200);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(2, 4));
 
@@ -341,22 +377,24 @@ public class MenuLocation extends Menu {
 		fenetre2.add(vide());
 		((ActionLocation) doc).toggle();
 		choixImm.setModel(gestionLocation.rechercheVehicules());
-		fenetre2.add(listV(choixImm));
+		fenetre2.add(jspV(scrollListImmat));
 		fenetre2.setVisible(true);
 	}
-	
+
+	/**
+	 * Affiche la troisieme fenetre d'archivage de location.
+	 */
 	public void finLocation3()
 	{
 		nouveau = false;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
 		fenetre2 = new JFrame("Supprimer une location");
-		fenetre2.setBounds(400, 400, 1100, 200);
+		fenetre2.setBounds(300, 200, 900, 200);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new GridLayout(3, 4));
 
 		debutTF.setEnabled(false);
 		debutTF.setText(gestionLocation.getLocation().getDebut());
-		System.out.println(gestionLocation.getLocation().getDebut());
 		fenetre2.add(textFieldLabelAbove(debutTF, "Début :"));
 		finTF.setEnabled(false);
 		finTF.setText(gestionLocation.getLocation().getFin());
@@ -366,6 +404,14 @@ public class MenuLocation extends Menu {
 		prixTF.setEnabled(false);
 		fenetre2.add(bouton(validation3));
 		fenetre2.setVisible(true);
+	}
+	
+	/**
+	 * Archive une location en la deplacant de "locations" a "locations_finies".
+	 */
+	public void archivage()
+	{
+		gestionLocation.archiverLocation();
 	}
 	
 	/**
@@ -658,7 +704,6 @@ public class MenuLocation extends Menu {
 		boolean debutCorrect=false;
 		boolean finCorrect=false;
 		
-		System.out.println("test");
 		if(debut.contains("/")) {
 			tJour=debut.indexOf("/");
 			jour=debut.substring(0,tJour);

@@ -69,9 +69,6 @@ public class Action implements ActionListener
 			case "Supprimer Vehicule":
 				new MenuVehicule().supprimerVehicule();
 				break;
-			case "Options":
-				System.out.println(new GestionLocation(null, null, null, null, false).lireLocations("locations"));
-				break;
 		}
 	}
 }

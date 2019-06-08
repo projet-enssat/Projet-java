@@ -1,5 +1,6 @@
 package menu;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -9,8 +10,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
+import javax.swing.ScrollPaneConstants;
 
 import action.ActionVehicule;
 import client.GestionClient;
@@ -80,6 +83,12 @@ public class MenuVehicule extends Menu
 	private static JFrame fenetre3;
 	/** Element graphique */
 	private static JPanel infoVehicule = new JPanel();
+	/** Element graphique */
+	private static JScrollPane scrollListMarque = new JScrollPane();
+	/** Element graphique */
+	private static JScrollPane scrollListModele = new JScrollPane();
+	/** Element graphique */
+	private static JScrollPane scrollListImmat = new JScrollPane();
 	
 	/** Acces a l'archive "vehicules". */
 	GestionVehicule gestionVehicule = new GestionVehicule();
@@ -137,7 +146,7 @@ public class MenuVehicule extends Menu
 		{
 			choixMod = new JList<String>();
 			choixMod.setModel(new GestionVehicule().tousLesModeles(null, ""));
-			choixMod.setPreferredSize(new Dimension(150, 100));
+			choixMod.setPreferredSize(new Dimension(150, 80));
 			choixMod.addListSelectionListener(new ActionVehicule(this));
 		}
 
@@ -145,7 +154,7 @@ public class MenuVehicule extends Menu
 		{
 			choixMar = new JList<String>();
 			choixMar.setModel(new GestionVehicule().toutesLesMarques(""));
-			choixMar.setPreferredSize(new Dimension(150, 100));
+			choixMar.setPreferredSize(new Dimension(150, 80));
 			choixMar.addListSelectionListener(new ActionVehicule(this));
 		}
 		
@@ -153,7 +162,7 @@ public class MenuVehicule extends Menu
 		{
 			choixImm = new JList<String>();
 			choixImm.setModel(new GestionVehicule().toutesLesImmats(null, null, ""));
-			choixImm.setPreferredSize(new Dimension(200, 100));
+			choixImm.setPreferredSize(new Dimension(200, 80));
 			choixImm.addListSelectionListener(new ActionVehicule(this));
 		}
 		
@@ -257,11 +266,11 @@ public class MenuVehicule extends Menu
 	{
 		if (fenetre != null) { fenetre.removeAll(); }
 		fenetre = new JFrame(nom);
-		fenetre.setBounds(400,200,1100,500);
+		fenetre.setBounds(300,200,800,300);
 		fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		infoVehicule.removeAll();
 		infoVehicule = new JPanel();
-		fenetre.setLayout(new GridLayout(2, 1));
+		fenetre.setLayout(new BorderLayout());
 		infoVehicule.setLayout(new GridLayout(3, 3));
 		addGeneralTextFields();
 	}
@@ -274,7 +283,7 @@ public class MenuVehicule extends Menu
 		nouveau = true;
 		if (fenetre2 != null) { fenetre2.removeAll(); }
 		fenetre2 = new JFrame("Nouveau vehicule");
-		fenetre2.setBounds(800, 400, 400, 100);
+		fenetre2.setBounds(600, 300, 200, 100);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLayout(new FlowLayout());
 
@@ -286,7 +295,7 @@ public class MenuVehicule extends Menu
 	}
 	
 	/**
-	 * Resst les valeurs déjà entrez dans les JTextField.
+	 * Reset les valeurs deja entrees dans les JTextField.
 	 */
 	public void reset() {
 		texteMar.setText("");
@@ -404,7 +413,7 @@ public class MenuVehicule extends Menu
 		nouveau = false;
 		if (fenetre3 != null) { fenetre3.removeAll(); }
 		fenetre3 = new JFrame("Selectionner vehicule à modifier");
-		fenetre3.setBounds(400, 400, 1100, 200);
+		fenetre3.setBounds(280, 200, 900, 220);
 		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre3.setLayout(new GridLayout(2, 4));
 		fenetre3.add(comboBoxV2(choixV));
@@ -413,9 +422,15 @@ public class MenuVehicule extends Menu
 		fenetre3.add(textFieldLabelAbove(texteImm, "Immatriculation :"));
 		
 		fenetre3.add(bouton(validation3));
-		fenetre3.add(listV(choixMar));
-		fenetre3.add(listV(choixMod));
-		fenetre3.add(listV(choixImm));
+		scrollListMarque = new JScrollPane(choixMar,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListModele = new JScrollPane(choixMod,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListImmat = new JScrollPane(choixImm,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListMarque.setPreferredSize(new Dimension(200, 80));
+		scrollListModele.setPreferredSize(new Dimension(200, 80));
+		scrollListImmat.setPreferredSize(new Dimension(200, 80));
+		fenetre3.add(jspV(scrollListMarque));
+		fenetre3.add(jspV(scrollListModele));
+		fenetre3.add(jspV(scrollListImmat));
 		fenetre3.setVisible(true);
 	}
 	
@@ -427,7 +442,7 @@ public class MenuVehicule extends Menu
 		nouveau = false;
 		if (fenetre3 != null) { fenetre3.removeAll(); }
 		fenetre3 = new JFrame("Supprimer vehicule");
-		fenetre3.setBounds(400, 400, 1100, 200);
+		fenetre3.setBounds(280, 200, 900, 220);
 		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre3.setLayout(new GridLayout(2, 4));
 
@@ -436,9 +451,15 @@ public class MenuVehicule extends Menu
 		fenetre3.add(textFieldLabelAbove(texteMod, "Modèle :"));
 		fenetre3.add(textFieldLabelAbove(texteImm, "Immatriculation :"));
 		fenetre3.add(bouton(validation2));
-		fenetre3.add(listV(choixMar));
-		fenetre3.add(listV(choixMod));
-		fenetre3.add(listV(choixImm));
+		scrollListMarque = new JScrollPane(choixMar,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListModele = new JScrollPane(choixMod,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListImmat = new JScrollPane(choixImm,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollListMarque.setPreferredSize(new Dimension(200, 80));
+		scrollListModele.setPreferredSize(new Dimension(200, 80));
+		scrollListImmat.setPreferredSize(new Dimension(200, 80));
+		fenetre3.add(jspV(scrollListMarque));
+		fenetre3.add(jspV(scrollListModele));
+		fenetre3.add(jspV(scrollListImmat));
 		fenetre3.setVisible(true);
 	}
 	
@@ -450,11 +471,11 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textFieldLabelLeft("Compteur", km));
-		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
-		infoVehicule.add(textFieldLabelLeft("Places", nbPlaces));
-		fenetre.add(infoVehicule);
-		fenetre.add(bouton(validation4));
+		infoVehicule.add(textFieldLabelAbove(km, "Compteur"));
+		infoVehicule.add(textFieldLabelAbove(puissance, "Puissance"));
+		infoVehicule.add(textFieldLabelAbove(nbPlaces, "Places"));
+		fenetre.add(infoVehicule, BorderLayout.CENTER);
+		fenetre.add(bouton(validation4), BorderLayout.SOUTH);
 		fenetre.setVisible(true);
 	}
 
@@ -466,11 +487,11 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textFieldLabelLeft("Compteur", km));
-		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
-		infoVehicule.add(textFieldLabelLeft("Places", nbPlaces));
-		fenetre.add(infoVehicule);
-		fenetre.add(bouton(validation1));
+		infoVehicule.add(textFieldLabelAbove(km, "Compteur"));
+		infoVehicule.add(textFieldLabelAbove(puissance, "Puissance"));
+		infoVehicule.add(textFieldLabelAbove(nbPlaces, "Places"));
+		fenetre.add(infoVehicule, BorderLayout.CENTER);
+		fenetre.add(bouton(validation1), BorderLayout.SOUTH);
 		fenetre.setVisible(true);
 	}
 
@@ -482,11 +503,11 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textFieldLabelLeft("Compteur", km));
-		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
+		infoVehicule.add(textFieldLabelAbove(km, "Compteur"));
+		infoVehicule.add(textFieldLabelAbove(puissance, "Puissance"));
 		infoVehicule.add(vide());
-		fenetre.add(infoVehicule);
-		fenetre.add(bouton(validation4));
+		fenetre.add(infoVehicule, BorderLayout.CENTER);
+		fenetre.add(bouton(validation4), BorderLayout.SOUTH);
 		fenetre.setVisible(true);
 	}
 	
@@ -498,11 +519,11 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textFieldLabelLeft("Compteur", km));
-		infoVehicule.add(textFieldLabelLeft("Puissance", puissance));
+		infoVehicule.add(textFieldLabelAbove(km, "Compteur"));
+		infoVehicule.add(textFieldLabelAbove(puissance, "Puissance"));
 		infoVehicule.add(vide());
-		fenetre.add(infoVehicule);
-		fenetre.add(bouton(validation1));
+		fenetre.add(infoVehicule, BorderLayout.CENTER);
+		fenetre.add(bouton(validation1), BorderLayout.SOUTH);
 		fenetre.setVisible(true);
 	}
 	
@@ -514,11 +535,11 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textFieldLabelLeft("Heures de vol", nbHeuresVol));
-		infoVehicule.add(textFieldLabelLeft("Nombre de moteurs", nbMoteurs));
+		infoVehicule.add(textFieldLabelAbove(nbHeuresVol, "Heures de vol"));
+		infoVehicule.add(textFieldLabelAbove(nbMoteurs, "Nombre de moteurs"));
 		infoVehicule.add(vide());
-		fenetre.add(infoVehicule);
-		fenetre.add(bouton(validation4));
+		fenetre.add(infoVehicule, BorderLayout.CENTER);
+		fenetre.add(bouton(validation4), BorderLayout.SOUTH);
 		fenetre.setVisible(true);
 	}
 
@@ -531,11 +552,11 @@ public class MenuVehicule extends Menu
 	{
 		affMenu(nom);
 
-		infoVehicule.add(textFieldLabelLeft("Heures de vol", nbHeuresVol));
-		infoVehicule.add(textFieldLabelLeft("Nombre de moteurs", nbMoteurs));
+		infoVehicule.add(textFieldLabelAbove(nbHeuresVol, "Heures de vol"));
+		infoVehicule.add(textFieldLabelAbove(nbMoteurs, "Nombre de moteurs"));
 		infoVehicule.add(vide());
-		fenetre.add(infoVehicule);
-		fenetre.add(bouton(validation1));
+		fenetre.add(infoVehicule, BorderLayout.CENTER);
+		fenetre.add(bouton(validation1), BorderLayout.SOUTH);
 		fenetre.setVisible(true);
 	}
 
@@ -544,12 +565,12 @@ public class MenuVehicule extends Menu
 	 */
 	private void addGeneralTextFields()
 	{
-		infoVehicule.add(textFieldLabelLeft("Modèle", modele));
-		infoVehicule.add(textFieldLabelLeft("Etat", etat));
-		infoVehicule.add(textFieldLabelLeft("Prix par jour", prixJour));
-		infoVehicule.add(textFieldLabelLeft("Marque", marque));
-		infoVehicule.add(textFieldLabelLeft("Immatriculation", immat));
-		infoVehicule.add(textFieldLabelLeft("Vitesse", vitesse));
+		infoVehicule.add(textFieldLabelAbove(modele, "Modèle"));
+		infoVehicule.add(textFieldLabelAbove(etat, "Etat"));
+		infoVehicule.add(textFieldLabelAbove(prixJour, "Prix par jour"));
+		infoVehicule.add(textFieldLabelAbove(marque, "Marque"));
+		infoVehicule.add(textFieldLabelAbove(immat, "Immatriculation"));
+		infoVehicule.add(textFieldLabelAbove(vitesse, "Vitesse"));
 	}
 	
 	/**
@@ -653,11 +674,19 @@ public class MenuVehicule extends Menu
 		return validation2;
 	}
 	
+	/**
+	 * Renvoie validation4.
+	 * @return JButton de validation finale.
+	 */
 	public JButton getModifier()
 	{
 		return validation4;
 	}
-	
+
+	/**
+	 * Renvoie validation3.
+	 * @return JButton de validation de recherche.
+	 */
 	public JButton getRechercher()
 	{
 		return validation3;

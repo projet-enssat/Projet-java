@@ -30,29 +30,12 @@ public class MenuPrincipal extends Menu
 	private static JButton suppLoc = new JButton("Fin Location");
 	/** Element graphique */
 	private static JButton suppVehi = new JButton("Supprimer Vehicule");
-	/** Element graphique */
-	private static JButton options = new JButton("Options");
 
 	/**
 	 * Constructeur et afficheur de la fenetre principale.
 	 */
 	public MenuPrincipal()
 	{
-		JPanel optionVerif = new JPanel();
-		GridLayout grilleoption = new GridLayout(1, 2);
-		optionVerif.setLayout(grilleoption);
-		JPanel option1 = new JPanel();
-		BorderLayout posOption1 = new BorderLayout();
-		option1.setLayout(posOption1);
-		JPanel option2 = new JPanel();
-		BorderLayout posOption2 = new BorderLayout();
-		option2.setLayout(posOption2);
-		option1.add(option2, BorderLayout.WEST);
-		options.addActionListener(new Action(this));
-		option2.add(options, BorderLayout.NORTH);
-		optionVerif.add(option1);
-		optionVerif.add(vide());
-
 		JPanel client = label(new JLabel("Client"));
 		JPanel location = label(new JLabel("Location"));
 		JPanel vehicule = label(new JLabel("Vehicule"));
@@ -80,16 +63,11 @@ public class MenuPrincipal extends Menu
 		action.add(bouton(suppVehi));
 
 		JFrame principal = new JFrame("Accueil");
-		principal.setBounds(600, 200, 800, 700);
-		principal.setLayout(new GridLayout(3,1));
-		principal.add(optionVerif);
+		principal.setBounds(450, 200, 600, 200);
+		principal.setLayout(new FlowLayout());
 		principal.add(action);
 		principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		principal.setVisible(true);
-	}
-	
-	public void affichage() {
-		
 	}
 
 	/**
